@@ -1,0 +1,13 @@
+Flask
+flask-cors
+pandas
+modlamp
+biopython
+scipy
+matplotlib
+networkx
+python-louvain
+seaborn
+python-Levenshtein
+split-fasta
+statsmodels

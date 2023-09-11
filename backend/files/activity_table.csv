@@ -1,0 +1,125 @@
+"idactivity","name","level","parent","description"
+123,Vasodilator,6,121,Participates in widening of blood vessels
+1,Amphibian defense,3,24,Molecule involved in amphibian defense mechanisms
+76,Immunological activity,1,0,Activity related to the immune response of an organism
+17,Antibacterial/antibiotic,3,24,Activity against bacteria
+3,Antihypertensive,3,88,Molecule that could be used to treat hypertension 
+20,Antifungal,3,24,Activity against fungi
+107,Regulatory,3,88,The molecule is involved in regulatory process in a cell or organism
+28,Antiprotozoal,3,24,Activity against protozoa
+33,Eating behavior,3,88,"A peptide that modulates eating behavior, energy homeostasis or is related to eating disorders"
+30,Antiviral,3,24,Activity against viral infection
+116,Toxins,1,0,Poisonous substances with toxic effects on organisms
+2,Angiogenic,6,121,Activity related to the growth of new blood vessels.
+45,Cell proliferation,3,88,Participates in the processes of cell proliferation or growth.
+10,Atheroma related,6,121,"Related to atheroma, an abnormal and reversible accumulation of material in the inner arterial wall."
+4,Anti tb,4,17,Activity Agains Mycobacterium tuberculosis
+36,Blood pressure,6,121,Involved in blood prossure processes
+67,Enzymatic,3,88,"Related to enzymatic processes (activation, degradation, inhibition, among others)."
+122,Vasoconstrictor,6,121,Participates in vascular processes and their regulation.
+94,Neuropeptide,2,8,a molecule involved in neural processes
+12,Anti gram(+),4,17,Activity against Gram-positive bacteria
+72,Hormone,3,88,"Any substance formed in very small amounts in one specialized organ or group of cells and carried (sometimes in the bloodstream) to another organ or group of cells in the same organism, upon which it has a specific regulatory action."
+6,Antiproliferative,3,19,Activity related to cell growth inhibition
+75,Inflammatory modulator,3,88,It participates in the regulation of inflammatory processes or in their inhibition.
+13,Anti gram(-),4,17,Activity against Gram-negative bacteria
+97,Pain related,3,88,Involved in pain mechanisms or their signaling processes.
+26,Antioxidant,3,40,Helps to reduce molecular oxidation
+103,Protein modulator,3,88,"Involved in the regulation of proteins (activation, inhibition, among others)"
+18,Antibiofilm,4,17,Useful against microbial biofilm formation
+29,Antitumour,3,19,Able to stop or reduce tumours
+39,Bacteriocins,4,17,Bacterial peptides with antibacterial activity
+9,Apoptosis,3,45,Related to apoptosis process or mechanism
+5,Antidote,2,116,A molecule that can counteract a particular poison or toxin.
+7,Antiyeast,4,20,Activity against yeasts
+92,Neurotoxin,2,116,a substance that has toxic effects on the structure or function of the nervous system
+77,Immunomodulatory,2,76,Modulatory activity for innate and/or adaptive immune responses
+8,Neurological activity,1,0,Activity related to the neurons or the nervous system
+113,Sporulation,4,45,"Activity related to sporulation processes (spore formation, propagation, etc.)"
+25,Antinociceptive,2,8,Able to block noxious stimulus (analgesic effect) 
+22,Antilisterial,5,12,Activity against Listeria monocytogenes
+42,Brain peptide,2,8,Peptides involved in the intracellular signals between neurons
+11,Allergen,2,76,Triggers allergic reactions
+82,Mhc binding and non-binding,2,76,Peptides that can bind with the major histocompatibility complex (MHC)
+44,Cell degranulating,2,76,Process in which a cell releases cytotoxic molecules from a granule
+118,Therapeutic,1,0,Able to be used for sickness treatments
+52,Cytokine activity,2,76,Controls the growth and activity of other immune cells or blood cells.
+19,Anticancer,2,118,Activity against cancerous cell
+14,Anti hiv,4,30,Activity against HIV entry and/or replication
+60,Cytolytic,3,119,Process that generates cell rupture
+15,Anti hsv,4,30,Activity against Herpes simplex virus
+24,Antimicrobial,2,118,Activity against unicellular organisms
+16,Anti mrsa,5,12,Activity against Methicillin-resistant Staphylococcus aureus
+119,Toxic,2,118,Cytotoxic activity against eukaryote organism cells
+40,Bioactive,2,118,Active protein-derived peptides
+51,Cryoprotective,3,40,Provides protection to cells during freezing
+88,Metabolic,2,118,Useful for regulation of metabolism and homeostasis
+21,Antiinflammatory,4,125,Useful for inflammation and pain
+46,Channel/receptor modulator,2,84,Modulates binding to membrane receptors or channels
+23,Antimalarial/antiplasmodial,4,28,Activity against Plasmodium
+78,Insecticidal,3,119,Cytotoxic for insect cells
+27,Antiparasitic,3,119,Activity against eukaryote parasites
+32,Bacteria growth stimulator,3,83,Molecule that stimulates bacteria growth
+54,Cytotoxic,3,119,A molecule that is toxic to cells
+73,Hormone binding,2,84,A molecule that bind with hormone
+90,Nematocide,3,119,Pesticide to control nematodes
+34,Bile acid-binding,2,84,A molecule that bind with bile acid
+31,Anuro defense,4,1,Peptides involved in the defense mechanism of the Anura order
+53,Cytoprotective,2,96,A molecule that provides protection to cells against harmful agents. 
+48,Chelator,2,84,A molecule involved in binding to metal ions.
+79,Ligand binding,2,84,A molecule that bind with an specific ligand
+63,Dna binding,2,84,A molecule that bind with DNA
+81,Metal binding,2,84,A molecule that bind with metals
+98,Peptide binding,2,84,A molecule that bind with peptides
+80,Lipid binding,2,84,A molecule that bind with lipids
+84,Molecule binding,1,0,Involved in molecule binding processes
+114,Surface-immobilized,2,84,Immobilized molecules into inorganic materials
+102,Protein binding,2,84,A molecule that bind with protein
+47,Chaperone,2,96,Molecule involved in the folding or unfolding of protein molecules.
+35,Biosynthesis,2,96,Involved in the biological synthesis of molecules
+83,Microbial growth,2,96,Related to microbial growth processes.
+55,Cancer cell,2,96,Cells with an abnormal cell division that can lead to cancer disease
+85,Mollicute,2,96,Peptides from or related to Mollicutes 
+87,Mammallian cell,2,96,Cells isolated or derived from mammal tissue
+91,Nematode,2,96,Peptides from or related to nematodes
+96,Other activity,1,0,Other activities not included in the categorization
+101,Precipitation processes,2,96,Involved in the precipitation processes of molecules
+110,Sexual/reproduction regulation,2,96,"It includes molecules, organs and hormones that regulate reproductive processes."
+37,Blood processes,4,107,"Involved in the regulation of blood processes (synthesis, transport, among others)"
+38,Bone processes,4,107,"Involved in bone processes (osteogenic, modulation, among others)"
+49,Chromatine assembly,4,107,Participates in the chromatin assembly process during DNA replication
+50,Coagulation or anticoagulation,4,107,Related to coagulation processes in the blood or their inhibition.
+64,Dna replication,4,107,Involved in DNA replication processes
+69,Gene expression and translation,4,107,Involved in gene expression and translation processes
+70,Growth factor,4,107,A molecule that stimulates cell growth and sometimes cell differentiation.
+71,Homeostasis,4,107,"Participates in homeostasis processes, which allow the organism to self-regulate."
+86,Muscle processes,4,107,"Participates in the regulation of muscular processes (signaling, contraction, among others)."
+100,Plant processes,4,107,Molecule involved in plant processes regulation
+112,Signal transduction,4,107,Involved in the regulatory processes of signal transduction
+117,Transcription processes,4,107,Molecule involved in transcription processes
+41,Blood-brain barrier crossing,2,66,Able to cross the blood-brain barrier
+58,Cell-penetrating,2,66,Amino acid sequence able to cross cell membranes
+66,Drug delivery vehicle,1,0,Carrier that helps a drug to reach its therapeutic target
+43,Cell aggregation,2,108,It participates in the union and adhesion of cells to form an aggregate.
+56,Cell sensing,2,108,"Activities related to cell detection mechanisms, such as quorum sensing, chemotactic movement, cell-to-cell communication, among others"
+57,Cell-cell communication,2,108,Communication between cells
+59,Chemotactic,2,108,Able to mobilize organisms using chemical concentrations
+65,Defense,2,108,Response mechanism against foreign substances or organisms
+99,Pheromone,2,108,A molecule secreted to trigger a social response among members of the same species.
+106,Quorum sensing,2,108,Regulates gene expression for cell population regulation
+108,Sensorial,1,0,Related to cell sensing
+61,Diabetic,4,71,"Related to the disease diabetes, which causes an increase in blood sugar."
+62,Diuresis,5,71,"Related to diuresis processes, which consist of an increase in urine flow as a consequence of a metabolic factor. "
+89,Natriuretic,5,71,"A peptide that induces natriuresis, which is related to the discharge of sodium in the urine."
+120,Uricemic,5,71,Related to uricemic processes
+121,Vascular,5,71,Related to vascular processes in blood and lymphatic vessels. 
+68,Enzyme inhibitor,4,67,Molecule that binds to an enzyme in order to decrease its activity
+105,Proteolytic,4,67,Activity related to the breakdown of proteins into peptides or aminoacids.
+74,Hemolytic,4,54,Rupture of red blood cells
+95,Opioid,4,97,A substance derived from opium that can be used for the treatment of pain or to produce sleep. 
+104,Propeptide,1,0,Precursor with no biological activity
+109,Sexual/reproduction,4,72,Hormones related to maturation or sexual activity.
+111,Signal peptide,1,0,Used as post translational modification or translocation
+115,Taste & saliva,4,33,Molecule present in saliva or related to taste and its processes.
+124,Wound healing,3,77,Useful for immunomodulation and wound healing
+125,Inflamatory modulator,2,88, 

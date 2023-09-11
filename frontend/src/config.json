@@ -1,0 +1,722 @@
+{
+  "sidebar": {
+    "home": [
+      "home"
+    ],
+    "tools": [
+      "convert_to_fasta",
+      "test_sequences"
+    ],
+    "bioinformatic_tools": [
+      "msa",
+      "pfam",
+      "gene_ontology",
+      "structural_prediction"
+    ],
+    "statistic_tools": [
+      "frequency_evaluation",
+      "properties_estimation"
+    ],
+    "machine_learning_tools": [
+      "encoding_sequences",
+      "clustering",
+      "supervised_learning"
+    ],
+    "predictive_models": [
+      "activity_prediction",
+      "ic50",
+      "solubility",
+      "immunomodularity"
+    ]
+  },
+
+  "home": {
+    "title": "Pepti-tools",
+    "description": "Pepti-Tools, a user-friendly web application tool to support peptide research using bioinformatics and machine learning strategies",
+    "route": "/",
+    "team": [
+      {
+        "name": "Gabriel Cabas",
+        "image": "/src/assets/team/gabriel.jpeg",
+        "rol": "Software developer",
+        "github": "https://www.researchgate.net/profile/Gabriel-Cabas",
+        "linkedin": "https://cl.linkedin.com/in/gabriel-cabas-1834601b4" 
+      },
+      {
+        "name": "Anamaria Sanchez",
+        "image": "/src/assets/team/anita.jpg",
+        "rol": "Researcher",
+        "github": "https://www.researchgate.net/profile/Anamaria-Daza-Sanchez",
+        "linkedin": "https://www.linkedin.com/in/anamaria-daza-sanchez-597b3246/"
+      },
+      {
+        "name": "Lindybeth Sarmiento",
+        "image": "/src/assets/team/lindybeth.jpg",
+        "rol": "Researcher",
+        "github": "https://www.researchgate.net/profile/Lindybeth-Sarmiento-2",
+        "linkedin": "https://www.linkedin.com/in/lindybethsarmiento/"
+      },
+      {
+        "name": "Diego Alvarez",
+        "image": "/src/assets/team/diego.jpg",
+        "rol": "Researcher",
+        "github": "https://github.com/GabrielCabas",
+        "linkedin": "https://www.linkedin.com/in/dialvarezs0/"
+      },
+      {
+        "name": "Roberto Uribe",
+        "image": "/src/assets/team/roberto_uribe.jpg",
+        "rol": "Researcher",
+        "github": "https://www.researchgate.net/profile/Roberto-Uribe-Paredes",
+        "linkedin": "https://www.linkedin.com/in/roberto-uribe-paredes-5868b84/" 
+      },
+      {
+        "name": "Alvaro Olivera",
+        "image": "/src/assets/team/alvaro.jpg",
+        "rol": "Researcher",
+        "github": "https://www.researchgate.net/profile/Alvaro-Olivera-Nappa",
+        "linkedin": "https://www.linkedin.com/in/alvaro-olivera-nappa-5bb5212/" 
+      },
+      {
+        "name": "Marcelo Navarrete",
+        "image": "/src/assets/team/marcelo.jpeg",
+        "rol": "Researcher",
+        "github": "https://www.researchgate.net/profile/Marcelo-Navarrete",
+        "linkedin": "https://www.linkedin.com/in/marcelo-navarrete-signorile-30179576/" 
+      },
+      {
+        "name": "David Medina",
+        "image": "/src/assets/team/david.jpeg",
+        "rol": "Researcher",
+        "github": "https://www.researchgate.net/profile/David-Medina-Ortiz",
+        "linkedin": "https://www.linkedin.com/in/david-medina-924308224/"
+      }
+    ],
+    "links": {
+      "title": "Our Links",
+      "data": [
+        {
+          "title": "Repository",
+          "description": "Check out the source code of our research and applications.",
+          "icon": "https://www.svgrepo.com/show/507321/github.svg",
+          "button": "Visit Github",
+          "redirect": "https://github.com/ProteinEngineering-PESB2/"
+        },
+        {
+          "title": "Organization",
+          "description": "Check out the CATG organization's webpage.",
+          "icon": "https://cdn-icons-png.flaticon.com/512/993/993854.png",
+          "button": "Visit CATG.cl",
+          "redirect": "https://www.catg.cl"
+        },
+        {
+          "title": "Peptipedia database",
+          "description": "Peptipedia, a database to support peptide research using bioinformatics and machine learning strategies.",
+          "icon": "https://www.svgrepo.com/show/509077/database.svg",
+          "button": "Visit Peptipedia",
+          "redirect": "/peptipedia/"
+        }
+      ]
+    },
+    "cites": {
+      "data": [
+        {
+          "cite": "Quiroz C, Saavedra YB, Armijo-Galdames B, Amado-Hinojosa J, Olivera-Nappa Á, Sanchez-Daza A, Medina-Ortiz D. Peptipedia: a user-friendly web application and a comprehensive database for peptide research supported by Machine Learning approach. Database (Oxford). 2021 Sep 3;2021:baab055. doi: 10.1093/database/baab055. PMID: 34478499; PMCID: PMC8415426."
+        },
+        {
+          "cite": "Cabas Mora G, Olivera-Nappa Á and Medina Ortiz D. Facilitating the study of peptides sequences using machine learning strategies and bioinformatics tools. [version 1; not peer reviewed]. F1000Research 2023, 12:967 (poster) (https://doi.org/10.7490/f1000research.1119568.1)"
+        }
+      ]
+    },
+    "entities": [
+      {
+        "url": "/src/assets/entities/umag.png",
+        "alt": "Universidad de Magallanes",
+        "width": "100rem",
+        "height": "100rem"
+      },
+      {
+        "url": "/src/assets/entities/catg.png",
+        "alt": "Centro Austral de Tecnología Genómica",
+        "width": "100rem",
+        "height": "100rem"
+      },
+      {
+        "url": "/src/assets/entities/anid.png",
+        "alt": "Agencia Nacional de Investigación y Desarrollo",
+        "width": "100rem",
+        "height": "100rem"
+      },
+      {
+        "url": "/src/assets/entities/mineduc.jpg",
+        "alt": "Ministerio de Educación",
+        "width": "100rem",
+        "height": "100rem"
+      },
+      {
+        "url": "/src/assets/entities/cadi.png",
+        "alt": "Centro Asistencial Docente e Investigación",
+        "width": "230rem",
+        "height": "100rem"
+      }
+    ],
+    "services": {
+      "title": "Services",
+      "data": [
+        {
+          "title": "Convert to Fasta",
+          "description": "Convert your sequences to a fasta format.",
+          "icon": "https://www.svgrepo.com/show/450768/convert.svg"
+        },
+        {
+          "title": "Test Sequences",
+          "description": "Generate random sequences from the peptipedia database.",
+          "icon": "https://www.svgrepo.com/show/488669/random.svg"
+        },
+        {
+          "title": "MSA",
+          "description": "Use ClustalW to build an MSA from the specified sequences.",
+          "icon": "https://www.svgrepo.com/show/509294/align-center.svg"
+        },
+        {
+          "title": "Pfam Prediction",
+          "description": "Predict protein families and domains in a set of peptides entered.",
+          "icon": "https://cdn-icons-png.flaticon.com/512/9004/9004799.png"
+        },
+        {
+          "title": "GO Searching",
+          "description": "Predict Gene Ontology terms in a set of entered peptides.",
+          "icon": "https://www.svgrepo.com/show/168/searching.svg"
+        },
+        {
+          "title": "Structural Prediction",
+          "description": "Evaluates secondary structure, solvent accessibility and more.",
+          "icon": "https://cdn-icons-png.flaticon.com/512/9559/9559395.png"
+        },
+        {
+          "title": "Residues distributions",
+          "description": "Performs a count of amino acid frequencies in peptide sequences.",
+          "icon": "https://www.svgrepo.com/show/509028/bar-chart.svg"
+        },
+        {
+          "title": "Physicochemical distributions",
+          "description": "Performs an estimation of the physicochemical properties of a group of sequences.",
+          "icon": "https://www.svgrepo.com/show/308512/crystal-ball-envision-future-forecast.svg"
+        },
+        {
+          "title": "Encoding Sequences",
+          "description": "Numerically encodes the amino acid sequences entered.",
+          "icon": "https://www.svgrepo.com/show/299272/encryption.svg"
+        },
+        {
+          "title": "Clustering",
+          "description": "Sequence clustering by numerical coding and PCA analysis.",
+          "icon": "https://cdn-icons-png.flaticon.com/512/957/957755.png"
+        },
+        {
+          "title": "Supervised Learning",
+          "description": "It employs supervised learning algorithms on sets of input sequences.",
+          "icon": "https://cdn-icons-png.flaticon.com/512/2172/2172891.png"
+        },
+        {
+          "title": "Predictive Models",
+          "description": "Predictive peptide sequence models using machine learning strategies.",
+          "icon": "https://cdn-icons-png.flaticon.com/512/2103/2103787.png"
+        }
+      ]
+    }
+  },
+  
+  "convert_to_fasta": {
+    "title": "Convert to Fasta",
+    "description": "Convert your input to fasta format.",
+    "route": "/fasta-converter",
+    "api": "/api/fasta_convertor/"
+  },
+  "test_sequences": {
+    "title": "Test Sequences",
+    "description": "Generate random sequences from the peptipedia database.",
+    "route": "/test-sequences",
+    "api": "/api/sample_sequences/"
+  },
+  "msa": {
+    "title": "Multiple Sequence Alingment",
+    "description": "Use ClustalW to build an MSA from the specified sequences.",
+    "route": "/msa",
+    "api": "/api/msa",
+    "markdown_text": "+ **Input**:\n+ Two or more amino acid sequences with fasta format.\n+ Sequences with maxium length 150."
+  },
+  "pfam": {
+    "title": "Pfam Prediction",
+    "description": "Predict protein families and domains in a set of peptides entered.",
+    "route": "/pfam",
+    "api": "/api/pfam",
+    "markdown_text": "+ **Input**:\n+ One or more amino acid sequences with fasta format.\n+ Sequence with maxium length 150.\n+ **Pfam Tool**\n+ PfamScan"
+  },
+  "gene_ontology": {
+    "title": "Gene Ontology",
+    "description": "Predict Gene Ontology terms (Biological process, molecular function or cellular component) in a set of entered peptides.",
+    "route": "/gene-ontology",
+    "api": "/api/gene_ontology",
+    "markdown_text": "+ **Input**:\n+ One or more amino acid sequences with fasta format.\n+ Sequence with maxium length 150.\n+ **GO Tool**\n+ Metastudent"
+  },
+  "structural_prediction": {
+    "title": "Structural Prediction",
+    "description": "Secondary Structure Element (SS3 and SS8), Solvent Accessibility (ACC), Order/Disorder prediction (DISO), and TransMembrane topology (TM2 and TM8)",
+    "route": "/structural-prediction",
+    "api": "/api/structural_prediction",
+    "markdown_text": "+ **Input**:\n+ One or more amino acid sequences with fasta format.\n+ Sequence with maxium length 150.\n+ **Pfam Tool**\n+ PfamScan"
+  },
+  "frequency_evaluation": {
+    "title": "Residues distributions",
+    "description": "Performs a count of amino acid frequencies in peptide sequences.",
+    "route": "/frequency",
+    "api": "/api/frequency/",
+    "markdown_text": "+ **Input**:\n+ One or more amino acid sequences with fasta format.\n+ Sequence with maxium length 150.\n+ **Physicochemical Tool**\n+ Modlamp"
+  },
+  "properties_estimation": {
+    "title": "Physichochemical properties distributions",
+    "description": "Performs an estimation of physicochemical properties (length, molecular weight, charge, charge density and isoelectric point) for a group of sequences.",
+    "route": "/physicochemical",
+    "api": "/api/physicochemical/",
+    "markdown_text": "+ **Input**:\n+ One or more amino acid sequences with fasta format.\n+ Sequence with maxium length 150.\n+ **Physicochemical Tool**\n+ Modlamp"
+  },
+  "encoding_sequences": {
+    "title": "Encoding Sequences",
+    "description": "Numerically encodes the amino acid sequences entered, in order to use Machine Learning models.",
+    "route": "/encoding",
+    "api": "/api/encoding/",
+    "markdown_text":  "+ **Input**: \n+ One or more amino acid sequences with fasta format.\n+ Sequence with maxium length 150."
+  },
+  "clustering": {
+    "title": "Clustering",
+    "description": "It performs sequence clustering, using numerical coding techniques and PCA analysis.",
+    "route": "/clustering",
+    "unsupervised_learning_api": "/api/clustering/",
+    "nssn_api": "/api/distance_clustering/",
+    "ssn_api": "/api/alignment_clustering/",
+    "markdown_text": "+ **Input**:\n+ Five or more amino acid sequences with fasta format.\n+ Sequences with maxium length 150.\n+ K-Value >= 2",
+    "clustering_types": [
+      {
+        "title": "Unsupervised Learning",
+        "value": "unsupervised_learning"
+      },
+      {
+        "title": "SSN",
+        "value": "graph_clustering_alignments"
+      },
+      {
+        "title": "NSSN",
+        "value": "graph_clustering_distances"
+      }
+    ],
+    "filter_types_clustering": [
+      {
+        "title": "Nearest",
+        "value": "nearest"
+      },
+      {
+        "title": "Farthest",
+        "value": "farthest"
+      }
+    ],
+    "algorithms": [
+      {
+        "title": "K-Means",
+        "value": "kmeans"
+      },
+      {
+        "title": "DBScan",
+        "value": "dbscan"
+      },
+      {
+        "title": "Meanshift",
+        "value": "meanshift"
+      },
+      {
+        "title": "Birch",
+        "value": "birch"
+      },
+      {
+        "title": "Agglomerative",
+        "value": "agglomerative"
+      },
+      {
+        "title": "Affinity",
+        "value": "affinity"
+      },
+      {
+        "title": "Optics",
+        "value": "optics"
+      }
+    ],
+    "linkages": [
+      {
+        "title": "Ward",
+        "value": "ward"
+      },
+      {
+        "title": "Complete",
+        "value": "complete"
+      },
+      {
+        "title": "Average",
+        "value": "average"
+      },
+      {
+        "title": "Single",
+        "value": "single"
+      }
+    ],
+    "affinities": [
+      {
+        "title": "Euclidean",
+        "value": "euclidean"
+      },
+      {
+        "title": "L1",
+        "value": "l1"
+      },
+      {
+        "title": "L2",
+        "value": "l2"
+      },
+      {
+        "title": "Manhattan",
+        "value": "manhattan"
+      },
+      {
+        "title": "Cosine",
+        "value": "cosine"
+      }
+    ],
+    "clustering_distances": [
+      {
+        "title": "Euclidean",
+        "value": "euclidean"
+      },
+      {
+        "title": "Bray Curtis",
+        "value": "bray_curtis"
+      },
+      {
+        "title": "Canberra",
+        "value": "canberra"
+      },
+      {
+        "title": "Chebyshev",
+        "value": "chebyshev"
+      },
+      {
+        "title": "Manhattan",
+        "value": "manhattan"
+      },
+      {
+        "title": "Correlation",
+        "value": "correlation"
+      },
+      {
+        "title": "Cosine",
+        "value": "cosine"
+      },
+      {
+        "title": "Minkowski",
+        "value": "minkowski"
+      },
+      {
+        "title": "Hamming",
+        "value": "hamming"
+      }
+    ]
+  },
+  "supervised_learning": {
+    "title": "Supervised Learning",
+    "description": "It employs supervised learning algorithms on sets of input sequences. Allows training, testing and prediction using new data sets.",
+    "route": "/supervised-learning",
+    "task_types": [
+      {
+        "title": "Classification",
+        "value": "classification"
+      },
+      {
+        "title": "Regression",
+        "value": "regression"
+      }
+    ],
+    "sl_algorithms_clf": [
+      {
+        "title": "Adaboost",
+        "value": "adaboost"
+      },
+      {
+        "title": "Bagging",
+        "value": "bagging"
+      },
+      {
+        "title": "Bernoulli",
+        "value": "bernoulli"
+      },
+      {
+        "title": "Decision Tree",
+        "value": "descision_tree"
+      },
+      {
+        "title": "Gaussian Bayes",
+        "value": "gaussian_bayes"
+      },
+      {
+        "title": "Gradient",
+        "value": "gradient_boosting"
+      },
+      {
+        "title": "Nu-SVC",
+        "value": "nu_svc"
+      },
+      {
+        "title": "Random Forest",
+        "value": "random_forest"
+      },
+      {
+        "title": "SVC",
+        "value": "svc"
+      },
+      {
+        "title": "KNN",
+        "value": "knn"
+      }
+    ],
+    "sl_algorithms_regr": [
+      {
+        "title": "Adaboost",
+        "value": "adaboost"
+      },
+      {
+        "title": "Bagging",
+        "value": "bagging"
+      },
+      {
+        "title": "Decision Tree",
+        "value": "descision_tree"
+      },
+      {
+        "title": "Gradient",
+        "value": "gradient_boosting"
+      },
+      {
+        "title": "Nu-SVR",
+        "value": "nu_svr"
+      },
+      {
+        "title": "Random Forest",
+        "value": "random_forest"
+      },
+      {
+        "title": "SVR",
+        "value": "svr"
+      },
+      {
+        "title": "KNN",
+        "value": "knn"
+      }
+    ],
+    "test_size": [
+      {
+        "title": "0%",
+        "value": "0"
+      },
+      {
+        "title": "5%",
+        "value": "0.05"
+      },
+      {
+        "title": "10%",
+        "value": "0.1"
+      },
+      {
+        "title": "15%",
+        "value": "0.15"
+      },
+      {
+        "title": "20%",
+        "value": "0.20"
+      },
+      {
+        "title": "25%",
+        "value": "0.25"
+      },
+      {
+        "title": "30%",
+        "value": "0.30"
+      }
+    ]
+  },
+  "activity_prediction": {
+    "title": "Activity Prediction",
+    "description": "Predictive models of peptide sequences for evaluating biological activity support by assembled machine learning strategies and numerical representation of protein sequences based on signal spaces and physicochemical properties",
+    "route": "/activity_prediction",
+    "api": "/api/activity_prediction",
+    "markdown_text":  "+ **Input**: \n+ One or more amino acid sequences with fasta format.\n+ Sequence with maxium length 150."
+  },
+  "solubility": {
+    "title": "Solubility Prediction",
+    "description": "Predictive models of peptide sequences for evaluating biological activity support by assembled machine learning strategies and numerical representation of protein sequences based on signal spaces and physicochemical properties",
+    "route": "/solubility_prediction",
+    "api": "/api/solubility_prediction",
+    "markdown_text":  "+ **Input**: \n+ One or more amino acid sequences with fasta format.\n+ Sequence with maxium length 150."
+  },
+  "ic50": {
+    "title": "IC50 Prediction",
+    "description": "Predictive models of peptide sequences for evaluating biological activity support by assembled machine learning strategies and numerical representation of protein sequences based on signal spaces and physicochemical properties",
+    "route": "/solubility_prediction",
+    "api": "/api/solubility_prediction",
+    "markdown_text":  "+ **Input**: \n+ One or more amino acid sequences with fasta format.\n+ Sequence with maxium length 150."
+  },
+  "retention_time": {
+    "title": "Retention time Prediction",
+    "description": "Predictive models of peptide sequences for evaluating biological activity support by assembled machine learning strategies and numerical representation of protein sequences based on signal spaces and physicochemical properties",
+    "route": "/solubility_prediction",
+    "api": "/api/solubility_prediction",
+    "markdown_text":  "+ **Input**: \n+ One or more amino acid sequences with fasta format.\n+ Sequence with maxium length 150."
+  },
+  "immunomodularity": {
+    "title": "Immunomodularity Prediction",
+    "description": "Predictive models of peptide sequences for evaluating biological activity support by assembled machine learning strategies and numerical representation of protein sequences based on signal spaces and physicochemical properties",
+    "route": "/solubility_prediction",
+    "api": "/api/solubility_prediction",
+    "markdown_text":  "+ **Input**: \n+ One or more amino acid sequences with fasta format.\n+ Sequence with maxium length 150."
+  },
+  "standarizations": [
+    {
+      "title": "Don't Apply",
+      "value": ""
+    },
+    {
+      "title": "Standard",
+      "value": "standard"
+    },
+    {
+      "title": "Min Max",
+      "value": "min_max"
+    },
+    {
+      "title": "Max Absolute",
+      "value": "max_absolute"
+    },
+    {
+      "title": "Robust",
+      "value": "robust"
+    },
+    {
+      "title": "Quantile",
+      "value": "quantile"
+    }
+  ],
+  "encodings": [
+    {
+      "title": "One Hot Encoding",
+      "value": "one_hot_encoding"
+    },
+    {
+      "title": "Physicochemical Groups",
+      "value": "physicochemical_properties"
+    },
+    {
+      "title": "Digital Signal Processing",
+      "value": "digital_signal_processing"
+    },
+    {
+      "title": "Embeddings",
+      "value": "embedding"
+    },
+    {
+      "title": "Global Descriptors",
+      "value": "global_descriptor"
+    }
+  ],
+  "properties": [
+    {
+      "title": "Alpha Structure",
+      "value": "Group_0"
+    },
+    {
+      "title": "Betha Structure",
+      "value": "Group_1"
+    },
+    {
+      "title": "Energetic",
+      "value": "Group_2"
+    },
+    {
+      "title": "Hydropathy",
+      "value": "Group_3"
+    },
+    {
+      "title": "Hydrophobicity",
+      "value": "Group_4"
+    },
+    {
+      "title": "Index",
+      "value": "Group_5"
+    },
+    {
+      "title": "Secondary Structure",
+      "value": "Group_6"
+    },
+    {
+      "title": "Volume",
+      "value": "Group_7"
+    }
+  ],
+  "kernels": [
+    {
+      "title": "Don't Apply",
+      "value": ""
+    },
+    {
+      "title": "Linear",
+      "value": "linear"
+    },
+    {
+      "title": "Poly",
+      "value": "poly"
+    },
+    {
+      "title": "RBF",
+      "value": "rbf"
+    },
+    {
+      "title": "Sigmoid",
+      "value": "sigmoid"
+    },
+    {
+      "title": "Cosine",
+      "value": "cosine"
+    }
+  ],
+  "embeddings": [
+    {
+      "title": "Bepler",
+      "value": "bepler"
+    },
+    {
+      "title": "FastText",
+      "value": "fasttext"
+    },
+    {
+      "title": "Glove",
+      "value": "glove"
+    },
+    {
+      "title": "PlusRNN",
+      "value": "plus_rnn"
+    },
+    {
+      "title": "Word2Vec",
+      "value": "word2vec"
+    },
+    {
+      "title": "SeqVec",
+      "value": "seqvec"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+version: "3.8"
+
+services:
+  pepti-tools-frontend:
+    container_name: pepti-tools-frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
