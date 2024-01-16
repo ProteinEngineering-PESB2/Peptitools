@@ -272,9 +272,9 @@ def csv2fasta(csv_path, fasta_path, needs_target):
     text = ""
     for _, row in data.iterrows():
         if needs_target:
-            text += f"{row.id}\n{row.sequence}\n"
+            text += f">{row.id}|{row.target}\n{row.sequence}\n"
         else:
-            text += f"{row.id}|{row.target}\n{row.sequence}\n"
+            text += f">{row.id}\n{row.sequence}\n"
     with open(fasta_path, mode="w", encoding="utf-8") as file:
         file.write(text)
 

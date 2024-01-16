@@ -255,7 +255,7 @@
     "markdown_text": "+ **Input**:\n+ One or more amino acid sequences with fasta format.\n+ Sequence with maxium length 150.\n+ **GO Tool**\n+ Metastudent"
   },
   "structural_prediction": {
-    "title": "Structural Prediction",
+    "title": "Secondary Structure Prediction",
     "description": "Secondary Structure Element (SS3 and SS8), Solvent Accessibility (ACC), Order/Disorder prediction (DISO), and TransMembrane topology (TM2 and TM8)",
     "route": "/structural-prediction",
     "api": "/api/structural_prediction",

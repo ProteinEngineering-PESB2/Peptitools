@@ -49,23 +49,19 @@ class DistanceClustering(GraphClustering):
             distance_value = distance.hamming(vector1, vector2)
         return distance_value
 
-    def __estimated_distance_one_vs_rest(
-        self, index, dataset, column_ignore, type_distance
-    ):
+    def __estimated_distance_one_vs_rest(self, index, dataset, column_ignore, type_distance):
         """Estimate one vs all distances"""
         vector_target = self.__get_vector(index, dataset, column_ignore)
         distance_to_vector = []
-        index_value = dataset[column_ignore][index].split(" ")[0]
-
+        index_value = dataset[column_ignore][index]
         for j in range(len(dataset)):
             if index != j:
                 vector2 = self.__get_vector(j, dataset, column_ignore)
-                id_value2 = dataset[column_ignore][j].split(" ")[0]
+                id_value2 = dataset[column_ignore][j]
                 distance_value = self.__estimated_distance(
                     vector_target, vector2, type_distance
                 )
                 distance_to_vector.append([index_value, id_value2, distance_value])
-
         return distance_to_vector
 
     def __calculate_distance(self):

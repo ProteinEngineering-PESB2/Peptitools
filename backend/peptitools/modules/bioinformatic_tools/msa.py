@@ -22,17 +22,8 @@ class MultipleSequenceAlignment:
 
     def execute_clustalo(self):
         """Execute clustalo and return alignment, distance matrix and plots"""
-        command = [
-            "clustalo",
-            "-i",
-            self.fasta_path,
-            "-o",
-            self.output_aln_file,
-            f"--distmat-out={self.output_dist_file}",
-            "--full",
-            "--force",
-        ]
-        subprocess.check_output(command)
+        command = f"clustalo -i {self.fasta_path} -o {self.output_aln_file} --distmat-out={self.output_dist_file} --full --force"
+        os.system(command)
 
     def parse_output(self):
         """Transform output distance file to matrix and labels"""

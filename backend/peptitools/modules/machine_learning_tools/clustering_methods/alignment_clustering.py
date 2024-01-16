@@ -26,6 +26,7 @@ class AlignmentClustering(GraphClustering):
 
     def run_clustering(self):
         """Run all clustering process"""
+        print("XD")
         self.msa.execute_clustalo()
         self.msa.parse_output()
         self.__distance_matrix_to_df()
