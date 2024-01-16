@@ -31,6 +31,7 @@ export default function GenericForm({ setResult, service }: FormProps) {
       setResult(data.result);
     } catch (error:any) {
       toast.error(error.response.data.description);
+      setResult(undefined);
     }
     setOpenBackdrop(false);
   };

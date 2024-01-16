@@ -9,7 +9,7 @@ import config from "../config.json";
 import GenericForm from "../components/common/generic_form";
 
 export default function Pfam() {
-  const [result, setResult] = useState<IDataPfam[]>([]);
+  const [result, setResult] = useState<IDataPfam[]|undefined>(undefined);
 
   useHandleSection({ section: "pfam" });
   useLoadingComponent();
@@ -18,7 +18,7 @@ export default function Pfam() {
     <DashboardLayout>
       <Box sx={{ padding: 4 }}>
         <GenericForm setResult={setResult} service={config.pfam}/>
-        {result.length > 0 && <PfamContent result={result} />}
+        {result && <PfamContent result={result} />}
       </Box>
     </DashboardLayout>
   );

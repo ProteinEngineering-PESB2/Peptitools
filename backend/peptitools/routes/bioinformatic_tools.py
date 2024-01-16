@@ -27,7 +27,10 @@ def apply_pfam():
         return parse_response(check, status_code=400)
     pfam = Pfam(check["path"])
     result = pfam.run_process()
-    return parse_response({"result": result}, status_code=200)
+    
+    if result["status"] == "warning":
+        return parse_response(result, status_code=404)
+    return parse_response(result, status_code=200)
 
 @bioinfo_tools_blueprint.route("/gene_ontology/", methods=["POST"])
 def apply_gene_ontology():

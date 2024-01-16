@@ -1,7 +1,6 @@
 """Pfam module"""
 import os
 import re
-import subprocess
 import pandas as pd
 
 class Pfam:
@@ -12,15 +11,8 @@ class Pfam:
 
     def run_process(self):
         """Use pfam_scan and parse results"""
-        command = [
-            "pfam_scan.pl",
-            "-dir",
-            os.getenv("PFAM_DB"),
-            "-fasta",
-            self.fasta_path,
-        ]
-        text = subprocess.check_output(command).decode()
-
+        command = f"pfam_scan.pl -dir {os.getenv('PFAM_DB')} -fasta {self.fasta_path}"
+        text = os.popen(command).read()
         data = []
         for line in text.splitlines():
             if not line.startswith("#") and line != "":
@@ -60,7 +52,6 @@ class Pfam:
             )
             .assign(Type="")
         )
-
         response = []
         for seq_id in dataset.seq_id.unique():
             data = (
@@ -74,4 +65,4 @@ class Pfam:
                 "status": "warning",
                 "description": "There's no significant results for this sequences",
             }
-        return {"result": response, "status": "success"}
+        return  {"result": response, "status": "success"}
