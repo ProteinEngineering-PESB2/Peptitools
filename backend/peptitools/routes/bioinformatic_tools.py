@@ -4,7 +4,6 @@ from peptitools.modules.bioinformatic_tools.gene_ontology import GeneOntology
 from peptitools.modules.bioinformatic_tools.msa import MultipleSequenceAlignment
 from peptitools.modules.bioinformatic_tools.structural_characterization import StructuralCharacterization
 from peptitools.modules.bioinformatic_tools.pfam_domain import Pfam
-from peptitools.modules.utils import parse_request
 from peptitools.modules.utils import parse_request, parse_response
 
 bioinfo_tools_blueprint = Blueprint("bioinfo_tools_blueprint", __name__)
@@ -27,7 +26,6 @@ def apply_pfam():
         return parse_response(check, status_code=400)
     pfam = Pfam(check["path"])
     result = pfam.run_process()
-    
     if result["status"] == "warning":
         return parse_response(result, status_code=404)
     return parse_response(result, status_code=200)
@@ -44,11 +42,14 @@ def apply_gene_ontology():
         return parse_response(result, status_code=404)
     return parse_response({"result": result}, status_code=200)
 
-@bioinfo_tools_blueprint.route("/structural_analysis/", methods=["POST"])
+@bioinfo_tools_blueprint.route("/structural_prediction/", methods=["POST"])
 def apply_structural_analysis():
     """Structural analysis route"""
-    check = parse_request(request, "structural", False, "fasta")
+    check = parse_request(request, "secondary_structure", False, "fasta")
     if check["status"] == "error":
-        return check
+        return parse_response(check, status_code=400)
     struct = StructuralCharacterization(check["path"])
-    return struct.run_process()
+    result = struct.run_process()
+    if result["status"] == "warning":
+        return parse_response(result, status_code=404)
+    return parse_response( result, status_code=200)

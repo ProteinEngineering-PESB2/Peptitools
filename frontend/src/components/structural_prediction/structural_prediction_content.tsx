@@ -2,31 +2,25 @@ import {
   Box,
   FormControl,
   Grid,
-  InputLabel,
-  MenuItem,
-  Paper,
-  Select,
-  SelectChangeEvent,
+  Paper
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import ProSeqViewer from "../common/pro_seq_viewer";
+import AutocompleteComponent from "../form/autocomplete_component";
+import { usePfamAutocomplete } from "../../hooks/usePfamAutocomplete";
 
 interface Props {
   result: any;
-  sequenceValue: string;
-  handleChangeSequenceValue: (e: SelectChangeEvent) => void;
 }
 
-function StructuralPredictionContent({
-  result,
-  sequenceValue,
-  handleChangeSequenceValue,
-}: Props) {
+function StructuralPredictionContent({result}: Props) {
   const [alignment, setAlignment] = useState(null);
+  const { sequences, selectedSequence, handleSequenceSelected, table } =
+    usePfamAutocomplete({ result });
 
   const handleShowSequence = () => {
     result.map((r: any) => {
-      if (r.id === sequenceValue) {
+      if (r.id === selectedSequence) {
         setAlignment(r.alignment);
       }
     });
@@ -34,7 +28,7 @@ function StructuralPredictionContent({
 
   useEffect(() => {
     handleShowSequence();
-  }, [sequenceValue]);
+  }, [selectedSequence]);
 
   return (
     <>
@@ -43,19 +37,12 @@ function StructuralPredictionContent({
           <Box marginTop={3}>
             <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
               <FormControl>
-                <InputLabel id="sequence-select-label">Sequence</InputLabel>
-                <Select
-                  labelId="sequence-select-label"
-                  label="Sequence"
-                  value={sequenceValue}
-                  onChange={handleChangeSequenceValue}
-                >
-                  {result.map((r: any) => (
-                    <MenuItem key={r.id} value={r.id}>
-                      {r.id}
-                    </MenuItem>
-                  ))}
-                </Select>
+                <AutocompleteComponent
+                  options={sequences}
+                  handleChangeValue={handleSequenceSelected}
+                  title="Sequence"
+                  value={selectedSequence}
+                />
               </FormControl>
             </Paper>
           </Box>

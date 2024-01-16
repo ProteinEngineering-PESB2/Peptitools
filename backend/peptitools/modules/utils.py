@@ -310,6 +310,7 @@ def parse_request(request, config_name, needs_target, output_format, task = "cla
     return {"status": "success", "path": check["path"]}
 
 def check_pvalue(pvalue):
+    """Check if pvalue is a float number between 0 - 0.5"""
     try:
         pvalue = float(pvalue)
         if pvalue <= 0.5:

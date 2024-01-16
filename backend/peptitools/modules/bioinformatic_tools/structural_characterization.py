@@ -3,6 +3,8 @@ import subprocess
 from os.path import basename
 import os
 import peptitools.config as config
+from peptitools.modules.utils import fasta2df
+from random import random
 
 class StructuralCharacterization:
     """Structural Properties Class"""
@@ -42,20 +44,27 @@ class StructuralCharacterization:
                     "sequence": lines[index + 2].replace("\n", ""),
                 }
             )
+    def __split_fasta(self):
+        """Just split a fasta file in multiple 1-sequence fasta"""
+        self.file_names = []
+        with open(self.fasta_path, encoding="utf-8", mode="r") as file:
+            text_file = file.read()
+        df = fasta2df(text=text_file)
+        for _, row in df.iterrows():
+            single_fasta_text = f">{row.id}\n{row.sequence}"
+            single_fasta_filename = self.temp_folder + "/" + str(round(random() * 10**20)) + ".fasta"
+            with open(single_fasta_filename, encoding="utf-8", mode="w") as file:
+                file.write(single_fasta_text)
+            self.file_names.append(single_fasta_filename)
 
     def run_process(self):
         """Run all process"""
-        os.system(f'splitfasta {self.fasta_path}')
-        splited_files = [f'{self.temp_folder}/{a}' for a in os.listdir(self.temp_folder)
-                        if basename(self.fasta_path).split(".")[0] in a and
-                        a != basename(self.fasta_path) and
-                        "split_files" not in a]
+        self.__split_fasta()
         response = []
-        for file in splited_files:
+        for file in self.file_names:
             self.execute_predict_property(file)
             self.parse_results(file)
             response.append({"id": self.name, "alignment": self.alignment})
-
         if len(response) == 0:
             return {
                 "status": "warning",
