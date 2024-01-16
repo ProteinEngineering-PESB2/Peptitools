@@ -9,7 +9,7 @@ class Encoder:
         self.name_column_seq = name_column_seq
         self.column_id = self.dataset[self.name_column_id]
         self.column_seq = self.dataset[self.name_column_seq]
-        self.zero_padding = self.check_max_size()
+        self.zero_padding = 150
         self.possible_residues = ['A', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'N', 'K', 'L', 'M', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'Y']
         self.dict_pos = {res: i for i, res in enumerate(self.possible_residues)}
         if n_cores == None:

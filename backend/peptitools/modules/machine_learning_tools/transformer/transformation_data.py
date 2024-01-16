@@ -8,7 +8,7 @@ from sklearn.preprocessing import (
     StandardScaler,
 )
 from sklearn.manifold import TSNE
-
+from joblib import dump
 class Transformer:
     """Transformer class"""
 
@@ -23,7 +23,8 @@ class Transformer:
             pca_transformer = PCA()
         else:
             pca_transformer = PCA(n_components=n_components)
-        return pca_transformer.fit_transform(dataset)
+        pca_transformer.fit(dataset)
+        return pca_transformer.transform(dataset), pca_transformer
 
     def apply_kernel_pca(self, dataset, kernel, n_components = None):
         """Apply kernel PCA"""
@@ -31,7 +32,8 @@ class Transformer:
             pca_transformer = KernelPCA(kernel=kernel)
         else:
             pca_transformer = KernelPCA(kernel=kernel, n_components=n_components)
-        return pca_transformer.fit_transform(dataset)
+        pca_transformer.fit(dataset)
+        return pca_transformer.transform(dataset), pca_transformer
 
     def apply_scaler(self, dataset, scaler):
         if scaler == "min_max":
@@ -45,4 +47,4 @@ class Transformer:
         elif scaler == "quantile":
             scaler = QuantileTransformer()
         scaler.fit(dataset)
-        return scaler.transform(dataset)
+        return scaler.transform(dataset), scaler

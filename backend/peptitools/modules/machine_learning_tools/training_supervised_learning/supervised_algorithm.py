@@ -13,22 +13,15 @@ class ModelAlgorithm:
         self.model = model
         self.task = task
         self.test_size = test_size
-        if self.test_size != 0:
-            self.x_train, self.x_test, self.y_train, self.y_test = train_test_split(
-                self.dataset, self.target, test_size=self.test_size
-            )
-            self.training_performances = ResponseTrainingModel(
-                self.x_train, self.y_train, self.model, self.validation
-            )
-            self.testing_performances = ResponseTrainingModel(
-                self.x_test, self.y_test, self.model, self.validation
-            )
-        if self.test_size == 0:
-            self.x_train = self.dataset
-            self.y_train = self.target
-            self.training_performances = ResponseTrainingModel(
-                self.x_train, self.y_train, self.model, self.validation
-            )
+        self.x_train, self.x_test, self.y_train, self.y_test = train_test_split(
+            self.dataset, self.target, test_size=self.test_size
+        )
+        self.training_performances = ResponseTrainingModel(
+            self.x_train, self.y_train, self.model, self.validation
+        )
+        self.testing_performances = ResponseTrainingModel(
+            self.x_test, self.y_test, self.model, self.validation
+        )
 
     def training_method(self):
         """Training method"""

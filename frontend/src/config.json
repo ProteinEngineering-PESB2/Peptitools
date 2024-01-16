@@ -427,6 +427,8 @@
     "title": "Supervised Learning",
     "description": "It employs supervised learning algorithms on sets of input sequences. Allows training, testing and prediction using new data sets.",
     "route": "/supervised-learning",
+    "api": "/api/supervised_learning/",
+    
     "task_types": [
       {
         "title": "Classification",
@@ -438,10 +440,6 @@
       }
     ],
     "k_folds": [
-      {
-        "title": "1",
-        "value": 1
-      },
       {
         "title": "2",
         "value": 2
@@ -537,10 +535,6 @@
     ],
     "test_size": [
       {
-        "title": "0%",
-        "value": "0"
-      },
-      {
         "title": "5%",
         "value": "0.05"
       },
@@ -565,6 +559,11 @@
         "value": "0.30"
       }
     ]
+  },
+  "evaluate_model": {
+    "title": "Evaluate model",
+    "description": "Use your own model evaluate new sequences.",
+    "api": "/api/evaluate_model/"
   },
   "standarizations": [
     {

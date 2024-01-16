@@ -5,13 +5,14 @@ interface Props {
 }
 
 export default function ConfusionMatrix({data, title}: Props) {
+  
   return (
     <>
     <Plot
       data={data}
       layout={{
         autosize: true,
-        height: 700,
+        height: 500,
         title: title,
         xaxis: { title: "Real Values" },
         yaxis: { title: "Predicted Values" },

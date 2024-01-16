@@ -10,7 +10,7 @@ export default function Sensibility({data, title}: Props) {
       data={data}
       layout={{
         autosize: true,
-        height: 600,
+        height: 500,
         barmode: "group",
         title: title,
         font: {

@@ -8,7 +8,6 @@ interface Props {
 }
 
 export default function ScatterPlot({ title, data, xlabels, ylabels }: Props) {
-  console.log(data)
   return (
     <Plot
       data={data}

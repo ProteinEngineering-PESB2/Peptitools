@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { IDataRegressionSupervisedLearning } from "../utils/interfaces";
 
 interface Props {
-  data: IDataRegressionSupervisedLearning;
+  data: any;
 }
 
 export const useBoxPlotRegressionSupervisedLearning = ({ data }: Props) => {
@@ -10,7 +10,7 @@ export const useBoxPlotRegressionSupervisedLearning = ({ data }: Props) => {
 
   useEffect(() => {
     let array = {
-      y: data.result.error_values,
+      y: data.error_values,
       type: "box",
       boxpoints: "all",
       name: "Training",
@@ -19,9 +19,9 @@ export const useBoxPlotRegressionSupervisedLearning = ({ data }: Props) => {
       }
     };
 
-    if (data.result.error_values_testing) {
+    if (data.error_values_testing) {
       const array_testing = {
-        y: data.result.error_values_testing,
+        y: data.error_values_testing,
         type: "box",
         boxpoints: "all",
         name: "Testing",

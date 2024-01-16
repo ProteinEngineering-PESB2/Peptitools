@@ -2,16 +2,26 @@ import { useState, useEffect } from "react";
 import { IDataRegressionSupervisedLearning } from "../utils/interfaces";
 
 interface Props {
-  data: IDataRegressionSupervisedLearning;
+  data: any;
 }
 
 export const useScatterRegressionSupervisedLearning = ({ data }: Props) => {
   const [dataScatter1, setDataScatter] = useState<any[]>([]);
 
   useEffect(() => {
+    let max_value_train = Math.max(...data.scatter.x)
+    let max_value_test = Math.max(...data.scatter_testing.x)
+    let max_value = Math.max(...[max_value_train, max_value_test])
+    const baseline_tracing = {
+      x: [0, max_value],
+      y: [0, max_value],
+      type: "line",
+      name: "Identity"
+    }
+
     const trace_training = {
-      x: data.result.scatter.x,
-      y: data.result.scatter.y,
+      x: data.scatter.x,
+      y: data.scatter.y,
       mode: "markers",
       type: "scatter",
       name: "Training",
@@ -20,8 +30,8 @@ export const useScatterRegressionSupervisedLearning = ({ data }: Props) => {
       }
     };
     const trace_training_regr = {
-      x: data.result.scatter.x_regr,
-      y: data.result.scatter.y_regr,
+      x: data.scatter.x_regr,
+      y: data.scatter.y_regr,
       type:'scatter',
       name: 'Training',
       line:{
@@ -29,10 +39,10 @@ export const useScatterRegressionSupervisedLearning = ({ data }: Props) => {
       }
     }
 
-    if (data.result.scatter_testing) {
+    if (data.scatter_testing) {
       const trace_testing = {
-        x: data.result.scatter_testing.x,
-        y: data.result.scatter_testing.y,
+        x: data.scatter_testing.x,
+        y: data.scatter_testing.y,
         mode: "markers",
         type: "scatter",
         name: "Testing",
@@ -41,8 +51,8 @@ export const useScatterRegressionSupervisedLearning = ({ data }: Props) => {
         }
       };
       const trace_testing_regr = {
-        x: data.result.scatter_testing.x_regr,
-        y: data.result.scatter_testing.y_regr,
+        x: data.scatter_testing.x_regr,
+        y: data.scatter_testing.y_regr,
         type:'scatter',
         name: 'Testing',
         line:{
@@ -50,9 +60,9 @@ export const useScatterRegressionSupervisedLearning = ({ data }: Props) => {
         }
       }
 
-      setDataScatter([trace_training, trace_training_regr, trace_testing, trace_testing_regr]);
+      setDataScatter([baseline_tracing, trace_training, trace_training_regr, trace_testing, trace_testing_regr]);
     } else {
-      setDataScatter([trace_training, trace_training_regr]);
+      setDataScatter([baseline_tracing, trace_training, trace_training_regr]);
     }
   }, []);
 

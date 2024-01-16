@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import { IDataClassificationSupervisedLearning } from "../utils/interfaces";
 
 interface Props {
-  data: IDataClassificationSupervisedLearning;
+  data: any;
 }
 
 export const useLearningCurveSupervisedLearning = ({ data }: Props) => {
   const [dataErrorBars, setDataErrorBars] = useState<any[]>([]);
-  const [learningCurve, setLearningCurve] = useState(data.result.learning_curve);
+  const [learningCurve, setLearningCurve] = useState(data.learning_curve);
   useEffect(() => {
     // Areas
     const traceErrorTraining = {

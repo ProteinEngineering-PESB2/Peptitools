@@ -5,6 +5,7 @@ from peptitools.modules.machine_learning_tools.clustering_methods.clustering_pro
 from peptitools.modules.machine_learning_tools.clustering_methods.distance_clustering import DistanceClustering
 from peptitools.modules.machine_learning_tools.numerical_representation.run_encoding import Encoding
 from peptitools.modules.machine_learning_tools.training_supervised_learning.supervised_learning import SupervisedLearning
+from peptitools.modules.machine_learning_tools.training_supervised_learning.predict import Predict
 from peptitools.modules.utils import parse_request, parse_response
 import json
 
@@ -58,5 +59,16 @@ def api_supervised_learning():
     if check["status"] == "error":
         return parse_response(check, status_code=400)
     sl = SupervisedLearning(check["path"], json.loads(request.form["options"]))
+    result = sl.run_process()
+    return parse_response({"result": result}, status_code=200)
+
+
+@machine_learning_blueprint.route("/evaluate_model/", methods=["POST"])
+def api_evaluate_model():
+    """It performs a Supervised learning from a csv file"""
+    check = parse_request(request, "models", False, "csv")
+    if check["status"] == "error":
+        return parse_response(check, status_code=400)
+    sl = Predict(check["path"], json.loads(request.form["options"]))
     result = sl.run_process()
     return parse_response({"result": result}, status_code=200)

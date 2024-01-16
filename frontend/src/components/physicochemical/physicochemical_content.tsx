@@ -22,14 +22,19 @@ export default function PhysichochemicalContent( {result} : Props) {
         <DistributionBoxplots data = {distribution}
           title = "Physicochemical properties distribution" height = {1200}
           columns = {2} rows = {5}/>
-        <DataTable title= "Kruskal-Wallis test" table={tableKruskal} />
+
+      </Box>
+        <Box marginTop={3} boxShadow={4}>
+          <DataTable title= "Kruskal-Wallis test" table={tableKruskal} />
+        </Box>
         {tukey && (
+          <Box marginTop={3} boxShadow={4}>
           <DataTable title= "Tukey's HSD  test" table={{
             columns: tukey.columns,
             data: tukey.data,
           }} />
+          </Box>
         )}
-      </Box>
     </>
   );
 }

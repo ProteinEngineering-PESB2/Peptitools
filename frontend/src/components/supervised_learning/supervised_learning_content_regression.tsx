@@ -10,7 +10,7 @@ import DataTable from "../common/datatable";
 import Boxplot from "../charts/boxplot"
 
 interface Props {
-  result: IDataRegressionSupervisedLearning;
+  result: any;
 }
 
 export default function SupervisedLearningContentRegression({ result }: Props) {
@@ -20,7 +20,6 @@ export default function SupervisedLearningContentRegression({ result }: Props) {
   const { dataScatter1 } = useScatterRegressionSupervisedLearning({
     data: result,
   });
-  console.log(dataScatter1)
   const { dataBoxPlot } = useBoxPlotRegressionSupervisedLearning({
     data: result,
   });
@@ -30,7 +29,7 @@ export default function SupervisedLearningContentRegression({ result }: Props) {
       <Box marginTop={3}>
         <ButtonDownloadPrimary
           name="result.joblib"
-          path={result.result.job_path}
+          path={result.job_path}
           setOpenBackdrop={setOpenBackdrop}
           setPercentage={setPercentage}
           title="model"
@@ -40,7 +39,7 @@ export default function SupervisedLearningContentRegression({ result }: Props) {
       <Grid container spacing={2}>
         <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
           <Box sx={{ display: "flex", flexDirection: "column" }} boxShadow={4} marginTop={4} >
-            <DataTable table={result.result.metrics} title="Metrics" />
+            <DataTable table={result.metrics} title="Metrics" />
           </Box>
         </Grid>
       </Grid>
@@ -60,7 +59,7 @@ export default function SupervisedLearningContentRegression({ result }: Props) {
       <Grid container spacing={2}>
         <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
           <Box sx={{ display: "flex", flexDirection: "column" }} boxShadow={4} marginTop={4} >
-            <DataTable table={result.result.corr_metrics} title="Correlation metrics" />
+            <DataTable table={result.corr_metrics} title="Correlation metrics" />
           </Box>
         </Grid>
       </Grid>

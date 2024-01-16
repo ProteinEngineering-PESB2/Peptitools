@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { IDataClassificationSupervisedLearning } from "../utils/interfaces";
 
 interface Props {
-  result: IDataClassificationSupervisedLearning;
+  result: any;
 }
 
 export const useHeatmapSupervisedLearning = ({ result }: Props) => {
@@ -12,20 +12,20 @@ export const useHeatmapSupervisedLearning = ({ result }: Props) => {
   useEffect(() => {
     const array = [
       {
-        x: result.result.confusion_matrix.x,
-        y: result.result.confusion_matrix.y,
-        z: result.result.confusion_matrix.z,
+        x: result.confusion_matrix.x,
+        y: result.confusion_matrix.y,
+        z: result.confusion_matrix.z,
         type: "heatmap",
         hoverongaps: false,
       },
     ];
 
-    if (result.result.confusion_matrix_testing) {
+    if (result.confusion_matrix_testing) {
       const array_testing = [
         {
-          x: result.result.confusion_matrix_testing.x,
-          y: result.result.confusion_matrix_testing.y,
-          z: result.result.confusion_matrix_testing.z,
+          x: result.confusion_matrix_testing.x,
+          y: result.confusion_matrix_testing.y,
+          z: result.confusion_matrix_testing.z,
           type: "heatmap",
           hoverongaps: false,
         },

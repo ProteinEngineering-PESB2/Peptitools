@@ -171,38 +171,14 @@ class ResponseTrainingModel:
     def __calculated_pearson(self, real_values, predict_values):
         """Pearson correlation"""
         response = pearsonr(real_values, predict_values)
-        if math.isnan(response[0]):
-            r_1 = "ERROR"
-        else:
-            r_1 = response[0]
-        if math.isnan(response[1]):
-            r_2 = "ERROR"
-        else:
-            r_2 = response[1]
-        return round(r_1, 3)
+        return round(response[0], 3)
 
     def __calculated_spearman(self, real_values, predict_values):
         """Spearman correlation"""
         response = spearmanr(real_values, predict_values)
-        if math.isnan(response[0]):
-            r_1 = "ERROR"
-        else:
-            r_1 = response[0]
-        if math.isnan(response[1]):
-            r_2 = "ERROR"
-        else:
-            r_2 = response[1]
-        return round(r_1, 3)
+        return round(response[0], 3)
 
     def __calculate_kendall_tau(self, real_values, predict_values):
         """Kendall tau correlation"""
         response = kendalltau(real_values, predict_values)
-        if math.isnan(response[0]):
-            r_1 = "ERROR"
-        else:
-            r_1 = response[0]
-        if math.isnan(response[1]):
-            r_2 = "ERROR"
-        else:
-            r_2 = response[1]
-        return round(r_1, 3)
+        return round(response[0], 3)

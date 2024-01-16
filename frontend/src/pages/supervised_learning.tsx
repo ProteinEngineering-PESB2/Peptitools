@@ -8,35 +8,16 @@ import SupervisedLearningContentRegression from "../components/supervised_learni
 import SupervisedLearningForm from "../components/supervised_learning/supervised_learning_form";
 import { useHandleSection } from "../hooks/useHandleSection";
 import useLoadingComponent from "../hooks/useLoadingComponent";
-import {
-  InitialValuePostData,
-  InitialValueTable,
-} from "../utils/initial_values";
-import {
-  IDataClassificationSupervisedLearning,
-  IDataRegressionSupervisedLearning,
-  ITable,
-  PostData,
-} from "../utils/interfaces";
 import config from "../config.json";
+import PredictForm from "../components/supervised_learning/prediction_form";
+import PredictionContent from "../components/supervised_learning/prediction_content";
 
 export default function SupervisedLearning() {
-  const [tableNewModel, setTableNewModel] = useState<ITable>(InitialValueTable);
-  const [taskType, setTaskType] = useState<string>("");
-  const [encoding, setEncoding] = useState<string>("");
-  const [property, setProperty] = useState<string>("");
-  const [openBackdropNewModel, setOpenBackdropNewModel] =
-    useState<boolean>(false);
-  const [dataNewModel, setDataNewModel] =
-    useState<PostData>(InitialValuePostData);
-  const [resultClassification, setResultClassification] =
-    useState<IDataClassificationSupervisedLearning | null>(null);
-  const [resultRegression, setResultRegression] =
-    useState<IDataRegressionSupervisedLearning | null>(null);
+  const [openBackdropNewModel, setOpenBackdropNewModel] = useState<boolean>(false);
+  const [result, setResult] = useState<any | undefined>(undefined);
 
   useHandleSection({ section: "supervised-learning" });
   useLoadingComponent();
-
   return (
     <DashboardLayout>
       <Box sx={{ padding: 4 }}>
@@ -47,20 +28,21 @@ export default function SupervisedLearning() {
         />
 
         <SupervisedLearningForm
-          setResultClassification={setResultClassification}
-          setResultRegression={setResultRegression}
-          setTaskType={setTaskType}
-          setEncoding={setEncoding}
-          setProperty={setProperty}
+          setResult={setResult}
         />
-
-        {resultClassification && (
-          <SupervisedLearningContentClassification
-            result={resultClassification}
-          />
-        )}
-        {resultRegression && (
-          <SupervisedLearningContentRegression result={resultRegression} />
+        {result && (
+        <>
+          {result.task == "classification" && <SupervisedLearningContentClassification result={result} />}
+          {result.task == "regression" && <SupervisedLearningContentRegression result={result} />}
+          <Box sx={{ paddingTop: 4 }}>
+            <SectionTitle
+              title={config.evaluate_model.title}
+              description={config.evaluate_model.description}
+            />
+            <PredictForm result={result} setResult={setResult}></PredictForm>
+            {result.predictions && <PredictionContent result = {result}></PredictionContent>}
+          </Box>
+        </>
         )}
       </Box>
     </DashboardLayout>

@@ -25,7 +25,7 @@ class SupervisedLearning(Encoding):
 
     def run_process(self):
         """Runs encoding, preprocessing and build ML model"""
-        self.run_encoding()
+        paths = self.run_encoding()
         self.dataset_encoded.drop(["id"], axis=1, inplace=True)
         run_instance = RunAlgorithm(
             self.dataset_encoded,
@@ -95,11 +95,13 @@ class SupervisedLearning(Encoding):
                 "columns": corr.columns.to_list()
             }
         self.model = run_instance.get_model()
-        self.job_path = self.output_path.replace(".csv", ".joblib")
-        self.dump_joblib()
-        response_training["job_path"] = self.job_path
+        job_path = self.output_path.replace(".csv", ".joblib")
+        self.dump_joblib(job_path)
+        response_training["job_path"] = job_path
+        response_training.update(self.options)
+        response_training.update(paths)
         return response_training
 
-    def dump_joblib(self):
+    def dump_joblib(self, path):
         """Save model"""
-        dump(self.model, self.job_path)
+        dump(self.model, path)
