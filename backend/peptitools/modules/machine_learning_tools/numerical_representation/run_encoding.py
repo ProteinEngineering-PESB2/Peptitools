@@ -7,14 +7,14 @@ from peptitools.modules.machine_learning_tools.numerical_representation.protein_
 from peptitools.modules.machine_learning_tools.numerical_representation.descriptors import Descriptor
 from peptitools.modules.machine_learning_tools.transformer.transformation_data import Transformer
 import pandas as pd
-
+import peptitools.config as config
 class Encoding:
     """Encoding class"""
-    def __init__(self, input_path, config, options):
+    def __init__(self, input_path, options):
         self.options = options
         self.data = pd.read_csv(input_path)
-        self.results_folder = config["folders"]["results_folder"]
-        self.encoder_dataset = config["folders"]["encoders_dataset"]
+        self.results_folder = config.results_folder
+        self.encoder_dataset = config.encoders_dataset
         self.output_path = f'{self.results_folder}/{round(random() * 10**20)}.csv'
         self.transformer = Transformer()
 
@@ -56,7 +56,7 @@ class Encoding:
         header = ["id"] + self.dataset_encoded.columns[:-1].tolist()
         self.dataset_encoded = self.dataset_encoded[header]
         self.dataset_encoded.to_csv(self.output_path, index=False)
-        return {"path": self.output_path}
+        return {"path": self.output_path.replace("./", "/")}
 
     def transform_data(self):
         if self.options["kernel"] != "":

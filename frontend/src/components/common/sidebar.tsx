@@ -228,7 +228,7 @@ function Sidebar({ handleDrawerClose, open }: Props) {
           </List>
         </Collapse>
       </List>
-      <List>
+      {/* <List>
         <ListItemButton
           onClick={() =>
             handleChangeOpenPredictiveModels(!openPredictiveModels)
@@ -253,7 +253,7 @@ function Sidebar({ handleDrawerClose, open }: Props) {
             </ListItemButton>
           </List>
         </Collapse>
-      </List>
+      </List> */}
     </Drawer>
   );
 }

@@ -2,13 +2,13 @@
 import pandas as pd
 from modlamp.descriptors import GlobalDescriptor
 from peptitools.modules.statistic_tools.statistics import apply_kruskal, distribution, apply_tukey
-
+import peptitools.config as config
 class PhysicochemicalProperties:
     """Physicochemical Class"""
 
-    def __init__(self, input_file, config, options):
+    def __init__(self, input_file, options):
         self.temp_file_path = input_file
-        self.results_folder = config["folders"]["results_folder"]
+        self.results_folder = config.results_folder
         self.options = options
         self.pvalue = float(options["pvalue"])
         
@@ -36,7 +36,9 @@ class PhysicochemicalProperties:
         distribution_result = distribution(df)
         kruskal_result = apply_kruskal(df, self.pvalue)
         tukey_result = apply_tukey(kruskal_result, df, self.pvalue)
-        return {"distribution": distribution_result, "kruskal": kruskal_result, "tukey": tukey_result}
+        if tukey_result is not None:
+            return {"distribution": distribution_result, "kruskal": kruskal_result, "tukey": tukey_result}
+        return {"distribution": distribution_result, "kruskal": kruskal_result}
 
     def get_mw(self, sequence):
         """Molecular Weight"""

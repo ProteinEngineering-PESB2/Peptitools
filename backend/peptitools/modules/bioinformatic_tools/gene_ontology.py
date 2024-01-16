@@ -3,13 +3,13 @@ import subprocess
 import os
 from random import random
 import pandas as pd
+import peptitools.config as config
 
 class GeneOntology:
     """Gene ontology class"""
-    def __init__(self, fasta_path, config):
+    def __init__(self, fasta_path):
         self.fasta_path = fasta_path
-        self.config = config
-        self.results_folder = config["folders"]["results_folder"]
+        self.results_folder = config.results_folder
         self.output_path = os.path.realpath(f"{self.results_folder}/{round(random() * 10**20)}.aln")
 
     def run_process(self):

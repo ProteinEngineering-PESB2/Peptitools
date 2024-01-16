@@ -1,16 +1,16 @@
 """Structural Properties module"""
 import subprocess
-from os.path import basename, dirname
-from random import random
+from os.path import basename
 import os
+import peptitools.config as config
 
 class StructuralCharacterization:
     """Structural Properties Class"""
 
-    def __init__(self, fasta_path, config):
+    def __init__(self, fasta_path):
         self.fasta_path = fasta_path
-        self.results_folder = config["folders"]["results_folder"]
-        self.temp_folder = config["folders"]["temp_folder"]
+        self.results_folder = config.results_folder
+        self.temp_folder = config.temp_folder
         self.output_path = f"{self.results_folder}/{basename(fasta_path)}"
         self.predictions = ["ss3", "ss8", "acc", "diso", "tm2", "tm8"]
 

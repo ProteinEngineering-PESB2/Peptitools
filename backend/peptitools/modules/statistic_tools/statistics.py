@@ -33,23 +33,25 @@ def apply_kruskal(df, alpha):
 def apply_tukey(kruskal, df, alpha):
     accepted_data = [a[0] for a in kruskal["data"] if a[3] == "Accept"]
     result = []
-    for column in accepted_data:
-        tukey = pairwise_tukeyhsd(endog=df[column],
-                        groups=df["target"],
-                        alpha=alpha)
-        summary = str(tukey.summary())
-        summary = [a.split() for a in summary.splitlines()[4:-1]]
-        a = pd.DataFrame(data = summary,
-                columns=["Group 1", "Group 2", "Mean difference", "P value", "IC Lower", "IC Upper", "H1"])
-        a["Target"] = column
-        result.append(a)
-    result = pd.concat(result)
-    result = result[["Target", "Group 1", "Group 2", "Mean difference", "P value", "H1"]]
-    result = result.replace("True", "Accept")
-    result = result.replace("False", "Reject")
-    columns = result.columns.tolist()
-    data = result.values.tolist()
-    return {"columns": columns, "data": data}
+    if len(accepted_data) != 0:
+        for column in accepted_data:
+            tukey = pairwise_tukeyhsd(endog=df[column],
+                            groups=df["target"],
+                            alpha=alpha)
+            summary = str(tukey.summary())
+            summary = [a.split() for a in summary.splitlines()[4:-1]]
+            a = pd.DataFrame(data = summary,
+                    columns=["Group 1", "Group 2", "Mean difference", "P value", "IC Lower", "IC Upper", "H1"])
+            a["Target"] = column
+            result.append(a)
+        result = pd.concat(result)
+        result = result[["Target", "Group 1", "Group 2", "Mean difference", "P value", "H1"]]
+        result = result.replace("True", "Accept")
+        result = result.replace("False", "Reject")
+        columns = result.columns.tolist()
+        data = result.values.tolist()
+        return {"columns": columns, "data": data}
+    return None
 
 def distribution(df):
     df = df.rename(columns = aa_one_to_tree)

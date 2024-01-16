@@ -7,8 +7,8 @@ import pandas as pd
 class SupervisedLearning(Encoding):
     """Supervised Learning class"""
 
-    def __init__(self, data, config, options):
-        super().__init__(data, config, options)
+    def __init__(self, data, options):
+        super().__init__(data, options)
         self.options = options
         self.task = self.options["task"]
         self.algorithm = self.options["algorithm"]

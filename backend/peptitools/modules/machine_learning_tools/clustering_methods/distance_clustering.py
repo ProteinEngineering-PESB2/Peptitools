@@ -12,8 +12,8 @@ from peptitools.modules.machine_learning_tools.clustering_methods.graph_clusteri
 
 class DistanceClustering(GraphClustering):
     """Distance Clustering class"""
-    def __init__(self, data, config, options):
-        super().__init__(data, config, options)
+    def __init__(self, data, options):
+        super().__init__(data, options)
         self.dataset_encoded_path = f"{self.results_folder}/{round(random() * 10**20)}.csv"
         self.options = options
         self.dataset_encoded = None

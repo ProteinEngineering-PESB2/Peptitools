@@ -1,6 +1,9 @@
 import MUIDataTable from "mui-datatables";
-import { ITable } from "../../utils/interfaces";
 
+interface ITable {
+  columns: Array<string>;
+  data: Array<Array<any>>;
+}
 interface Props {
   table: ITable;
   title: string;
@@ -18,6 +21,6 @@ export default function DataTable({ table, title }: Props) {
         download: false,
         print: false,
       }}
-    />
+      />
   );
 }

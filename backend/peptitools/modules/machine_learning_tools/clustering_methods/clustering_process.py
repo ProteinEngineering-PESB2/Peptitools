@@ -12,13 +12,13 @@ from peptitools.modules.machine_learning_tools.clustering_methods import (
 )
 from peptitools.modules.machine_learning_tools.numerical_representation.run_encoding import Encoding
 from peptitools.modules.machine_learning_tools.transformer.tsne_process import TSNE
-
+import peptitools.config as config
 class Clustering(Encoding):
     """Clustering process class"""
 
-    def __init__(self, data, config, options):
-        super().__init__(data, config, options)
-        self.static_path = config["folders"]["static_folder"]
+    def __init__(self, data, options):
+        super().__init__(data, options)
+        self.static_path = config.static_folder
         self.dataset_encoded_path = f"{self.results_folder}/{round(random() * 10**20)}.csv"
         self.options = options
 

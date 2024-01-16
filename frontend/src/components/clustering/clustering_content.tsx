@@ -22,7 +22,6 @@ interface Props {
 }
 
 export default function ClusteringContent({ result }: Props) {
-  
   const [openBackdrop, setOpenBackdrop] = useState<boolean>(false);
   const [percentage, setPercentage] = useState<number>(0);
   const { table } = useDataTableClustering({ result });

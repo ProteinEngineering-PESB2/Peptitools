@@ -135,10 +135,11 @@ export interface IDataClustering {
 }
 
 export interface IDataClassificationSupervisedLearning {
-  job_path: string;
   result: {
+    job_path: string;
     is_normal: boolean;
     encoding_path: string;
+    metrics: ITable;
     analysis: {
       categories: string[];
       sensibility: number[];
@@ -237,7 +238,7 @@ export interface IDataRegressionSupervisedLearning {
       neg_root_mean_squared_error: number;
       r2: number;
     };
-    metrics: any;
+    metrics: ITable;
     corr_metrics: any;
     scatter: {
       x: number[];
@@ -252,4 +253,40 @@ export interface IDataRegressionSupervisedLearning {
       y_regr: number[];
     };
   };
+}
+
+
+export interface StatisticsResult{
+  distribution: any;
+  kruskal: {
+    columns: string[];
+    data: [string[]];
+  }
+  tukey?: {
+    columns: string[];
+    data: [string[]];
+  }
+}
+
+export interface SingleAlignment{
+  id: number;
+  label: string;
+  sequence: string;
+}
+
+export interface MSAResult{
+  alignment: SingleAlignment[];
+  output_file: string;
+  distances_file: string;
+  dendrogram: string;
+}
+
+export interface FormProps {
+  setResult: React.Dispatch<React.SetStateAction<any>>;
+  service: {
+    api: string;
+    title: string;
+    description: string;
+    markdown_text: string;
+  }
 }

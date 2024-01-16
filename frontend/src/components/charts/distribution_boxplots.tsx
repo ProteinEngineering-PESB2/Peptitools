@@ -29,17 +29,15 @@ export default function DistributionBoxplots({ data, title, height, rows, column
       }
     }
   });
-  const layoutBoxplot = {
-    autosize: true,
-    height: height,
-    title: title,
-    grid: { rows: rows, columns: columns, pattern: "independent" }
-  };
-
   return (
     <Plot
       data={dataBoxplot}
-      layout={layoutBoxplot}
+      layout={{
+        autosize: true,
+        height: height,
+        title: title,
+        grid: { rows: rows, columns: columns, pattern: "independent" }
+      }}
       config={{ responsive: true }}
       useResizeHandler={true}
       style={{ width: "100%", height: "100%" }}

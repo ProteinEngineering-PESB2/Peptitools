@@ -5,9 +5,7 @@ interface Props{
 function useTextField({actual}: Props) {
   const [stateValue, setStateValue] = useState<string>(actual);
 
-  const handleChangeValue = (
-    e: ChangeEvent<HTMLInputElement>
-  ):void => {
+  const handleChangeValue = (e: ChangeEvent<HTMLInputElement>) => {
     setStateValue(e.target.value);
   };
 

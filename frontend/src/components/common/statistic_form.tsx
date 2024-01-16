@@ -10,12 +10,12 @@ import FormContainer from "../form/form_container";
 import InputFileFasta from "../form/input_file_fasta";
 import InputFileType from "../form/input_file_type";
 import TextFieldFasta from "../form/text_field_fasta";
-import useTextField from "../../hooks/useTextField";
-import TextFieldComponent from "../form/text_field_component";
 import SectionTitle from "../common/section_title";
+import { TextField } from "@mui/material";
+import { ChangeEvent } from "react";
 
 interface Props {
-  setResult: Dispatch<SetStateAction<IDataFrequency[]>>;
+  setResult: Dispatch<SetStateAction<any>> ;
   service: {
     api: string;
     title: string;
@@ -27,13 +27,12 @@ interface Props {
 export default function StatisticForm({ setResult, service}: Props) {
   const [data, setData] = useState<PostData>(InitialValuePostData);
   const [openBackdrop, setOpenBackdrop] = useState<boolean>(false);
-
-  const [ alpha, handleChangeAlpha ] = useTextField({actual: "0.05"});
+  const [alpha, setAlpha] = useState("0.05")
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
     setOpenBackdrop(true);
-    setResult(undefined);
+    setResult(null);
 
     const options = {
       pvalue: alpha,
@@ -44,19 +43,12 @@ export default function StatisticForm({ setResult, service}: Props) {
         url: service.api,
         postData,
       });
-
-      if (data.status === "error") {
-        toast.error(data.description);
-      } else {
-        const { result } = data;
-        setResult(result);
-      }
-
+      setResult(data.result);
       setOpenBackdrop(false);
-    } catch (error) {
-      toast.error("Server error");
+    } catch (error:any) {
+      toast.error(error.response.data.description);
       setOpenBackdrop(false);
-      setResult(undefined);
+      setResult(null);
     }
   };
 
@@ -75,11 +67,15 @@ export default function StatisticForm({ setResult, service}: Props) {
             setData={setData}
           />
           <InputFileFasta data={data} setData={setData} />
-          <TextFieldComponent
-            title="Alpha"
-            value={alpha}
-            handleChange={handleChangeAlpha}
-          />
+
+        <TextField
+          label="Alpha"
+          value={alpha}
+          onChange={(e: ChangeEvent<HTMLInputElement>) => {
+            setAlpha(e.target.value);
+          }}
+          fullWidth
+        />
           <ButtonRun data={data} />
         </form>
       </FormContainer>

@@ -5,7 +5,6 @@ import DashboardLayout from "../components/common/dashboard_layout";
 import Team from "../components/home/team";
 import Links from "../components/home/links"
 import Cite from "../components/home/cite"
-import Data from "../components/home/data"
 import Front from "../components/home/front"
 import config from "../config.json"
 import Diagram from "../components/home/diagram";

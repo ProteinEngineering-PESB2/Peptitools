@@ -23,10 +23,13 @@ export const downloadFile = async ({
       method: "GET",
       responseType: "blob",
       onDownloadProgress: (progressEvent) => {
-        let percentCompleted = Math.round(
-          (progressEvent.loaded * 100) / progressEvent.total
-        );
-        setPercentage(percentCompleted);
+        if (progressEvent.total){
+          let percentCompleted = Math.round(
+            (progressEvent.loaded * 100) / progressEvent.total
+          );
+          setPercentage(percentCompleted);
+        }
+        setPercentage(0);
       },
     });
     fileDownload(res.data, name);

@@ -6,9 +6,10 @@ import { useHandleSection } from "../hooks/useHandleSection";
 import useLoadingComponent from "../hooks/useLoadingComponent";
 import config from "../config.json";
 import StatisticForm from "../components/common/statistic_form";
+import { StatisticsResult } from "../utils/interfaces";
 
 export default function Frequency() {
-  const [result, setResult] = useState(undefined);
+  const [result, setResult] = useState<StatisticsResult | undefined>(undefined);
   useHandleSection({ section: "frequency" });
   useLoadingComponent();
 
@@ -16,7 +17,7 @@ export default function Frequency() {
     <DashboardLayout>
       <Box sx={{ padding: 4 }}>
         <StatisticForm setResult={setResult} service = {config.frequency_evaluation} />
-        {result !== undefined && (
+        {result && (
           <FrequencyContent result={result}/>
         )}
       </Box>

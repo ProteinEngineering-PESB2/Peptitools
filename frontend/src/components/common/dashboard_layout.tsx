@@ -27,13 +27,13 @@ function DashboardLayout({ children }: Props) {
     >
       <CssBaseline />
 
-      <Aside open={true} />
+      <Aside/>
 
-      <Main open={open}>
+      <Main open={true}>
         <DrawerHeader />
         {children}
         <Box sx={{ padding: 5 }}>
-          <Entities></Entities>
+          <Entities/>
         </Box>
       </Main>
     </Box>

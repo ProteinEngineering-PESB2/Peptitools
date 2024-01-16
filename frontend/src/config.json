@@ -21,12 +21,6 @@
       "encoding_sequences",
       "clustering",
       "supervised_learning"
-    ],
-    "predictive_models": [
-      "activity_prediction",
-      "ic50",
-      "solubility",
-      "immunomodularity"
     ]
   },
 
@@ -37,56 +31,56 @@
     "team": [
       {
         "name": "Gabriel Cabas",
-        "image": "/src/assets/team/gabriel.jpeg",
+        "image": "/assets/team/gabriel.jpeg",
         "rol": "Software developer",
         "github": "https://www.researchgate.net/profile/Gabriel-Cabas",
         "linkedin": "https://cl.linkedin.com/in/gabriel-cabas-1834601b4" 
       },
       {
         "name": "Anamaria Daza",
-        "image": "/src/assets/team/anita.jpg",
+        "image": "/assets/team/anita.jpg",
         "rol": "Researcher",
         "github": "https://www.researchgate.net/profile/Anamaria-Daza-Sanchez",
         "linkedin": "https://www.linkedin.com/in/anamaria-daza-sanchez-597b3246/"
       },
       {
         "name": "Lindybeth Sarmiento",
-        "image": "/src/assets/team/lindybeth.jpg",
+        "image": "/assets/team/lindybeth.jpg",
         "rol": "Researcher",
         "github": "https://www.researchgate.net/profile/Lindybeth-Sarmiento-2",
         "linkedin": "https://www.linkedin.com/in/lindybethsarmiento/"
       },
       {
         "name": "Diego Alvarez",
-        "image": "/src/assets/team/diego.jpg",
+        "image": "/assets/team/diego.jpg",
         "rol": "Researcher",
         "github": "https://github.com/GabrielCabas",
         "linkedin": "https://www.linkedin.com/in/dialvarezs0/"
       },
       {
         "name": "Roberto Uribe",
-        "image": "/src/assets/team/roberto_uribe.jpg",
+        "image": "/assets/team/roberto_uribe.jpg",
         "rol": "Researcher",
         "github": "https://www.researchgate.net/profile/Roberto-Uribe-Paredes",
         "linkedin": "https://www.linkedin.com/in/roberto-uribe-paredes-5868b84/" 
       },
       {
         "name": "Alvaro Olivera",
-        "image": "/src/assets/team/alvaro.jpg",
+        "image": "/assets/team/alvaro.jpg",
         "rol": "Researcher",
         "github": "https://www.researchgate.net/profile/Alvaro-Olivera-Nappa",
         "linkedin": "https://www.linkedin.com/in/alvaro-olivera-nappa-5bb5212/" 
       },
       {
         "name": "Marcelo Navarrete",
-        "image": "/src/assets/team/marcelo.jpeg",
+        "image": "/assets/team/marcelo.jpeg",
         "rol": "Researcher",
         "github": "https://www.researchgate.net/profile/Marcelo-Navarrete",
         "linkedin": "https://www.linkedin.com/in/marcelo-navarrete-signorile-30179576/" 
       },
       {
         "name": "David Medina",
-        "image": "/src/assets/team/david.jpeg",
+        "image": "/assets/team/david.jpeg",
         "rol": "Researcher",
         "github": "https://www.researchgate.net/profile/David-Medina-Ortiz",
         "linkedin": "https://www.linkedin.com/in/david-medina-924308224/"
@@ -130,31 +124,31 @@
     },
     "entities": [
       {
-        "url": "/src/assets/entities/umag.png",
+        "url": "/assets/entities/umag.png",
         "alt": "Universidad de Magallanes",
         "width": "100rem",
         "height": "100rem"
       },
       {
-        "url": "/src/assets/entities/catg.png",
+        "url": "/assets/entities/catg.png",
         "alt": "Centro Austral de Tecnología Genómica",
         "width": "100rem",
         "height": "100rem"
       },
       {
-        "url": "/src/assets/entities/anid.png",
+        "url": "/assets/entities/anid.png",
         "alt": "Agencia Nacional de Investigación y Desarrollo",
         "width": "100rem",
         "height": "100rem"
       },
       {
-        "url": "/src/assets/entities/mineduc.jpg",
+        "url": "/assets/entities/mineduc.jpg",
         "alt": "Ministerio de Educación",
         "width": "100rem",
         "height": "100rem"
       },
       {
-        "url": "/src/assets/entities/cadi.png",
+        "url": "/assets/entities/cadi.png",
         "alt": "Centro Asistencial Docente e Investigación",
         "width": "230rem",
         "height": "100rem"
@@ -443,6 +437,28 @@
         "value": "regression"
       }
     ],
+    "k_folds": [
+      {
+        "title": "1",
+        "value": 1
+      },
+      {
+        "title": "2",
+        "value": 2
+      },
+      {
+        "title": "3",
+        "value": 3
+      },
+      {
+        "title": "4",
+        "value": 4
+      },
+      {
+        "title": "5",
+        "value": 5
+      }
+    ],
     "sl_algorithms_clf": [
       {
         "title": "Adaboost",
@@ -549,41 +565,6 @@
         "value": "0.30"
       }
     ]
-  },
-  "activity_prediction": {
-    "title": "Activity Prediction",
-    "description": "Predictive models of peptide sequences for evaluating biological activity support by assembled machine learning strategies and numerical representation of protein sequences based on signal spaces and physicochemical properties",
-    "route": "/activity_prediction",
-    "api": "/api/activity_prediction",
-    "markdown_text":  "+ **Input**: \n+ One or more amino acid sequences with fasta format.\n+ Sequence with maxium length 150."
-  },
-  "solubility": {
-    "title": "Solubility Prediction",
-    "description": "Predictive models of peptide sequences for evaluating biological activity support by assembled machine learning strategies and numerical representation of protein sequences based on signal spaces and physicochemical properties",
-    "route": "/solubility_prediction",
-    "api": "/api/solubility_prediction",
-    "markdown_text":  "+ **Input**: \n+ One or more amino acid sequences with fasta format.\n+ Sequence with maxium length 150."
-  },
-  "ic50": {
-    "title": "IC50 Prediction",
-    "description": "Predictive models of peptide sequences for evaluating biological activity support by assembled machine learning strategies and numerical representation of protein sequences based on signal spaces and physicochemical properties",
-    "route": "/solubility_prediction",
-    "api": "/api/solubility_prediction",
-    "markdown_text":  "+ **Input**: \n+ One or more amino acid sequences with fasta format.\n+ Sequence with maxium length 150."
-  },
-  "retention_time": {
-    "title": "Retention time Prediction",
-    "description": "Predictive models of peptide sequences for evaluating biological activity support by assembled machine learning strategies and numerical representation of protein sequences based on signal spaces and physicochemical properties",
-    "route": "/solubility_prediction",
-    "api": "/api/solubility_prediction",
-    "markdown_text":  "+ **Input**: \n+ One or more amino acid sequences with fasta format.\n+ Sequence with maxium length 150."
-  },
-  "immunomodularity": {
-    "title": "Immunomodularity Prediction",
-    "description": "Predictive models of peptide sequences for evaluating biological activity support by assembled machine learning strategies and numerical representation of protein sequences based on signal spaces and physicochemical properties",
-    "route": "/solubility_prediction",
-    "api": "/api/solubility_prediction",
-    "markdown_text":  "+ **Input**: \n+ One or more amino acid sequences with fasta format.\n+ Sequence with maxium length 150."
   },
   "standarizations": [
     {

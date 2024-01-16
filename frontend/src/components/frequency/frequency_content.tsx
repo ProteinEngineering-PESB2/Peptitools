@@ -1,20 +1,11 @@
 import { Box } from "@mui/material";
 import DataTable from "../common/datatable";
 import DistributionBoxplots from "../charts/distribution_boxplots";
+import { StatisticsResult } from "../../utils/interfaces";
 
 
 interface Props{
-  result:{
-    distribution: any;
-    kruskal: {
-      columns: string[];
-      data: [string[]];
-    }
-    tukey: {
-      columns: string[];
-      data: [string[]];
-    }
-  }
+  result: StatisticsResult;
 }
 
 export default function FrequencyContent({ result }: Props) {
@@ -26,23 +17,26 @@ export default function FrequencyContent({ result }: Props) {
     data: kruskal.data,
   };
 
-  const tableTukey = {
-    columns: tukey.columns,
-    data: tukey.data,
-  };
-
   return (
     <>
       <Box marginTop={3} boxShadow={4}>
           <DistributionBoxplots data = {distribution}
             title = "Residues distribution" height = {1600}
-            columns = {4} rows = {5}>
-          </DistributionBoxplots>
-          <DataTable title= "Kruskal-Wallis test" table={tableKruskal} />
-          {tableTukey.data.length > 0 && (
-            <DataTable title= "Tukey's HSD  test" table={tableTukey} />
-          )}
+            columns = {4} rows = {5}/>
       </Box>
+
+      <Box marginTop={3} boxShadow={4}>
+        <DataTable title= "Kruskal-Wallis test" table={tableKruskal} />
+      </Box>
+
+         
+      { tukey && (
+      <Box marginTop={3} boxShadow={4}>
+        <DataTable title= "Tukey's HSD  test" table={{
+          columns: tukey.columns,
+          data: tukey.data,
+        }} />
+      </Box>)}
     </>
   );
 }

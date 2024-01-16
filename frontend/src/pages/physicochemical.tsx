@@ -6,9 +6,12 @@ import { useHandleSection } from "../hooks/useHandleSection";
 import useLoadingComponent from "../hooks/useLoadingComponent";
 import config from "../config.json";
 import StatisticForm from "../components/common/statistic_form";
+import { StatisticsResult } from "../utils/interfaces";
+
 
 export default function Phisicochemical() {
-  const [result, setResult] = useState(undefined);
+  const [result, setResult] = useState<StatisticsResult | undefined>(undefined);
+
   useHandleSection({ section: "physicochemical" });
   useLoadingComponent();
 
@@ -16,7 +19,7 @@ export default function Phisicochemical() {
     <DashboardLayout>
       <Box sx={{ padding: 4 }}>
         <StatisticForm setResult={setResult} service = {config.properties_estimation}/>
-        {result !== undefined && <PhysichochemicalContent result={result} />}
+        {result && <PhysichochemicalContent result={result} />}
       </Box>
     </DashboardLayout>
   );

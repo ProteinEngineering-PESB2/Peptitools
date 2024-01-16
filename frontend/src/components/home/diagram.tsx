@@ -7,7 +7,7 @@ export default function Diagram(){
         display="flex"
         justifyContent="center"
         alignItems="center">
-            <img src="/src/assets/home/peptipedia_db.png" alt="diagram" width={800} />
+            <img src="/assets/home/Peptitools_Only.png" alt="diagram" width={800} />
         </Box>
     )
 }

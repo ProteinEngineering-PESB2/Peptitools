@@ -21,12 +21,8 @@ import HomeIcon from "@mui/icons-material/Home";
 import AppContext from "../../context/AppContext";
 import { useNavigate } from "react-router-dom";
 import config from "../../config.json";
-interface Props {
-  open?: boolean;
-  handleDrawerClose?: () => void;
-}
 
-function Aside({ handleDrawerClose, open }: Props) {
+function Aside() {
   const theme = useTheme();
   const navigate = useNavigate();
   const {
@@ -54,18 +50,8 @@ function Aside({ handleDrawerClose, open }: Props) {
       }}
       variant="persistent"
       anchor="left"
-      open={open}
+      open={true}
     >
-      {/* <DrawerHeader>
-        <IconButton onClick={handleDrawerClose}>
-          {theme.direction === "ltr" ? (
-            <ChevronLeftIcon />
-          ) : (
-            <ChevronRightIcon />
-          )}
-        </IconButton>
-      </DrawerHeader>
-      <Divider /> */}
       <List>
         <ListItemButton onClick={() => navigate(config.home.route)}>
           <ListItemIcon>
@@ -84,18 +70,18 @@ function Aside({ handleDrawerClose, open }: Props) {
         </ListItemButton>
         <Collapse in={openTools} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-            {
-              config.sidebar.tools.map((a)=>{
-                return (
-                <ListItemButton sx={{ pl: 4 }} onClick={() => navigate(config[a].route)}>
-                  <ListItemIcon>
-                    <KeyboardDoubleArrowRightIcon sx={{ color: "#000" }} />
-                  </ListItemIcon>
-                  <ListItemText primary={config[a].title} />
-                </ListItemButton>)
-                }
-              )
-            }
+            <ListItemButton sx={{ pl: 4 }} onClick={() => navigate(config.convert_to_fasta.route)}>
+              <ListItemIcon>
+                <KeyboardDoubleArrowRightIcon sx={{ color: "#000" }} />
+              </ListItemIcon>
+              <ListItemText primary={config.convert_to_fasta.title} />
+            </ListItemButton>
+            <ListItemButton sx={{ pl: 4 }} onClick={() => navigate(config.test_sequences.route)}>
+              <ListItemIcon>
+                <KeyboardDoubleArrowRightIcon sx={{ color: "#000" }} />
+              </ListItemIcon>
+              <ListItemText primary={config.test_sequences.title} />
+            </ListItemButton>
           </List>
         </Collapse>
       </List>
@@ -113,17 +99,36 @@ function Aside({ handleDrawerClose, open }: Props) {
         </ListItemButton>
         <Collapse in={openBioinformaticTools} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-            {
-                config.sidebar.bioinformatic_tools.map((a)=>{
-                  return (
-                  <ListItemButton sx={{ pl: 4 }} onClick={() => navigate(config[a].route)}>
-                    <ListItemIcon>
-                      <KeyboardDoubleArrowRightIcon sx={{ color: "#000" }} />
-                    </ListItemIcon>
-                    <ListItemText primary={config[a].title} />
-                  </ListItemButton>)
-                  })
-              }
+            <ListItemButton sx={{ pl: 4 }} onClick={() => navigate(config.msa.route)}>
+              <ListItemIcon>
+                <KeyboardDoubleArrowRightIcon sx={{ color: "#000" }} />
+              </ListItemIcon>
+              <ListItemText primary={config.msa.title} />
+            </ListItemButton>
+
+            <ListItemButton sx={{ pl: 4 }} onClick={() => navigate(config.pfam.route)}>
+              <ListItemIcon>
+                <KeyboardDoubleArrowRightIcon sx={{ color: "#000" }} />
+              </ListItemIcon>
+              <ListItemText primary={config.pfam.title} />
+            </ListItemButton>
+
+            <ListItemButton sx={{ pl: 4 }} onClick={() => navigate(config.gene_ontology.route)}>
+              <ListItemIcon>
+                <KeyboardDoubleArrowRightIcon sx={{ color: "#000" }} />
+              </ListItemIcon>
+              <ListItemText primary={config.gene_ontology.title} />
+            </ListItemButton>
+
+
+            <ListItemButton sx={{ pl: 4 }} onClick={() => navigate(config.structural_prediction.route)}>
+              <ListItemIcon>
+                <KeyboardDoubleArrowRightIcon sx={{ color: "#000" }} />
+              </ListItemIcon>
+              <ListItemText primary={config.structural_prediction.title} />
+            </ListItemButton>
+
+
           </List>
         </Collapse>
       </List>
@@ -139,18 +144,18 @@ function Aside({ handleDrawerClose, open }: Props) {
         </ListItemButton>
         <Collapse in={openStatisticTools} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-            {
-              config.sidebar.statistic_tools.map((a)=>{
-                return (
-                <ListItemButton sx={{ pl: 4 }} onClick={() => navigate(config[a].route)}>
-                  <ListItemIcon>
-                    <KeyboardDoubleArrowRightIcon sx={{ color: "#000" }} />
-                  </ListItemIcon>
-                  <ListItemText primary={config[a].title} />
-                </ListItemButton>
-                )
-              })
-            }
+            <ListItemButton sx={{ pl: 4 }} onClick={() => navigate(config.frequency_evaluation.route)}>
+              <ListItemIcon>
+                <KeyboardDoubleArrowRightIcon sx={{ color: "#000" }} />
+              </ListItemIcon>
+              <ListItemText primary={config.frequency_evaluation.title} />
+            </ListItemButton>
+            <ListItemButton sx={{ pl: 4 }} onClick={() => navigate(config.properties_estimation.route)}>
+              <ListItemIcon>
+                <KeyboardDoubleArrowRightIcon sx={{ color: "#000" }} />
+              </ListItemIcon>
+              <ListItemText primary={config.properties_estimation.title} />
+            </ListItemButton>
           </List>
         </Collapse>
       </List>
@@ -168,22 +173,28 @@ function Aside({ handleDrawerClose, open }: Props) {
         </ListItemButton>
         <Collapse in={openMachineLearningTools} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-            {
-              config.sidebar.machine_learning_tools.map((a)=>{
-                return (
-                <ListItemButton sx={{ pl: 4 }} onClick={() => navigate(config[a].route)}>
-                  <ListItemIcon>
-                    <KeyboardDoubleArrowRightIcon sx={{ color: "#000" }} />
-                  </ListItemIcon>
-                  <ListItemText primary={config[a].title} />
-                </ListItemButton>
-                )
-              })
-            }
+            <ListItemButton sx={{ pl: 4 }} onClick={() => navigate(config.encoding_sequences.route)}>
+              <ListItemIcon>
+                <KeyboardDoubleArrowRightIcon sx={{ color: "#000" }} />
+              </ListItemIcon>
+              <ListItemText primary={config.encoding_sequences.title} />
+            </ListItemButton>
+            <ListItemButton sx={{ pl: 4 }} onClick={() => navigate(config.clustering.route)}>
+              <ListItemIcon>
+                <KeyboardDoubleArrowRightIcon sx={{ color: "#000" }} />
+              </ListItemIcon>
+              <ListItemText primary={config.clustering.title} />
+            </ListItemButton>
+            <ListItemButton sx={{ pl: 4 }} onClick={() => navigate(config.supervised_learning.route)}>
+              <ListItemIcon>
+                <KeyboardDoubleArrowRightIcon sx={{ color: "#000" }} />
+              </ListItemIcon>
+              <ListItemText primary={config.supervised_learning.title} />
+            </ListItemButton>
           </List>
         </Collapse>
       </List>
-      <List>
+      {/* <List>
         <ListItemButton
           onClick={() =>
             handleChangeOpenPredictiveModels(!openPredictiveModels)
@@ -211,7 +222,7 @@ function Aside({ handleDrawerClose, open }: Props) {
             }
           </List>
         </Collapse>
-      </List>
+      </List> */}
     </Drawer>
   );
 }

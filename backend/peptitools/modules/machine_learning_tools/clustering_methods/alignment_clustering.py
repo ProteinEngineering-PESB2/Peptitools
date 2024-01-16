@@ -6,9 +6,9 @@ from peptitools.modules.bioinformatic_tools.msa import MultipleSequenceAlignment
 
 class AlignmentClustering(GraphClustering):
     """Alignment clustering class"""
-    def __init__(self, data, config):
-        super().__init__(data, config, {})
-        self.msa = MultipleSequenceAlignment(data, config)
+    def __init__(self, data):
+        super().__init__(data, {})
+        self.msa = MultipleSequenceAlignment(data)
 
     def __distance_matrix_to_df(self):
         """Transforms a NxN distance matrix to a Mx3 dataframe"""

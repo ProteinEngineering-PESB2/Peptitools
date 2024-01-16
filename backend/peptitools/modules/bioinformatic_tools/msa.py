@@ -4,23 +4,20 @@ import subprocess
 from random import random
 import matplotlib.pyplot as plt
 import pandas as pd
-import seaborn as sns
 from scipy.cluster.hierarchy import dendrogram, linkage
 from scipy.spatial.distance import squareform
-
+import peptitools.config as config
+plt.switch_backend('agg')
 class MultipleSequenceAlignment:
     """MSA Class"""
 
-    def __init__(self, fasta_path, config):
+    def __init__(self, fasta_path):
         self.fasta_path = fasta_path
-        self.config = config
+        self.static_folder = config.static_folder
+        self.results_folder = config.results_folder
 
-        self.static_folder = config["folders"]["static_folder"]
-        self.results_folder = config["folders"]["results_folder"]
-
-        self.output_aln_file = os.path.realpath(f"{self.results_folder}/{round(random() * 10**20)}.aln")
+        self.output_aln_file = f"{self.results_folder}/{round(random() * 10**20)}.aln"
         self.output_dist_file = self.output_aln_file.replace(".aln", ".dist")
-        self.heatmap_path = self.output_aln_file.replace(".aln", "_heatmap.png")
         self.dendrogram_path = self.output_aln_file.replace(".aln", "_dendrogram.png")
 
     def execute_clustalo(self):
@@ -64,7 +61,6 @@ class MultipleSequenceAlignment:
 
     def draw_dendrogram(self):
         """Use matplotlib for to draw a dendrogram"""
-        plt.clf()
         plt.figure(figsize=(20, 10))
         plt.ylabel("Distance")
         condensed_dist = squareform(self.z_values)
@@ -82,12 +78,8 @@ class MultipleSequenceAlignment:
         self.parse_output()
         self.draw_dendrogram()
         return {
-            "result":{
                 "alignment": self.alignment,
-                "output_file": self.output_aln_file,
-                "distances_file": self.output_dist_file,
-                "image_heatmap": self.heatmap_path,
-                "dendrogram": self.dendrogram_path
-            },
-            "status": "success"
-        }
+                "output_file": self.output_aln_file[1:],
+                "distances_file": self.output_dist_file[1:],
+                "dendrogram": self.dendrogram_path[1:]
+            }

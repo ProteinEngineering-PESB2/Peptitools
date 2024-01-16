@@ -7,8 +7,7 @@ import {
   InputAdornment,
   Stack,
   TextField,
-  Tooltip,
-  Typography,
+  Tooltip
 } from "@mui/material";
 import { useState } from "react";
 import SectionTitle from "../components/common/section_title";

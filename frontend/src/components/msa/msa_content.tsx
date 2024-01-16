@@ -1,20 +1,19 @@
 import { Box, Paper } from "@mui/material";
 import { useState } from "react";
 import useHandlerBackendUrl from "../../hooks/useHandlerBackendUrl";
-import { IAlign } from "../../utils/interfaces";
+import { MSAResult } from "../../utils/interfaces";
 import BackdropComponent from "../common/backdrop_component";
 import ButtonDownloadPrimary from "../common/button_download_primary";
 import ProSeqViewer from "../common/pro_seq_viewer";
 
 interface Props {
-  result: IAlign;
+  result: MSAResult;
 }
 
 export default function MSAContent({ result }: Props) {
   const [openBackdrop, setOpenBackdrop] = useState<boolean>(false);
   const [percentage, setPercentage] = useState<number>(0);
   const { backendUrl } = useHandlerBackendUrl();
-
   return (
     <>
       <BackdropComponent open={openBackdrop} percentage={percentage} />

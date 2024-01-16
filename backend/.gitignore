@@ -1,3 +1,8 @@
 .py[cod]
 __pycache__/
 files/activity_models/
+files/*.csv
+temp_files/
+install_requisites/
+files/results/
+files/predictive_models/

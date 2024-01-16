@@ -1,0 +1,31 @@
+version: "3.8"
+services:
+  backend:
+    image: backend
+    container_name: backend
+    build:
+      context: ./backend/
+      dockerfile: Dockerfile
+    volumes:
+      - ./backend/peptitools:/app/peptitools
+      - ./backend/config.ini:/app/config.ini
+      - ./backend/files/activity_models:/files/activity_models
+      - ./backend/files/predictive_models:/files/predictive_models
+    ports:
+      - "8001:8001"
+    restart: "always"
+
+  frontend:
+    image: frontend
+    container_name: frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+
+    volumes:
+      - "./frontend/src:/usr/src/app/src"
+      
+    depends_on:
+      - "backend"

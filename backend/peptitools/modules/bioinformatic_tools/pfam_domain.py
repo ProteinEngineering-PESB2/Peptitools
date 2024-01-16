@@ -3,12 +3,11 @@ import os
 import re
 import subprocess
 import pandas as pd
-#from peptitools.modules.utils import ConfigTool
 
 class Pfam:
     """Pfam class"""
 
-    def __init__(self, fasta_path, config):
+    def __init__(self, fasta_path):
         self.fasta_path = fasta_path
 
     def run_process(self):
