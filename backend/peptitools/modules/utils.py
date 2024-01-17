@@ -126,15 +126,17 @@ class CsvFile:
                 return False
         return True
     def verify_target_type(self):
-        real_target_type = type_of_target(self.data.target)
-        if self.task == "classification":
-            if real_target_type in ["multiclass", "binary"]:
-                return True
-            return False
-        if self.task == "regression":
-            if real_target_type in ["continuous"]:
-                return True
-            return False
+        if self.needs_target:
+            real_target_type = type_of_target(self.data.target)
+            if self.task == "classification":
+                if real_target_type in ["multiclass", "binary"]:
+                    return True
+                return False
+            if self.task == "regression":
+                if real_target_type in ["continuous"]:
+                    return True
+                return False
+        return True
 class FastaFile:
     """Parse a fasta file"""
     def __init__(self, path, config_name, needs_target, task):

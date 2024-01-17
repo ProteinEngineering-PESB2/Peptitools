@@ -92,9 +92,8 @@ export default function EncodingForm({service}: any) {
         postData,
         url: service.api,
       })
-      console.log(res)
       downloadFile({
-        url: res.data.result.path,
+        url: res.data.result.encoding_path,
         name: "encoding.csv",
         setOpenBackdrop: setOpenBackdropFile,
         setPercentage,
