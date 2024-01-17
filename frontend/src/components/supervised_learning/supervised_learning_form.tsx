@@ -31,7 +31,7 @@ const markdownText = `
 `;
 
 export default function SupervisedLearningForm({setResult}: Props) {
-  const [data, setData] = useState<PostData>(InitialValuePostData);
+  const [training_data, setTrainingData] = useState<PostData>(InitialValuePostData);
   const [openBackdrop, setOpenBackdrop] = useState<boolean>(false);
 
   const [ selectedTaskType, task_types, handleChangeTaskType ] = useSelectValue(
@@ -152,7 +152,7 @@ export default function SupervisedLearningForm({setResult}: Props) {
       pretrained_model: selectedEmbedding,
     };
 
-    const postData = parserFormDataWithOptions(data, options);
+    const postData = parserFormDataWithOptions(training_data, options);
 
     try {
       const { data } = await requestPost({
@@ -172,9 +172,9 @@ export default function SupervisedLearningForm({setResult}: Props) {
       <BackdropComponent open={openBackdrop} />
       <FormContainer markdownText={markdownText}>
         <form onSubmit={handleSubmit}>
-          <InputFileType data={data} setData={setData} />
-          <TextFieldFasta data={data} setData={setData}/>
-          <InputFileFasta data={data} setData={setData} />
+          <InputFileType data={training_data} setData={setTrainingData} />
+          <TextFieldFasta data={training_data} setData={setTrainingData}/>
+          <InputFileFasta data={training_data} setData={setTrainingData} />
           <MethodOptions
             task={task_type_element} train_test_split={train_test_element} k_fold={kfold_element}/>
           <AlgorithmOptions task_type={selectedTaskType} class_algorithms={clf_algorithm_element}
@@ -184,7 +184,7 @@ export default function SupervisedLearningForm({setResult}: Props) {
             embeddings={embedding_element} properties={properties_element} />
           <AdvancedOptions 
             kernel={kernel_element} standarization = {standarization_element} />
-          <ButtonRun data={data} />
+          <ButtonRun data={training_data} />
         </form>
       </FormContainer>
     </>

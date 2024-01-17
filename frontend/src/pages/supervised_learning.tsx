@@ -34,14 +34,8 @@ export default function SupervisedLearning() {
         <>
           {result.task == "classification" && <SupervisedLearningContentClassification result={result} />}
           {result.task == "regression" && <SupervisedLearningContentRegression result={result} />}
-          <Box sx={{ paddingTop: 4 }}>
-            <SectionTitle
-              title={config.evaluate_model.title}
-              description={config.evaluate_model.description}
-            />
-            <PredictForm result={result} setResult={setResult}></PredictForm>
-            {result.predictions && <PredictionContent result = {result}></PredictionContent>}
-          </Box>
+          <PredictForm result = {result} setResult={setResult}/>
+          {result.predictions && <PredictionContent result = {result}/>}
         </>
         )}
       </Box>

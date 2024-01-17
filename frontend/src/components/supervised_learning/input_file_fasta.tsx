@@ -33,9 +33,9 @@ export default function InputFileFasta({ data, setData }: Props) {
   };
   return (
     <FormControl sx={{ marginY: 1 }} fullWidth>
-      <label htmlFor="contained-button-file" style={{ width: "100%" }}>
+      <label htmlFor="contained-button-file_2" style={{ width: "100%" }}>
         <Input
-          id="contained-button-file"
+          id="contained-button-file_2"
           type="file"
           disabled={data.fileType === EnumFileType.TEXT}
           onChange={handleChangeFastaInput}

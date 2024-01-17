@@ -49,10 +49,7 @@ export default function GenericForm({ setResult, service }: FormProps) {
         <FormContainer markdownText={service.markdown_text}>
           <form onSubmit={onSubmit}>
             <InputFileType data={data} setData={setData} />
-            <TextFieldFasta
-              data={data}
-              setData={setData}
-            />
+            <TextFieldFasta data={data} setData={setData} />
             <InputFileFasta data={data} setData={setData} />
             <ButtonRun data={data} />
           </form>

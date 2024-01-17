@@ -7,7 +7,7 @@ import pandas as pd
 from Bio import SeqIO
 import peptitools.config as config
 from flask import make_response
-
+from sklearn.utils.multiclass import type_of_target
 AMINOACID_ALPHABET = "ARNDCEQGHILKMFPSTWYVX*"
 
 class CsvFile:
@@ -71,6 +71,9 @@ class CsvFile:
         if not self.__correct_target():
             message = f"Please verify target column. Needs a {self.task} column."
             return _error_message(message)
+        if not self.verify_target_type():
+            message = "Please verify target column. Must be in tune with task."
+            return _error_message(message)
         return {"status": "success", "path": self.path}
     
     def __unique_ids(self):
@@ -122,7 +125,16 @@ class CsvFile:
             except:
                 return False
         return True
-
+    def verify_target_type(self):
+        real_target_type = type_of_target(self.data.target)
+        if self.task == "classification":
+            if real_target_type in ["multiclass", "binary"]:
+                return True
+            return False
+        if self.task == "regression":
+            if real_target_type in ["continuous"]:
+                return True
+            return False
 class FastaFile:
     """Parse a fasta file"""
     def __init__(self, path, config_name, needs_target, task):
@@ -164,6 +176,8 @@ class FastaFile:
             message = f"There are invalid sequences.\nUse peptides with a length between {self.min_length} and {self.max_length} residues.{new_line}{new_line.join(invalid_lengths)}"
         if not self.__target_verification():
             message = f"Please verify target column. Needs a {self.task} column."
+        if not self.verify_target_type():
+            message = "Please verify target column. Must be in tune with task."
         if message != "":
             return _error_message(message)
 
@@ -220,6 +234,27 @@ class FastaFile:
             except:
                 return False
         return True
+
+    def verify_target_type(self):
+        if self.needs_target:
+            with open(self.path, encoding="utf-8", mode="r") as file:
+                text = file.read()
+            fasta_regex = re.compile(r">([^\n]+)\n([^>]+)")
+            df = pd.DataFrame([
+                {"id": seq_id.split("|")[0], "sequence": seq.replace("\n", "").upper(), "target": seq_id.split("|")[1]}
+                for seq_id, seq in fasta_regex.findall(text)
+            ])
+            real_target_type = type_of_target(df.target)
+            if self.task == "classification":
+                if real_target_type in ["multiclass", "binary"]:
+                    return True
+                return False
+            elif self.task == "regression":
+                if real_target_type in ["continuous"]:
+                    return True
+                return False
+        return True
+
 
 def create_config_folders():
     static_path = os.path.abspath(config.static_folder)

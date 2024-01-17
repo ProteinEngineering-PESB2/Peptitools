@@ -563,7 +563,8 @@
   "evaluate_model": {
     "title": "Evaluate model",
     "description": "Use your own model evaluate new sequences.",
-    "api": "/api/evaluate_model/"
+    "api": "/api/evaluate_model/",
+    "markdown_text": "+ **Input**: \n+ One or more amino acid sequences with fasta format.\n+ Sequence with maxium length 150."
   },
   "standarizations": [
     {
