@@ -1,5 +1,0 @@
-config.ini
-Dockerfile.*
-.dockerignore
-.gitignore
-files/activity_models/
