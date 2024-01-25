@@ -15,6 +15,5 @@ app = Flask(__name__, static_folder=os.path.realpath(config.static_folder))
 CORS(app)
 
 app.register_blueprint(api_blueprint, url_prefix="/api")
-
 if __name__ == "__main__":
     app.run(debug=True, host=config.host, port=config.port)

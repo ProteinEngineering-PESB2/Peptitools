@@ -566,6 +566,13 @@
     "api": "/api/evaluate_model/",
     "markdown_text": "+ **Input**: \n+ One or more amino acid sequences with fasta format.\n+ Sequence with maxium length 150."
   },
+  "activity_prediction": {
+    "title": "Activity prediction",
+    "description": "Use activity prediction model to evaluate new sequences.",
+    "api": "/api/predict/activity/",
+    "route": "/predict/activity/",
+    "markdown_text": "+ **Input**: \n+ One or more amino acid sequences with fasta format.\n+ Sequence with maxium length 150."
+  },
   "standarizations": [
     {
       "title": "Don't Apply",

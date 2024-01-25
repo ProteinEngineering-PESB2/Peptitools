@@ -19,6 +19,7 @@ import LoadingComponent from "./components/common/loading";
 import NotFound from "./pages/not_found";
 import StructuralPrediction from "./pages/structural_prediction";
 import TestSequences from "./pages/test_sequences";
+import ActivityPrediction from "./pages/predict";
 import useHandlerBackendUrl from "./hooks/useHandlerBackendUrl";
 import config from "./config.json"
 export default function App() {
@@ -43,6 +44,7 @@ export default function App() {
               <Route path={config.encoding_sequences.route} element={<Encoding />} loading />
               <Route path={config.clustering.route} element={<Clustering />} loading />
               <Route path={config.supervised_learning.route} element={<SupervisedLearning />} loading />
+              <Route path={config.activity_prediction.route} element={<ActivityPrediction />} loading />
               <Route path="*" element={<NotFound />} loading />
             </Routes>
           </BrowserRouter>
