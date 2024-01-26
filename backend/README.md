@@ -21,7 +21,6 @@ pip install -r requirements.txt
 ### Install conda requirements
 ```
 conda install bioconda/label/cf201901::pfam_scan
-conda install bioconda::blast
 ```
 ### Download databases
 ```
@@ -41,7 +40,7 @@ git clone https://github.com/realbigws/Predict_Property
 ```
 ### Set paths
 ```
-export PATH="/app/install_requisites/Predict_Property:${PATH}"
+export PATH="${pwd}/install_requisites/Predict_Property:${PATH}"
 export PFAM_DB="${pwd}/files/pfam_db"
 export PYTHONPATH=.
 ```
