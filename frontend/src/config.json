@@ -738,5 +738,8 @@
       "title": "SeqVec",
       "value": "seqvec"
     }
-  ]
+  ],
+  "predict":{
+    "form_api": "/api/predict/get_activities/"
+  }
 }
