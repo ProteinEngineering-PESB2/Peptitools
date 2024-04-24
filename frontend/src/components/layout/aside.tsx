@@ -1,13 +1,8 @@
 import { Collapse, Drawer, ListItemButton } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { useContext } from "react";
-import { DrawerHeader } from "../common/drawer_header";
 import { drawerWidth } from "../common/drawerWith";
 import List from "@mui/material/List";
-import Divider from "@mui/material/Divider";
-import IconButton from "@mui/material/IconButton";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import BuildIcon from "@mui/icons-material/Build";
@@ -18,6 +13,7 @@ import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import ModelTrainingIcon from "@mui/icons-material/ModelTraining";
 import HomeIcon from "@mui/icons-material/Home";
+import StorageIcon from '@mui/icons-material/Storage';
 import AppContext from "../../context/AppContext";
 import { useNavigate } from "react-router-dom";
 import config from "../../config.json";
@@ -216,6 +212,14 @@ function Aside() {
             </ListItemButton>
           </List>
         </Collapse>
+      </List>
+      <List>
+        <ListItemButton onClick={() => window.location.replace(config.database.route)}>
+          <ListItemIcon>
+            <StorageIcon sx={{ color: "#000" }} />
+          </ListItemIcon>
+          <ListItemText primary="Database" />
+        </ListItemButton>
       </List>
     </Drawer>
   );

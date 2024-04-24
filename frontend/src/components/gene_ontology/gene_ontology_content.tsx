@@ -16,7 +16,7 @@ export default function GeneOntologyContent({ result }: Props) {
     useTypeGeneOnotology();
   const { sequences, selectedSequence, handleChangeSelectedSequence } =
     useSequenceAutocompleteGO({ result, type: selectedTypeGO });
-
+  console.log(result)
   const { table } = useDataTableGO({
     result,
     sequence: selectedSequence,

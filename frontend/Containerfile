@@ -1,0 +1,20 @@
+FROM node:lts as build
+
+ENV VITE_BACKEND_URL=https://api.tools.peptipedia.cl
+ENV PEPTIPEDIA_URL=https://app.peptipedia.cl
+
+WORKDIR /app
+COPY ./ .
+RUN npm install
+RUN npm run build
+
+
+FROM nginx:stable as runtime
+
+RUN rm /etc/nginx/conf.d/default.conf
+COPY env_conf/nginx.conf /etc/nginx/conf.d/default.conf
+
+COPY --from=build /app/dist /app
+
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]

@@ -23,78 +23,102 @@
       "supervised_learning"
     ]
   },
-
+  "database":{
+    "route": "https://app.peptipedia.cl"
+  },
   "home": {
-    "title": "Pepti-tools",
-    "description": "Pepti-Tools, a user-friendly web application tool to support peptide research using bioinformatics and machine learning strategies",
+    "title": "Peptitools",
+    "description": "PeptiTools, a user-friendly web application tool to support peptide research using bioinformatics and machine learning strategies",
     "route": "/",
     "team": [
       {
         "name": "Gabriel Cabas",
-        "image": "/assets/team/gabriel.jpeg",
+        "image": "/images/team/gabriel.jpeg",
         "rol": "Software developer",
         "github": "https://www.researchgate.net/profile/Gabriel-Cabas",
         "linkedin": "https://cl.linkedin.com/in/gabriel-cabas-1834601b4" 
       },
       {
         "name": "Anamaria Daza",
-        "image": "/assets/team/anita.jpg",
+        "image": "/images/team/anita.jpg",
         "rol": "Researcher",
         "github": "https://www.researchgate.net/profile/Anamaria-Daza-Sanchez",
         "linkedin": "https://www.linkedin.com/in/anamaria-daza-sanchez-597b3246/"
       },
       {
-        "name": "Lindybeth Sarmiento",
-        "image": "/assets/team/lindybeth.jpg",
-        "rol": "Researcher",
-        "github": "https://www.researchgate.net/profile/Lindybeth-Sarmiento-2",
-        "linkedin": "https://www.linkedin.com/in/lindybethsarmiento/"
-      },
-      {
         "name": "Valentina Garrido",
-        "image": "/assets/team/valentina.jpg",
+        "image": "/images/team/valentina.jpeg",
         "rol": "Researcher",
         "github": "https://www.researchgate.net/profile/Valentina_Garrido3",
         "linkedin": "https://www.linkedin.com/in/valentina-garrido-463951238/"
       },
       {
-        "name": "Diego Alvarez",
-        "image": "/assets/team/diego.jpg",
+        "name": "Nicole Soto",
+        "image": "/images/team/nicole.jpeg",
         "rol": "Researcher",
-        "github": "https://github.com/GabrielCabas",
+        "github": "https://www.researchgate.net/profile/Nicole-Soto-Garcia",
+        "linkedin": "https://www.linkedin.com/in/nicole-soto-36b146124/"
+      },
+      {
+        "name": "Diego Alvarez",
+        "image": "/images/team/diego.jpg",
+        "rol": "Researcher",
+        "github": "https://www.researchgate.net/profile/Diego-Alvarez-Saravia",
         "linkedin": "https://www.linkedin.com/in/dialvarezs0/"
       },
       {
+        "name": "Lindybeth Sarmiento",
+        "image": "/images/team/lindybeth.jpg",
+        "rol": "Researcher",
+        "github": "https://www.researchgate.net/profile/Lindybeth-Sarmiento-2",
+        "linkedin": "https://www.linkedin.com/in/lindybethsarmiento/"
+      },
+
+      {
+        "name": "Julieta Sepúlveda Yáñez",
+        "image": "/images/team/julieta.jpeg",
+        "rol": "Researcher",
+        "github": "https://www.researchgate.net/profile/Julieta-Sepulveda-Yanez",
+        "linkedin": "https://www.linkedin.com/in/jsepulvedayanez/?originalSubdomain=cl"
+      },
+      {
         "name": "Roberto Uribe",
-        "image": "/assets/team/roberto_uribe.jpg",
+        "image": "/images/team/roberto_uribe.jpg",
         "rol": "Researcher",
         "github": "https://www.researchgate.net/profile/Roberto-Uribe-Paredes",
         "linkedin": "https://www.linkedin.com/in/roberto-uribe-paredes-5868b84/" 
       },
       {
         "name": "Alvaro Olivera",
-        "image": "/assets/team/alvaro.jpg",
+        "image": "/images/team/alvaro.jpg",
         "rol": "Researcher",
         "github": "https://www.researchgate.net/profile/Alvaro-Olivera-Nappa",
         "linkedin": "https://www.linkedin.com/in/alvaro-olivera-nappa-5bb5212/" 
       },
       {
         "name": "Mehdi D. Davari",
-        "image": "/assets/team/marcelo.jpeg",
+        "image": "/images/team/mehdi.jpg",
         "rol": "Researcher",
         "github": "https://www.researchgate.net/profile/Mehdi-Davari-4",
         "linkedin": "https://de.linkedin.com/in/mehdi-d-davari-2ab15a5a" 
       },
       {
+        "name": "Frederic Cadet",
+        "image": "/images/team/frederic.jpg",
+        "rol": "Researcher",
+        "github": "https://www.researchgate.net/profile/Frederic-Cadet",
+        "linkedin": "https://www.linkedin.com/in/prof-frederic-cadet-83398435/"
+      },
+      {
         "name": "Marcelo Navarrete",
-        "image": "/assets/team/marcelo.jpeg",
+        "image": "/images/team/marcelo.jpeg",
         "rol": "Researcher",
         "github": "https://www.researchgate.net/profile/Marcelo-Navarrete",
         "linkedin": "https://www.linkedin.com/in/marcelo-navarrete-signorile-30179576/" 
       },
       {
         "name": "David Medina",
-        "image": "/assets/team/david.jpeg",
+        "image": "/images/team/david.jpeg",
         "rol": "Researcher",
         "github": "https://www.researchgate.net/profile/David-Medina-Ortiz",
         "linkedin": "https://www.linkedin.com/in/david-medina-924308224/"
@@ -122,7 +146,7 @@
           "description": "Peptipedia, a database to support peptide research using bioinformatics and machine learning strategies.",
           "icon": "https://www.svgrepo.com/show/509077/database.svg",
           "button": "Visit Peptipedia",
-          "redirect": "/peptipedia/"
+          "redirect": "https://app.peptipedia.cl"
         }
       ]
     },
@@ -138,31 +162,25 @@
     },
     "entities": [
       {
-        "url": "/assets/entities/umag.png",
+        "url": "/images/entities/umag.png",
         "alt": "Universidad de Magallanes",
         "width": "100rem",
         "height": "100rem"
       },
       {
-        "url": "/assets/entities/catg.png",
-        "alt": "Centro Austral de Tecnología Genómica",
-        "width": "100rem",
-        "height": "100rem"
-      },
-      {
-        "url": "/assets/entities/anid.png",
+        "url": "/images/entities/anid.png",
         "alt": "Agencia Nacional de Investigación y Desarrollo",
         "width": "100rem",
         "height": "100rem"
       },
       {
-        "url": "/assets/entities/mineduc.jpg",
+        "url": "/images/entities/mineduc.jpg",
         "alt": "Ministerio de Educación",
         "width": "100rem",
         "height": "100rem"
       },
       {
-        "url": "/assets/entities/cadi.png",
+        "url": "/images/entities/cadi.png",
         "alt": "Centro Asistencial Docente e Investigación",
         "width": "230rem",
         "height": "100rem"
@@ -251,28 +269,28 @@
     "title": "Multiple Sequence Alingment",
     "description": "Use ClustalW to build an MSA from the specified sequences.",
     "route": "/msa",
-    "api": "/api/msa",
+    "api": "/api/msa/",
     "markdown_text": "+ **Input**:\n+ Two or more amino acid sequences with fasta format.\n+ Sequences with maxium length 150."
   },
   "pfam": {
     "title": "Pfam Prediction",
     "description": "Predict protein families and domains in a set of peptides entered.",
     "route": "/pfam",
-    "api": "/api/pfam",
+    "api": "/api/pfam/",
     "markdown_text": "+ **Input**:\n+ One or more amino acid sequences with fasta format.\n+ Sequence with maxium length 150.\n+ **Pfam Tool**\n+ PfamScan"
   },
   "gene_ontology": {
     "title": "Gene Ontology",
     "description": "Predict Gene Ontology terms (Biological process, molecular function or cellular component) in a set of entered peptides.",
     "route": "/gene-ontology",
-    "api": "/api/gene_ontology",
+    "api": "/api/gene_ontology/",
     "markdown_text": "+ **Input**:\n+ One or more amino acid sequences with fasta format.\n+ Sequence with maxium length 150.\n+ **GO Tool**\n+ Metastudent"
   },
   "structural_prediction": {
     "title": "Secondary Structure Prediction",
     "description": "Secondary Structure Element (SS3 and SS8), Solvent Accessibility (ACC), Order/Disorder prediction (DISO), and TransMembrane topology (TM2 and TM8)",
     "route": "/structural-prediction",
-    "api": "/api/structural_prediction",
+    "api": "/api/structural_prediction/",
     "markdown_text": "+ **Input**:\n+ One or more amino acid sequences with fasta format.\n+ Sequence with maxium length 150.\n+ **Pfam Tool**\n+ PfamScan"
   },
   "frequency_evaluation": {

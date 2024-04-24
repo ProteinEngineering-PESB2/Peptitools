@@ -22,7 +22,7 @@ export default function GenericForm({ setResult, service }: FormProps) {
     setOpenBackdrop(true);
     
     const postData = parserFormDataWithoutOptions(data);
-
+    console.log(service);
     try {
       const { data } = await requestPost({
         url: service.api,
