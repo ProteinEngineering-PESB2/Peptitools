@@ -1,0 +1,32 @@
+
+FROM python:3.9
+
+ARG DEBIAN_FRONTEND=noninteractive
+ENV PYTHOHUNBUFFERED=1
+
+RUN python --version
+
+RUN apt-get update && \
+	apt-get upgrade -y && \
+	apt install metastudent gzip make gcc g++ git clustalo -y && \
+	rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app/files
+RUN git clone https://github.com/realbigws/Predict_Property
+ENV PATH="/app/files/Predict_Property:${PATH}"
+
+
+COPY ./peptitools /app/peptitools
+COPY requirements.txt /app/requirements.txt
+
+RUN pip install --no-cache-dir -r /app/requirements.txt
+RUN pip install -U "bio-embeddings[all] @ git+https://github.com/sacdallago/bio_embeddings.git"
+ENV PYTHONPATH=/app
+
+
+WORKDIR /app
+
+
+
+EXPOSE 8000
+CMD ["gunicorn", "peptitools.wsgi:app", "--bind", "0.0.0.0:8000", "--workers", "4", "--timeout", "0"]

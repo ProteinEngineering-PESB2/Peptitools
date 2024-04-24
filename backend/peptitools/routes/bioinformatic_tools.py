@@ -40,7 +40,7 @@ def apply_gene_ontology():
     result = go.run_process()
     if result["status"] == "warning":
         return parse_response(result, status_code=404)
-    return parse_response({"result": result}, status_code=200)
+    return parse_response(result, status_code=200)
 
 @bioinfo_tools_blueprint.route("/structural_prediction/", methods=["POST"])
 def apply_structural_analysis():

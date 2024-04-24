@@ -8,22 +8,15 @@ import peptitools.config as config
 class GeneOntology:
     """Gene ontology class"""
     def __init__(self, fasta_path):
-        self.fasta_path = fasta_path
+        self.fasta_path = os.path.realpath(fasta_path)
         self.results_folder = config.results_folder
         self.output_path = os.path.realpath(f"{self.results_folder}/{round(random() * 10**20)}.aln")
 
     def run_process(self):
         """Execute metastudent and return results"""
-        command = [
-            "metastudent",
-            "-i",
-            self.fasta_path,
-            "-o",
-            self.output_path
-        ]
-        subprocess.check_output(command)
+        command = f"metastudent -i {self.fasta_path} -o {self.output_path}"
+        os.system(command)
         response = self.find_and_load_data()
-
         if len(response) == 0:
             return {
                 "status": "warning",
@@ -56,4 +49,5 @@ class GeneOntology:
                 results.append({"type": param_tuple[1], "prediction": go_array})
             except:
                 return {"status": "warning", "description": "There's no significant results for this sequences"}
+        print(results)
         return {"result": results, "status": "success"}

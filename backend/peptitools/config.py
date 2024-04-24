@@ -1,5 +1,5 @@
 host = "0.0.0.0"
-port = 8002
+port = 8000
 
 static_folder = "./files"
 temp_folder = "./temp_files"
