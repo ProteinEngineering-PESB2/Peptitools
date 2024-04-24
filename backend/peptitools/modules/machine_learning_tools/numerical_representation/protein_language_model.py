@@ -68,7 +68,38 @@ class Bioembeddings(object):
     def apply_seqvec(self):
         from bio_embeddings.embed import UniRepEmbedder
         return self.__apply_embedding(UniRepEmbedder)
-    
+        
+
+
+    def apply_prottrans_t5_uniref(self):
+        from bio_embeddings.embed import ProtTransT5UniRef50Embedder
+        return self.__apply_embedding(ProtTransT5UniRef50Embedder)
+
+    def apply_prottrans_t5_xlu(self):
+        from bio_embeddings.embed import ProtTransT5XLU50Embedder
+        return self.__apply_embedding(ProtTransT5XLU50Embedder)
+
+    def apply_esm1b(self):
+        from bio_embeddings.embed import ESM1bEmbedder
+        return self.__apply_embedding(ESM1bEmbedder)
+
+    def apply_prottrans_albert(self):
+        from bio_embeddings.embed import ProtTransAlbertBFDEmbedder
+        return self.__apply_embedding(ProtTransAlbertBFDEmbedder)
+
+    def apply_prottrans_bert(self):
+        from bio_embeddings.embed import ProtTransBertBFDEmbedder
+        return self.__apply_embedding(ProtTransBertBFDEmbedder)
+
+    def apply_prottrans_xlnet(self):
+        from bio_embeddings.embed import ProtTransXLNetUniRef100Embedder
+        return self.__apply_embedding(ProtTransXLNetUniRef100Embedder)
+
+    def apply_prottrans_xlu50(self):
+        from bio_embeddings.embed import ProtTransT5XLU50Embedder
+        return self.__apply_embedding(ProtTransT5XLU50Embedder)
+
+
     def parse_output(self):
         header = ["p_{}".format(i) for i in range(len(self.np_data[0]))]
         df_data_encode = pd.DataFrame(self.np_data, columns=header)

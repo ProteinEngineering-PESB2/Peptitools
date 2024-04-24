@@ -21,10 +21,6 @@ export default function AlgorithmOptions({task_type, class_algorithms, regr_algo
                 {regr_algorithms}
             </Grid>)
         }
-
-
-
-
       </Grid>
     </>
   )
