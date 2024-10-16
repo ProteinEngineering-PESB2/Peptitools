@@ -1,11 +1,16 @@
 """Machine learning routes"""
-from flask import Blueprint, request
-from peptitools.modules.machine_learning_tools.training_supervised_learning.predict import Predict
-from peptitools.modules.utils import parse_request, parse_response
-import json
-from peptitools.modules.predictive_models.predictive_models import PredictiveModels
 
-predictive_models_blueprint = Blueprint("predictive_models_blueprint", __name__, url_prefix="/predict/")
+import json
+
+from flask import Blueprint, request
+
+from peptitools.modules.predictive_models.predictive_models import PredictiveModels
+from peptitools.modules.utils import parse_request, parse_response
+
+predictive_models_blueprint = Blueprint(
+    "predictive_models_blueprint", __name__, url_prefix="/predict/"
+)
+
 
 @predictive_models_blueprint.route("/activity/", methods=["POST"])
 def api_evaluate_model():

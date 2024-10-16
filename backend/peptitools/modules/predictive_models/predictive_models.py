@@ -1,16 +1,14 @@
-from peptitools.modules.database_models.table_models import Activity, PredictiveModel
-from peptitools.modules.database_models.database import Database
-from peptitools.modules.database_models.materialized_views import *
-from peptitools.modules.machine_learning_tools.numerical_representation.protein_language_model import Bioembeddings
-from sqlalchemy import select
-import json
-from flask import jsonify
-import pandas as pd
-import numpy as np
-from peptitools.modules.utils import fasta2df
-from peptitools import config
-from random import random
 import joblib
+import numpy as np
+import pandas as pd
+from sqlalchemy import select
+
+from peptitools.modules.database_models.database import Database
+from peptitools.modules.database_models.materialized_views import MVPredictedActivities
+from peptitools.modules.machine_learning_tools.numerical_representation.protein_language_model import (
+    Bioembeddings,
+)
+from peptitools.modules.utils import fasta2df
 
 
 class PredictiveModels:
@@ -25,7 +23,7 @@ class PredictiveModels:
     def get_activities_list(self):
         activities = self.df.name.tolist()
         ids = self.df.id_activity.tolist()
-        return {"activities": activities, "ids" : ids}
+        return {"activities": activities, "ids": ids}
 
     def encode(self, data, request):
         data = data.replace("\r", "")
@@ -43,7 +41,6 @@ class PredictiveModels:
             self.encoded_dfs[encoder] = self.encode_row(encoder)
         for model in self.to_predict.name:
             self.joblib_models[model] = joblib.load(f"./files/selected_models/{model}.joblib")
-        
 
     def predict(self, data, request):
         self.encode(data, request)
@@ -62,20 +59,21 @@ class PredictiveModels:
             dataset_response["Id"] = self.ids
             predictions = dataset_response[["Id", "Label"]].copy()
             classes = ["Label: Negative", "Label: Positive"]
-            probas = pd.DataFrame(data = prediction_proba, columns=classes)
+            probas = pd.DataFrame(data=prediction_proba, columns=classes)
             probas["Id"] = self.ids
             probas = probas[["Id"] + classes]
             probas_values = np.round(probas.values.astype(float), 3)
             probas_values = probas_values.tolist()
-            predictions_dict[row["name"]] = {"predictions": {"data": predictions.values.tolist(),
-                            "columns": predictions.columns.tolist()},
-                        "probabilities": {"data": probas_values,
-                            "columns": probas.columns.tolist()}}
+            predictions_dict[row["name"]] = {
+                "predictions": {
+                    "data": predictions.values.tolist(),
+                    "columns": predictions.columns.tolist(),
+                },
+                "probabilities": {"data": probas_values, "columns": probas.columns.tolist()},
+            }
             predicted_activities.append({"value": row["name"], "title": row["name"]})
-        
-        response = {"data": predictions_dict, "predicted_activities": predicted_activities}
-        return response
 
+        return {"data": predictions_dict, "predicted_activities": predicted_activities}
 
     def get_parents(self, activity):
         try:
@@ -84,7 +82,7 @@ class PredictiveModels:
             self.list_predictions.append(name_parent)
             self.get_parents(name_parent)
         except:
-            return None
+            return
 
     def encode_row(self, encoder):
         if encoder == "prottrans_t5_uniref":
@@ -107,9 +105,8 @@ class PredictiveModels:
 
         if encoder == "prottrans_t5bdf":
             encoded_df = self.bioembeddings.apply_prottrans_t5bdf()
-        
-        encoded_df = encoded_df[encoded_df.columns[1:]].values
-        return encoded_df
+
+        return encoded_df[encoded_df.columns[1:]].values
 
     def cleanup(self):
         for model in list(self.joblib_models.keys()):

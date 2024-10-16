@@ -1,7 +1,10 @@
 """Pfam module"""
+
 import os
 import re
+
 import pandas as pd
+
 
 class Pfam:
     """Pfam class"""
@@ -38,9 +41,7 @@ class Pfam:
                     "clan",
                 ],
             )
-            .filter(
-                items=["seq_id", "hmm_acc", "hmm_name", "type", "bit_score", "e-value"]
-            )
+            .filter(items=["seq_id", "hmm_acc", "hmm_name", "type", "bit_score", "e-value"])
             .rename(
                 columns={
                     "hmm_acc": "Id_accession",
@@ -55,9 +56,7 @@ class Pfam:
         response = []
         for seq_id in dataset.seq_id.unique():
             data = (
-                dataset.query("seq_id == @seq_id")
-                .drop(columns="seq_id")
-                .to_dict(orient="records")
+                dataset.query("seq_id == @seq_id").drop(columns="seq_id").to_dict(orient="records")
             )
             response.append({"id": seq_id, "data": data})
         if len(response) == 0:
@@ -65,4 +64,4 @@ class Pfam:
                 "status": "warning",
                 "description": "There's no significant results for this sequences",
             }
-        return  {"result": response, "status": "success"}
+        return {"result": response, "status": "success"}

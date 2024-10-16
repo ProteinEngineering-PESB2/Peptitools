@@ -1,4 +1,5 @@
 """Run algorithm module"""
+
 from sklearn.ensemble import (
     AdaBoostClassifier,
     AdaBoostRegressor,
@@ -14,7 +15,9 @@ from sklearn.neighbors import KNeighborsClassifier, KNeighborsRegressor
 from sklearn.svm import SVC, SVR, NuSVC, NuSVR
 from sklearn.tree import DecisionTreeClassifier, DecisionTreeRegressor
 
-from peptitools.modules.machine_learning_tools.training_supervised_learning.supervised_algorithm import ModelAlgorithm
+from peptitools.modules.machine_learning_tools.training_supervised_learning.supervised_algorithm import (
+    ModelAlgorithm,
+)
 
 
 class RunAlgorithm:

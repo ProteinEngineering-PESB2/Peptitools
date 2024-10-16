@@ -1,24 +1,24 @@
-from peptitools.modules.machine_learning_tools.numerical_representation.encoder import Encoder
-from modlamp.descriptors import GlobalDescriptor
+import os
+
 import pandas as pd
 from joblib import Parallel, delayed
-from random import random
+from modlamp.descriptors import GlobalDescriptor
+
+from peptitools.modules.machine_learning_tools.numerical_representation.encoder import Encoder
 
 
 class Descriptor(Encoder):
-
-    def __init__(self, dataset=None, name_column_id=None, name_column_seq=None, n_cores = None):
+    def __init__(self, dataset=None, name_column_id=None, name_column_seq=None, n_cores=None):
         super().__init__(dataset, name_column_id, name_column_seq, n_cores)
 
     def encode_sequence(self, sequence):
         sequence = sequence.upper()
         return self.execute_modlamp(sequence)
-    
 
     def execute_modlamp(self, sequence):
         """Execute all selected properties"""
         sequence = str(sequence)
-        
+
         dict_response = {}
         dict_response["p_0"] = len(sequence)
         dict_response["p_1"] = self.get_mw(sequence)
@@ -33,13 +33,13 @@ class Descriptor(Encoder):
         return dict_response
 
     def encode_dataset(self):
-        data_encoding = Parallel(n_jobs=self.n_cores, require='sharedmem')(delayed(self.encode_sequence)
-                    (sequence) for sequence in self.column_seq)
+        data_encoding = Parallel(n_jobs=self.n_cores, require="sharedmem")(
+            delayed(self.encode_sequence)(sequence) for sequence in self.column_seq
+        )
         df_encoded = pd.DataFrame(data_encoding)
         df_encoded[self.name_column_id] = self.column_id
         header = [self.name_column_id] + df_encoded.columns[:-1].tolist()
-        df_encoded = df_encoded[header]
-        return df_encoded
+        return df_encoded[header]
 
     def get_mw(self, sequence):
         """Molecular Weight"""

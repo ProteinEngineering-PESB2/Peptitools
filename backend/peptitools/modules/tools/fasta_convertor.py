@@ -1,5 +1,7 @@
 """Fasta convertor module"""
+
 from random import random
+
 
 class FastaConvertor:
     """Fasta convertor class"""
@@ -8,20 +10,14 @@ class FastaConvertor:
         self.text = text
         self.limit = limit
         self.fasta_path = static + "/" + str(round(random() * 10**20)) + ".fasta"
-        self.alphabet = [
-            "A","R","N","D","C","Q",
-            "E","G","H","I","L","K",
-            "M","F","P","S","T","W",
-            "Y","V"]
+        self.alphabet = set("ARNDCQEGHILKMFPSTWYV")
         self.fasta_text = ""
 
     def convert(self):
         """Transform text into fasta format"""
         splitted = [a.strip() for a in self.text.split("\n") if a.strip() != ""]
         for i, row in enumerate(splitted):
-            row = "".join(
-                [a for a in row if a in self.alphabet or a.upper() in self.alphabet]
-            )
+            row = "".join([a for a in row if a in self.alphabet or a.upper() in self.alphabet])
             row = row.upper()
             if len(row) > 0:
                 res = (

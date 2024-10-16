@@ -1,5 +1,5 @@
 """Response training module"""
-import math
+
 import numpy as np
 from scipy.stats import kendalltau, pearsonr, spearmanr
 from sklearn.metrics import confusion_matrix
@@ -28,8 +28,7 @@ class ResponseTrainingModel:
             scoring=metrics_list,
         )
         performance = {
-            metric: np.mean(response_data[f"test_{metric}"]).round(3)
-            for metric in metrics_list
+            metric: np.mean(response_data[f"test_{metric}"]).round(3) for metric in metrics_list
         }
         return {"performance": performance}
 
@@ -105,12 +104,8 @@ class ResponseTrainingModel:
 
         train_error_down = train_scores_mean - train_scores_std
         test_error_down = test_scores_mean - test_scores_std
-        error_train = np.concatenate(
-            (train_scores_mean + train_scores_std, train_error_down[::-1])
-        )
-        error_test = np.concatenate(
-            (test_scores_mean + test_scores_std, test_error_down[::-1])
-        )
+        error_train = np.concatenate((train_scores_mean + train_scores_std, train_error_down[::-1]))
+        error_test = np.concatenate((test_scores_mean + test_scores_std, test_error_down[::-1]))
         error_sizes = np.concatenate((train_sizes, train_sizes[::-1]))
 
         response = {
@@ -135,12 +130,12 @@ class ResponseTrainingModel:
         }
         for j in response["learning_curve"].keys():
             mask = np.isfinite(response["learning_curve"][j]["y"])
-            response["learning_curve"][j]["x"] = np.array(
-                response["learning_curve"][j]["x"]
-            )[mask].tolist()
-            response["learning_curve"][j]["y"] = np.array(
-                response["learning_curve"][j]["y"]
-            )[mask].tolist()
+            response["learning_curve"][j]["x"] = np.array(response["learning_curve"][j]["x"])[
+                mask
+            ].tolist()
+            response["learning_curve"][j]["y"] = np.array(response["learning_curve"][j]["y"])[
+                mask
+            ].tolist()
         return response
 
     def correlations(self):
@@ -159,9 +154,7 @@ class ResponseTrainingModel:
 
     def scatter_plot(self):
         """Return scatter_plot format"""
-        return {
-            "scatter": {"x": self.target.to_list(), "y": self.predict_values.tolist()}
-        }
+        return {"scatter": {"x": self.target.to_list(), "y": self.predict_values.tolist()}}
 
     def error_bars(self):
         """Return Error bars format"""

@@ -1,4 +1,5 @@
 """Clustering algorithm module"""
+
 from sklearn.cluster import (
     DBSCAN,
     OPTICS,

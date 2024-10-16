@@ -1,4 +1,5 @@
 """PCA module"""
+
 from random import random
 
 import matplotlib.pyplot as plt
@@ -16,9 +17,7 @@ class TSNE:
         self.static_folder = static_folder
         self.path = path
         self.data = pd.read_csv(self.path)
-        self.dataset_to_transform = self.data[
-            [col for col in self.data.columns if "p_" in col]
-        ]
+        self.dataset_to_transform = self.data[[col for col in self.data.columns if "p_" in col]]
         self.transformer = Transformer()
         self.traces = []
         self.tsne_df = None
@@ -43,9 +42,7 @@ class TSNE:
         hsv = plt.get_cmap("hsv")
         rgba_colors = hsv(linspace)
         for cluster, color in zip(all_clusters, rgba_colors):
-            hex_value = to_hex(
-                [color[0], color[1], color[2], color[3]], keep_alpha=True
-            )
+            hex_value = to_hex([color[0], color[1], color[2], color[3]], keep_alpha=True)
             self.tsne_df.loc[self.tsne_df.label == cluster, "color"] = hex_value
 
     def __create_traces(self):

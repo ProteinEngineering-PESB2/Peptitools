@@ -1,12 +1,13 @@
 """main module"""
+
 import os
 
 from flask import Flask
 from flask_cors import CORS
 
+import peptitools.config as config
 from peptitools.blueprint import api_blueprint
 from peptitools.modules.utils import create_config_folders
-import peptitools.config as config
 
 create_config_folders()
 

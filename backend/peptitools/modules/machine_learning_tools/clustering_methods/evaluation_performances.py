@@ -1,5 +1,8 @@
 """Evaluation performance clustering module"""
+
 from sklearn import metrics
+
+
 class EvaluationClustering:
     """Evaluation clustering class"""
 
@@ -7,9 +10,7 @@ class EvaluationClustering:
         """Return clustering metrics"""
         try:
             calinski = metrics.calinski_harabasz_score(dataset, labels_response)
-            siluetas = metrics.silhouette_score(
-                dataset, labels_response, metric="euclidean"
-            )
+            siluetas = metrics.silhouette_score(dataset, labels_response, metric="euclidean")
             davies = metrics.davies_bouldin_score(dataset, labels_response)
             response = [calinski, siluetas, davies]
 

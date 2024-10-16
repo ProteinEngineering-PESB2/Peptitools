@@ -1,9 +1,15 @@
 """Supervised learning module"""
-from joblib import dump
-from peptitools.modules.machine_learning_tools.transformer.transformation_data import Transformer
-from peptitools.modules.machine_learning_tools.numerical_representation.run_encoding import Encoding
-from peptitools.modules.machine_learning_tools.training_supervised_learning.run_algorithm import RunAlgorithm
+
 import pandas as pd
+from joblib import dump
+
+from peptitools.modules.machine_learning_tools.numerical_representation.run_encoding import Encoding
+from peptitools.modules.machine_learning_tools.training_supervised_learning.run_algorithm import (
+    RunAlgorithm,
+)
+from peptitools.modules.machine_learning_tools.transformer.transformation_data import Transformer
+
+
 class SupervisedLearning(Encoding):
     """Supervised Learning class"""
 
@@ -20,7 +26,7 @@ class SupervisedLearning(Encoding):
 
         self.target = self.data.target
         self.data.drop("target", inplace=True, axis=1)
-        
+
         self.model = None
 
     def run_process(self):
@@ -77,22 +83,23 @@ class SupervisedLearning(Encoding):
 
             response_training.update(response_testing)
 
-            performances = pd.DataFrame([response_training["performance"], response_training["performance_testing"]])
+            performances = pd.DataFrame(
+                [response_training["performance"], response_training["performance_testing"]]
+            )
             performances["set"] = ["Training", "Testing"]
 
             if self.task == "regression":
                 corr = pd.DataFrame([response_training["corr"], response_training["corr_testing"]])
                 corr["set"] = ["Training", "Testing"]
 
-
         response_training["metrics"] = {
             "data": performances.values.tolist(),
-            "columns": performances.columns.to_list()
+            "columns": performances.columns.to_list(),
         }
         if self.task == "regression":
             response_training["corr_metrics"] = {
                 "data": corr.values.tolist(),
-                "columns": corr.columns.to_list()
+                "columns": corr.columns.to_list(),
             }
         self.model = run_instance.get_model()
         job_path = self.output_path.replace(".csv", ".joblib")

@@ -1,11 +1,12 @@
 """Api Blueprints"""
+
 from flask import Blueprint
 
 from peptitools.routes.bioinformatic_tools import bioinfo_tools_blueprint
 from peptitools.routes.machine_learning_tools import machine_learning_blueprint
+from peptitools.routes.predictive_models import predictive_models_blueprint
 from peptitools.routes.statistic_tools import statistic_tools_blueprint
 from peptitools.routes.tools import tools_blueprint
-from peptitools.routes.predictive_models import predictive_models_blueprint
 
 api_blueprint = Blueprint("api", __name__)
 

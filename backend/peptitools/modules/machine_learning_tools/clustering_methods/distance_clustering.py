@@ -1,4 +1,5 @@
 """Distance clustering module"""
+
 import multiprocessing as mp
 from random import random
 
@@ -7,11 +8,14 @@ import pandas as pd
 from joblib import Parallel, delayed
 from scipy.spatial import distance
 
-from peptitools.modules.machine_learning_tools.clustering_methods.graph_clustering import GraphClustering
+from peptitools.modules.machine_learning_tools.clustering_methods.graph_clustering import (
+    GraphClustering,
+)
 
 
 class DistanceClustering(GraphClustering):
     """Distance Clustering class"""
+
     def __init__(self, data, options):
         super().__init__(data, options)
         self.dataset_encoded_path = f"{self.results_folder}/{round(random() * 10**20)}.csv"
@@ -21,9 +25,7 @@ class DistanceClustering(GraphClustering):
 
     def __get_vector(self, index, dataset, column_ignore):
         """Ignore a column"""
-        row = [
-            dataset[value][index] for value in dataset.columns if value != column_ignore
-        ]
+        row = [dataset[value][index] for value in dataset.columns if value != column_ignore]
         return np.array(row)
 
     def __estimated_distance(self, vector1, vector2, type_distance):
@@ -58,9 +60,7 @@ class DistanceClustering(GraphClustering):
             if index != j:
                 vector2 = self.__get_vector(j, dataset, column_ignore)
                 id_value2 = dataset[column_ignore][j]
-                distance_value = self.__estimated_distance(
-                    vector_target, vector2, type_distance
-                )
+                distance_value = self.__estimated_distance(vector_target, vector2, type_distance)
                 distance_to_vector.append([index_value, id_value2, distance_value])
         return distance_to_vector
 
@@ -78,9 +78,7 @@ class DistanceClustering(GraphClustering):
             for values in element:
                 data_values.append(values)
 
-        self.df_data_distance = pd.DataFrame(
-            data_values, columns=["id_1", "id_2", "distance"]
-        )
+        self.df_data_distance = pd.DataFrame(data_values, columns=["id_1", "id_2", "distance"])
 
     def run_clustering(self):
         """Run all distance clustering process"""
@@ -90,5 +88,4 @@ class DistanceClustering(GraphClustering):
         self.create_graph()
         self.louvain_modularity()
         self.get_groups()
-        response = self.parse_response()
-        return response
+        return self.parse_response()

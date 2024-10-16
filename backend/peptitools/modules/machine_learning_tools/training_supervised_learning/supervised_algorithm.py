@@ -1,6 +1,11 @@
 """Supervised algorithms"""
+
 from sklearn.model_selection import train_test_split
-from peptitools.modules.machine_learning_tools.training_supervised_learning.response_training import ResponseTrainingModel
+
+from peptitools.modules.machine_learning_tools.training_supervised_learning.response_training import (
+    ResponseTrainingModel,
+)
+
 
 class ModelAlgorithm:
     """Model algorithm class"""
@@ -37,9 +42,7 @@ class ModelAlgorithm:
                     "recall_weighted",
                     "precision_weighted",
                 ]
-            response.update(
-                self.training_performances.estimate_performance(metrics_list)
-            )
+            response.update(self.training_performances.estimate_performance(metrics_list))
             response.update(self.training_performances.confussion_matrix())
             response.update(self.training_performances.analysis())
             response.update(self.training_performances.learning_curve())
@@ -49,9 +52,7 @@ class ModelAlgorithm:
                 "neg_median_absolute_error",
                 "neg_root_mean_squared_error",
             ]
-            response.update(
-                self.training_performances.estimate_performance(metrics_list)
-            )
+            response.update(self.training_performances.estimate_performance(metrics_list))
             response.update(self.training_performances.correlations())
             response.update(self.training_performances.scatter_plot())
             response.update(self.training_performances.error_bars())
@@ -70,9 +71,7 @@ class ModelAlgorithm:
                     "recall_weighted",
                     "precision_weighted",
                 ]
-            response.update(
-                self.testing_performances.estimate_performance(metrics_list)
-            )
+            response.update(self.testing_performances.estimate_performance(metrics_list))
             response.update(self.testing_performances.confussion_matrix())
             response.update(self.testing_performances.analysis())
         elif self.task == "regression":
@@ -81,9 +80,7 @@ class ModelAlgorithm:
                 "neg_median_absolute_error",
                 "neg_root_mean_squared_error",
             ]
-            response.update(
-                self.testing_performances.estimate_performance(metrics_list)
-            )
+            response.update(self.testing_performances.estimate_performance(metrics_list))
             response.update(self.testing_performances.correlations())
             response.update(self.testing_performances.scatter_plot())
             response.update(self.testing_performances.error_bars())

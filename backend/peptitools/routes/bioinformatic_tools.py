@@ -1,12 +1,17 @@
 """Bioinformatic tools routes"""
+
 from flask import Blueprint, request
+
 from peptitools.modules.bioinformatic_tools.gene_ontology import GeneOntology
 from peptitools.modules.bioinformatic_tools.msa import MultipleSequenceAlignment
-from peptitools.modules.bioinformatic_tools.structural_characterization import StructuralCharacterization
 from peptitools.modules.bioinformatic_tools.pfam_domain import Pfam
+from peptitools.modules.bioinformatic_tools.structural_characterization import (
+    StructuralCharacterization,
+)
 from peptitools.modules.utils import parse_request, parse_response
 
 bioinfo_tools_blueprint = Blueprint("bioinfo_tools_blueprint", __name__)
+
 
 @bioinfo_tools_blueprint.route("/msa/", methods=["POST"])
 def apply_msa():
@@ -17,6 +22,7 @@ def apply_msa():
     msa = MultipleSequenceAlignment(check["path"])
     result = msa.run_process()
     return parse_response({"result": result}, status_code=200)
+
 
 @bioinfo_tools_blueprint.route("/pfam/", methods=["POST"])
 def apply_pfam():
@@ -29,6 +35,7 @@ def apply_pfam():
     if result["status"] == "warning":
         return parse_response(result, status_code=404)
     return parse_response(result, status_code=200)
+
 
 @bioinfo_tools_blueprint.route("/gene_ontology/", methods=["POST"])
 def apply_gene_ontology():
@@ -44,6 +51,7 @@ def apply_gene_ontology():
         return parse_response(result, status_code=404)
     return parse_response(result, status_code=200)
 
+
 @bioinfo_tools_blueprint.route("/structural_prediction/", methods=["POST"])
 def apply_structural_analysis():
     """Structural analysis route"""
@@ -54,4 +62,4 @@ def apply_structural_analysis():
     result = struct.run_process()
     if result["status"] == "warning":
         return parse_response(result, status_code=404)
-    return parse_response( result, status_code=200)
+    return parse_response(result, status_code=200)

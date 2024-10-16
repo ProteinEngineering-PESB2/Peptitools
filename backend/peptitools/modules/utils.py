@@ -1,17 +1,22 @@
 """Config utilities"""
-import re
+
 import os
+import re
 from random import random
 
 import pandas as pd
 from Bio import SeqIO
-import peptitools.config as config
 from flask import make_response
 from sklearn.utils.multiclass import type_of_target
+
+import peptitools.config as config
+
 AMINOACID_ALPHABET = "ARNDCEQGHILKMFPSTWYVX*"
+
 
 class CsvFile:
     """Parse a csv file"""
+
     def __init__(self, path, config_name, needs_target, task):
         self.path = path
         self.max_number_sequences = config.form_params[config_name]["max_sequences"]
@@ -32,38 +37,38 @@ class CsvFile:
     def verify(self):
         new_line = "\n"
         message = ""
-        
+
         if not self.__is_csv():
             message = "Not a csv file / ASCII error"
             return _error_message(message)
-        
+
         incorrect_columns = self.__has_correct_columns()
         if len(incorrect_columns) != 0:
             message = f"This csv file doesn't have the required columns:\nColumns not found:{', '.join(incorrect_columns)}"
             return _error_message(message)
-        
+
         if not self.__null_values():
             message = "Data has null values"
             return _error_message(message)
-        
+
         duplicated_id = self.__unique_ids()
         if len(duplicated_id) > 0:
             message = f"Duplicated ids.{new_line}{new_line.join(duplicated_id)}"
             return _error_message(message)
-        
+
         if not self.__less_than_n():
             message = f"Too many sequences.{new_line}Use {self.max_number_sequences} or less."
             return _error_message(message)
-        
+
         if not self.__more_than_n():
             message = f"Too few sequences.{new_line}Use {self.min_number_sequences} or more."
             return _error_message(message)
-        
+
         invalid_protein_ids = self.__invalid_proteins()
         if len(invalid_protein_ids) > 0:
             message = f"There are some invalid sequences, just use aminoacids.{new_line}{new_line.join(invalid_protein_ids)}"
             return _error_message(message)
-        
+
         invalid_lengths = self.__invalid_lengths()
         if len(invalid_lengths) > 0:
             message = f"There are some invalid sequences, use peptides with a length between {self.min_length} and {self.max_length}.{new_line}{new_line.join(invalid_lengths)}"
@@ -75,7 +80,7 @@ class CsvFile:
             message = "Please verify target column. Must be in tune with task."
             return _error_message(message)
         return {"status": "success", "path": self.path}
-    
+
     def __unique_ids(self):
         return self.data.id[self.data.id.duplicated()]
 
@@ -116,7 +121,7 @@ class CsvFile:
         if self.target_column not in self.data.columns and self.needs_target:
             incorrect_columns.append(self.target_column)
         return incorrect_columns
-    
+
     def __correct_target(self):
         if self.task == "regression":
             try:
@@ -125,6 +130,7 @@ class CsvFile:
             except:
                 return False
         return True
+
     def verify_target_type(self):
         if self.needs_target:
             real_target_type = type_of_target(self.data.target)
@@ -137,8 +143,11 @@ class CsvFile:
                     return True
                 return False
         return True
+
+
 class FastaFile:
     """Parse a fasta file"""
+
     def __init__(self, path, config_name, needs_target, task):
         self.path = path
         self.max_number_sequences = config.form_params[config_name]["max_sequences"]
@@ -187,8 +196,7 @@ class FastaFile:
 
     def __unique_ids(self):
         ids = pd.Series([sequence.id for sequence in self.fasta])
-        duplicated_ids = ids[ids.duplicated()]
-        return duplicated_ids
+        return ids[ids.duplicated()]
 
     def __is_fasta(self):
         return self.fasta is not None
@@ -214,7 +222,7 @@ class FastaFile:
             if len(sequence) > self.max_length or len(sequence) < 2:
                 invalid_ids.append(row.id)
         return invalid_ids
-        
+
     def __target_verification(self):
         if self.needs_target:
             for a in self.fasta:
@@ -226,7 +234,6 @@ class FastaFile:
                 except:
                     return False
         return True
-        
 
     def __correct_target(self, target):
         if self.task == "regression":
@@ -242,16 +249,22 @@ class FastaFile:
             with open(self.path, encoding="utf-8", mode="r") as file:
                 text = file.read()
             fasta_regex = re.compile(r">([^\n]+)\n([^>]+)")
-            df = pd.DataFrame([
-                {"id": seq_id.split("|")[0], "sequence": seq.replace("\n", "").upper(), "target": seq_id.split("|")[1]}
-                for seq_id, seq in fasta_regex.findall(text)
-            ])
+            df = pd.DataFrame(
+                [
+                    {
+                        "id": seq_id.split("|")[0],
+                        "sequence": seq.replace("\n", "").upper(),
+                        "target": seq_id.split("|")[1],
+                    }
+                    for seq_id, seq in fasta_regex.findall(text)
+                ]
+            )
             real_target_type = type_of_target(df.target)
             if self.task == "classification":
                 if real_target_type in ["multiclass", "binary"]:
                     return True
                 return False
-            elif self.task == "regression":
+            if self.task == "regression":
                 if real_target_type in ["continuous"]:
                     return True
                 return False
@@ -266,6 +279,7 @@ def create_config_folders():
     results_path = os.path.abspath(config.results_folder)
     os.makedirs(results_path, exist_ok=True)
 
+
 def _error_message(message):
     return {"status": "error", "description": message}
 
@@ -273,10 +287,13 @@ def _error_message(message):
 def fasta2df(text):
     """Converts a fasta text to dataframe"""
     fasta_regex = re.compile(r">([^\n]+)\n([^>]+)")
-    return pd.DataFrame([
-        {"id": seq_id, "sequence": seq.replace("\n", "").upper()}
-        for seq_id, seq in fasta_regex.findall(text)
-    ])
+    return pd.DataFrame(
+        [
+            {"id": seq_id, "sequence": seq.replace("\n", "").upper()}
+            for seq_id, seq in fasta_regex.findall(text)
+        ]
+    )
+
 
 def df2fasta(data):
     """Converts a dataframe to fasta text"""
@@ -292,16 +309,25 @@ def fasta2csv(fasta_path, csv_path, needs_target):
         text = file.read()
     fasta_regex = re.compile(r">([^\n]+)\n([^>]+)")
     if needs_target:
-        df = pd.DataFrame([
-            {"id": seq_id.split("|")[0], "sequence": seq.replace("\n", "").upper(), "target": seq_id.split("|")[1]}
-            for seq_id, seq in fasta_regex.findall(text)
-        ])
+        df = pd.DataFrame(
+            [
+                {
+                    "id": seq_id.split("|")[0],
+                    "sequence": seq.replace("\n", "").upper(),
+                    "target": seq_id.split("|")[1],
+                }
+                for seq_id, seq in fasta_regex.findall(text)
+            ]
+        )
     else:
-        df = pd.DataFrame([
-            {"id": seq_id, "sequence": seq.replace("\n", "").upper()}
-            for seq_id, seq in fasta_regex.findall(text)
-        ])
+        df = pd.DataFrame(
+            [
+                {"id": seq_id, "sequence": seq.replace("\n", "").upper()}
+                for seq_id, seq in fasta_regex.findall(text)
+            ]
+        )
     df.to_csv(csv_path, index=False)
+
 
 def csv2fasta(csv_path, fasta_path, needs_target):
     """Converts a csv file to fasta text and saves it"""
@@ -315,16 +341,19 @@ def csv2fasta(csv_path, fasta_path, needs_target):
     with open(fasta_path, mode="w", encoding="utf-8") as file:
         file.write(text)
 
+
 def save_file_from_text(text, path):
     """Just creates a file from text"""
     with open(path, mode="w", encoding="utf-8") as file:
         file.write(text)
 
+
 def save_file_from_file(file, path):
     """Just save a file"""
     file.save(path)
 
-def parse_request(request, config_name, needs_target, output_format, task = "clasification"):
+
+def parse_request(request, config_name, needs_target, output_format, task="clasification"):
     """Parse request from post data"""
     output_file_path = f"""{config.temp_folder}/{str(round(random() * 10**20))}.{output_format}"""
     input_type = request.form["type"]
@@ -346,6 +375,7 @@ def parse_request(request, config_name, needs_target, output_format, task = "cla
         fasta2csv(check["path"], check["path"], needs_target)
     return {"status": "success", "path": check["path"]}
 
+
 def check_pvalue(pvalue):
     """Check if pvalue is a float number between 0 - 0.5"""
     try:
@@ -353,15 +383,13 @@ def check_pvalue(pvalue):
         if pvalue <= 0.5:
             if pvalue > 0:
                 return {"status": "success"}
-            else:
-                return {"status": "error", "description": "P-value must be greater than 0"}
-        else:
-            return {"status": "error", "description": "P-value must be less than 0.5"}
+            return {"status": "error", "description": "P-value must be greater than 0"}
+        return {"status": "error", "description": "P-value must be less than 0.5"}
     except ValueError:
         return {"status": "error", "description": "P-value isn't a numeric value."}
 
 
-def parse_response(res, status_code = None):
+def parse_response(res, status_code=None):
     """Parse response and return results"""
     if status_code is not None:
         return make_response(res, status_code)
@@ -370,4 +398,3 @@ def parse_response(res, status_code = None):
             return make_response({"results": res}, 200)
         return make_response({"description": "Not Found"}, 404)
     return make_response({"description": res}, 500)
-

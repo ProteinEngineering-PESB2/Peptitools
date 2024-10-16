@@ -1,18 +1,21 @@
 """Clustering module"""
+
 import json
 from random import random
 
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.colors import to_hex
-import pandas as pd
+
+import peptitools.config as config
 from peptitools.modules.machine_learning_tools.clustering_methods import (
     clustering_algorithm,
     evaluation_performances,
 )
 from peptitools.modules.machine_learning_tools.numerical_representation.run_encoding import Encoding
 from peptitools.modules.machine_learning_tools.transformer.tsne_process import TSNE
-import peptitools.config as config
+
+
 class Clustering(Encoding):
     """Clustering process class"""
 
@@ -64,14 +67,10 @@ class Clustering(Encoding):
         if clustering_process.response_apply == 0:  # Success
             self.dataset_encoded["label"] = list(clustering_process.labels)
             self.dataset_encoded.to_csv(self.dataset_encoded_path, index=False)
-            data_json = json.loads(
-                self.dataset_encoded[["id", "label"]].to_json(orient="records")
-            )
+            data_json = json.loads(self.dataset_encoded[["id", "label"]].to_json(orient="records"))
             response.update({"status": "success"})
             self.__generate_colors()
-            grouped_df = self.dataset_encoded.groupby(
-                by=["label", "color"], as_index=False
-            ).count()
+            grouped_df = self.dataset_encoded.groupby(by=["label", "color"], as_index=False).count()
             grouped_df.label = grouped_df.label.astype(str)
             grouped_df["prefix"] = "Cluster "
             grouped_df.label = grouped_df.prefix + grouped_df.label
@@ -91,22 +90,25 @@ class Clustering(Encoding):
             if performances[0] is not None:
                 performances_dict = {
                     "columns": ["calinski", "siluetas", "davies"],
-                    "data": [[performances[0].round(3), performances[1].round(3), performances[2].round(3)]]
+                    "data": [
+                        [
+                            performances[0].round(3),
+                            performances[1].round(3),
+                            performances[2].round(3),
+                        ]
+                    ],
                 }
             else:
                 performances_dict = {
                     "columns": ["calinski", "siluetas", "davies"],
-                    "data": [[performances[0], performances[1], performances[2]]]
+                    "data": [[performances[0], performances[1], performances[2]]],
                 }
-                
+
             response.update({"performance": performances_dict})
             response.update({"encoding_path": self.dataset_encoded_path})
             pca = TSNE(self.dataset_encoded_path, self.static_path)
             result, path = pca.apply_tsne()
-            response.update({"pca": {
-                "result": result, 
-                "path": path
-            }})
+            response.update({"pca": {"result": result, "path": path}})
         else:  # Error
             response.update(
                 {
@@ -124,9 +126,5 @@ class Clustering(Encoding):
         hsv = plt.get_cmap("hsv")
         rgba_colors = hsv(linspace)
         for cluster, color in zip(all_clusters, rgba_colors):
-            hex_value = to_hex(
-                [color[0], color[1], color[2], color[3]], keep_alpha=True
-            )
-            self.dataset_encoded.loc[
-                self.dataset_encoded.label == cluster, "color"
-            ] = hex_value
+            hex_value = to_hex([color[0], color[1], color[2], color[3]], keep_alpha=True)
+            self.dataset_encoded.loc[self.dataset_encoded.label == cluster, "color"] = hex_value

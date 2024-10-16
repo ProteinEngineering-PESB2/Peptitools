@@ -1,12 +1,16 @@
 """Alignment clustering module"""
+
 import json
+
 import community as community_louvain
 import matplotlib.pyplot as plt
 import networkx as nx
 import numpy as np
 import pandas as pd
 from matplotlib.colors import to_hex
+
 from peptitools.modules.machine_learning_tools.numerical_representation.run_encoding import Encoding
+
 
 class GraphClustering(Encoding):
     """Graph clustering class"""
@@ -24,14 +28,10 @@ class GraphClustering(Encoding):
         q_filter = None
         if filter_type == "nearest":
             q_filter = np.quantile(self.df_data_distance["distance"], 0.1)
-            filter_data = self.df_data_distance.loc[
-                self.df_data_distance["distance"] <= q_filter
-            ]
+            filter_data = self.df_data_distance.loc[self.df_data_distance["distance"] <= q_filter]
         elif filter_type == "farthest":
             q_filter = np.quantile(self.df_data_distance["distance"], 0.9)
-            filter_data = self.df_data_distance.loc[
-                self.df_data_distance["distance"] >= q_filter
-            ]
+            filter_data = self.df_data_distance.loc[self.df_data_distance["distance"] >= q_filter]
         # filtrar
         self.filter_data = filter_data.reset_index(drop=True)
 
@@ -78,10 +78,10 @@ class GraphClustering(Encoding):
         response.update({"status": "success"})
         response.update({"data": json.loads(self.results.to_json(orient="records"))})
         response.update({"encoding_path": self.output_path})
-        response.update({"performance": {"columns": ["Modularity"], "data": [[self.modularity_value]]}})
-        self.filter_data.rename(
-            columns={"id_1": "source", "id_2": "target"}, inplace=True
+        response.update(
+            {"performance": {"columns": ["Modularity"], "data": [[self.modularity_value]]}}
         )
+        self.filter_data.rename(columns={"id_1": "source", "id_2": "target"}, inplace=True)
         self.filter_data.drop(["distance"], axis=1, inplace=True)
         grouped_df = self.results.groupby(by=["label", "color"], as_index=False).count()
         grouped_df.label = grouped_df.label.astype(str)
@@ -114,7 +114,5 @@ class GraphClustering(Encoding):
         hsv = plt.get_cmap("hsv")
         rgba_colors = hsv(linspace)
         for cluster, color in zip(all_clusters, rgba_colors):
-            hex_value = to_hex(
-                [color[0], color[1], color[2], color[3]], keep_alpha=True
-            )
+            hex_value = to_hex([color[0], color[1], color[2], color[3]], keep_alpha=True)
             self.results.loc[self.results.label == cluster, "color"] = hex_value

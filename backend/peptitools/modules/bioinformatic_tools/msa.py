@@ -1,13 +1,18 @@
 """Msa module"""
+
 import os
-import subprocess
 from random import random
+
 import matplotlib.pyplot as plt
 import pandas as pd
 from scipy.cluster.hierarchy import dendrogram, linkage
 from scipy.spatial.distance import squareform
+
 import peptitools.config as config
-plt.switch_backend('agg')
+
+plt.switch_backend("agg")
+
+
 class MultipleSequenceAlignment:
     """MSA Class"""
 
@@ -69,8 +74,8 @@ class MultipleSequenceAlignment:
         self.parse_output()
         self.draw_dendrogram()
         return {
-                "alignment": self.alignment,
-                "output_file": self.output_aln_file[1:],
-                "distances_file": self.output_dist_file[1:],
-                "dendrogram": self.dendrogram_path[1:]
-            }
+            "alignment": self.alignment,
+            "output_file": self.output_aln_file[1:],
+            "distances_file": self.output_dist_file[1:],
+            "dendrogram": self.dendrogram_path[1:],
+        }

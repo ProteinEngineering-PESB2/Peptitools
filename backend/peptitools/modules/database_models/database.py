@@ -1,10 +1,19 @@
 import os
-from sqlalchemy import create_engine, text, select, func
-from sqlalchemy.orm import Session
+
 import pandas as pd
+from sqlalchemy import create_engine, select, text
+from sqlalchemy.orm import DeclarativeBase, Session
+
 from peptitools.modules.database_models.table_models import Peptide
+
+
+class Base(DeclarativeBase):
+    pass
+
+
 class Database:
     """Database class"""
+
     def __init__(self):
         # Config connection
         user = os.environ["DB_USER"]
@@ -18,19 +27,21 @@ class Database:
         self.conn = self.engine.connect()
         # Config max items for selects
         self.session = Session(self.engine, future=True)
-    
+
     def get_table(self, query):
         return pd.read_sql(text(query), con=self.conn)
 
     def get_table_query(self, stmt):
         """Applies a select for a previous stmt"""
-        return pd.read_sql(stmt, con = self.conn)
-    
+        return pd.read_sql(stmt, con=self.conn)
+
     def get_peptipedia_sample(self, limit):
-        stmt = select(Peptide.id_peptide, Peptide.sequence).where(Peptide.is_canon == True).limit(1000)
-        df = pd.read_sql(stmt, con = self.conn)
-        df = df.sample(limit)
-        return df
+        stmt = (
+            select(Peptide.id_peptide, Peptide.sequence).where(Peptide.is_canon is True).limit(1000)
+        )
+        df = pd.read_sql(stmt, con=self.conn)
+        return df.sample(limit)
+
     def get_activities(self, stmt):
         """"""
-        return None
+        return

@@ -1,10 +1,12 @@
 """Structural Properties module"""
+
 import subprocess
 from os.path import basename
-import os
+from random import random
+
 import peptitools.config as config
 from peptitools.modules.utils import fasta2df
-from random import random
+
 
 class StructuralCharacterization:
     """Structural Properties Class"""
@@ -29,13 +31,11 @@ class StructuralCharacterization:
 
     def parse_results(self, input_path):
         """Parse output files"""
-        all_file  = basename(input_path).replace("fasta", "all")
+        all_file = basename(input_path).replace("fasta", "all")
         with open(f"{self.output_path}/{all_file}", "r", encoding="utf-8") as file:
             lines = file.readlines()
         self.name = lines[0].split(" ")[0].replace(">", "")[:-1]
-        self.alignment = [
-            {"id": 1, "label": self.name, "sequence": lines[1].replace("\n", "")}
-        ]
+        self.alignment = [{"id": 1, "label": self.name, "sequence": lines[1].replace("\n", "")}]
         for index, prediction_name in enumerate(self.predictions):
             self.alignment.append(
                 {
@@ -44,6 +44,7 @@ class StructuralCharacterization:
                     "sequence": lines[index + 2].replace("\n", ""),
                 }
             )
+
     def __split_fasta(self):
         """Just split a fasta file in multiple 1-sequence fasta"""
         self.file_names = []
@@ -52,7 +53,9 @@ class StructuralCharacterization:
         df = fasta2df(text=text_file)
         for _, row in df.iterrows():
             single_fasta_text = f">{row.id}\n{row.sequence}"
-            single_fasta_filename = self.temp_folder + "/" + str(round(random() * 10**20)) + ".fasta"
+            single_fasta_filename = (
+                self.temp_folder + "/" + str(round(random() * 10**20)) + ".fasta"
+            )
             with open(single_fasta_filename, encoding="utf-8", mode="w") as file:
                 file.write(single_fasta_text)
             self.file_names.append(single_fasta_filename)
@@ -68,6 +71,6 @@ class StructuralCharacterization:
         if len(response) == 0:
             return {
                 "status": "warning",
-                "description": "There's no significant results for this sequences"
+                "description": "There's no significant results for this sequences",
             }
         return {"status": "success", "result": response}

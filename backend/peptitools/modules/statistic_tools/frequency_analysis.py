@@ -2,28 +2,24 @@
 
 import pandas as pd
 from Bio import SeqIO
-from peptitools.modules.statistic_tools.statistics import apply_kruskal, distribution, apply_tukey
+
+from peptitools.modules.statistic_tools.statistics import apply_kruskal, apply_tukey, distribution
+
 
 class FrequencyAnalysis:
     """Frequency Analysis class"""
 
     def __init__(self, input_path, options):
-        self.canonical_residues = [ "A","R","N","D","C",
-                                    "E","Q","G","H","I",
-                                    "L","K","M","F","P",
-                                    "S","T","W","Y","V"]
+        self.canonical_residues = set("ARNDCEQGHILKMFPSTWYV")
         self.dict_counts_seq = []
         self.temp_file_path = input_path
         self.options = options
         self.pvalue = float(options["pvalue"])
-        
+
     def count_canonical_residues(self, sequence):
         """Count canonical residues in a specific aa sequence"""
         sequence = sequence.upper()
-        dict_counts = {
-            residue: sequence.count(residue) for residue in self.canonical_residues
-        }
-        return dict_counts
+        return {residue: sequence.count(residue) for residue in self.canonical_residues}
 
     def run_process(self):
         """Calls to count_canonical_residues in all sequences"""
@@ -39,8 +35,12 @@ class FrequencyAnalysis:
         df = pd.json_normalize(self.dict_counts_seq)
         distribution_result = distribution(df)
         kruskal_result = apply_kruskal(df, self.pvalue)
-        
+
         tukey_result = apply_tukey(kruskal_result, df, self.pvalue)
         if tukey_result is not None:
-            return {"distribution": distribution_result, "kruskal": kruskal_result, "tukey": tukey_result}
+            return {
+                "distribution": distribution_result,
+                "kruskal": kruskal_result,
+                "tukey": tukey_result,
+            }
         return {"distribution": distribution_result, "kruskal": kruskal_result}
