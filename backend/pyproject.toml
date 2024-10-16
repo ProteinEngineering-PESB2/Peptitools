@@ -1,5 +1,5 @@
 [project]
-name = "backend"
+name = "peptitools-backend"
 version = "1.0.0"
 description = "Peptitools backend"
 readme = "README.md"
@@ -9,8 +9,9 @@ authors = [
     "Diego Alvarez <dialvarezs@gmail.com>",
 ]
 dependencies = [
+    "bio-embeddings[all]",
     "biopython>=1.84",
-    "flask-cors>=5.0.0",
+    "flask-cors<4.0.0",
     "flask<2.2.0",
     "gunicorn>=20.1.0",
     "jax-unirep>=2.2.0",
@@ -21,7 +22,7 @@ dependencies = [
     "pandas<2.0.0",
     "psycopg2-binary>=2.9.10",
     "python-louvain>=0.16",
-    "scikit-learn>=1.5.2",
+    "scikit-learn==1.2.2",
     "scipy==1.10",
     "sqlalchemy>=2.0.36",
     "statsmodels>=0.14.4",
@@ -35,7 +36,7 @@ dev-dependencies = [
 ]
 
 [tool.uv.sources]
-bio-embeddings = { git = "https://github.com/sacdallago/bio_embeddings", rev = "efb9801" }
+bio-embeddings = { git = "https://github.com/sacdallago/bio_embeddings.git", rev = "efb9801" }
 
 [tool.ruff]
 line-length = 100

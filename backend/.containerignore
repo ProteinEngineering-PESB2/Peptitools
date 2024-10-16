@@ -1,0 +1,4 @@
+.venv/
+files/
+temp_files/
+Containerfile
