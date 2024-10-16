@@ -33,8 +33,10 @@ def apply_pfam():
 @bioinfo_tools_blueprint.route("/gene_ontology/", methods=["POST"])
 def apply_gene_ontology():
     """Gene ontology route"""
+    print("hola")
     check = parse_request(request, "gene_ontology", False, "fasta")
     if check["status"] == "error":
+        print(check)
         return parse_response(check, status_code=400)
     go = GeneOntology(check["path"])
     result = go.run_process()

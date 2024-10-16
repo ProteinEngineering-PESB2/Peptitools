@@ -170,7 +170,7 @@ export default function SupervisedLearningForm({setResult}: Props) {
   return (
     <>
       <BackdropComponent open={openBackdrop} />
-      <FormContainer markdownText={markdownText}>
+      <FormContainer markdownText={config.supervised_learning.markdown_text}>
         <form onSubmit={handleSubmit}>
           <InputFileType data={training_data} setData={setTrainingData} />
           <TextFieldFasta data={training_data} setData={setTrainingData}/>

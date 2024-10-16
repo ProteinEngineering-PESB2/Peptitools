@@ -192,62 +192,74 @@
         {
           "title": "Convert to Fasta",
           "description": "Convert your sequences to a fasta format.",
-          "icon": "https://www.svgrepo.com/show/450768/convert.svg"
+          "icon": "https://www.svgrepo.com/show/450768/convert.svg",
+          "link": "/fasta-converter/"
         },
         {
           "title": "Test Sequences",
           "description": "Generate random sequences from the peptipedia database.",
-          "icon": "https://www.svgrepo.com/show/488669/random.svg"
+          "icon": "https://www.svgrepo.com/show/488669/random.svg",
+          "link": "/test-sequences/"
         },
         {
           "title": "MSA",
           "description": "Use ClustalW to build an MSA from the specified sequences.",
-          "icon": "https://www.svgrepo.com/show/509294/align-center.svg"
+          "icon": "https://www.svgrepo.com/show/509294/align-center.svg",
+          "link": "/msa/"
         },
         {
           "title": "Pfam Prediction",
-          "description": "Predict protein families and domains in a set of peptides entered.",
-          "icon": "https://cdn-icons-png.flaticon.com/512/9004/9004799.png"
+          "description": "Predict protein families and domains in a set of peptides.",
+          "icon": "https://cdn-icons-png.flaticon.com/512/9004/9004799.png",
+          "link": "/pfam/"
         },
         {
           "title": "GO Searching",
-          "description": "Predict Gene Ontology terms in a set of entered peptides.",
-          "icon": "https://www.svgrepo.com/show/168/searching.svg"
+          "description": "Predict Gene Ontology terms in a set of peptides.",
+          "icon": "https://www.svgrepo.com/show/168/searching.svg",
+          "link": "/gene-ontology/"
         },
         {
           "title": "Structural Prediction",
           "description": "Evaluates secondary structure, solvent accessibility and more.",
-          "icon": "https://cdn-icons-png.flaticon.com/512/9559/9559395.png"
+          "icon": "https://cdn-icons-png.flaticon.com/512/9559/9559395.png",
+          "link": "/structural-prediction/"
         },
         {
           "title": "Residues distributions",
           "description": "Performs a count of amino acid frequencies in peptide sequences.",
-          "icon": "https://www.svgrepo.com/show/509028/bar-chart.svg"
+          "icon": "https://www.svgrepo.com/show/509028/bar-chart.svg",
+          "link": "/frequency/"
         },
         {
           "title": "Physicochemical distributions",
           "description": "Performs an estimation of the physicochemical properties of a group of sequences.",
-          "icon": "https://www.svgrepo.com/show/308512/crystal-ball-envision-future-forecast.svg"
+          "icon": "https://www.svgrepo.com/show/308512/crystal-ball-envision-future-forecast.svg",
+          "link":  "/physicochemical/"
         },
         {
           "title": "Encoding Sequences",
-          "description": "Numerically encodes the amino acid sequences entered.",
-          "icon": "https://www.svgrepo.com/show/299272/encryption.svg"
+          "description": "Numerically encodes amino acid sequences.",
+          "icon": "https://www.svgrepo.com/show/299272/encryption.svg",
+          "link": "/encoding/"
         },
         {
           "title": "Clustering",
           "description": "Sequence clustering by numerical coding and PCA analysis.",
-          "icon": "https://cdn-icons-png.flaticon.com/512/957/957755.png"
+          "icon": "https://cdn-icons-png.flaticon.com/512/957/957755.png",
+          "link": "/clustering/"
         },
         {
           "title": "Supervised Learning",
           "description": "It employs supervised learning algorithms on sets of input sequences.",
-          "icon": "https://cdn-icons-png.flaticon.com/512/2172/2172891.png"
+          "icon": "https://cdn-icons-png.flaticon.com/512/2172/2172891.png",
+          "link": "/supervised-learning/"
         },
         {
           "title": "Predictive Models",
           "description": "Predictive peptide sequence models using machine learning strategies.",
-          "icon": "https://cdn-icons-png.flaticon.com/512/2103/2103787.png"
+          "icon": "https://cdn-icons-png.flaticon.com/512/2103/2103787.png",
+          "link": "/predict/activity/"
         }
       ]
     }
@@ -270,49 +282,49 @@
     "description": "Use ClustalW to build an MSA from the specified sequences.",
     "route": "/msa",
     "api": "/api/msa/",
-    "markdown_text": "+ **Input**:\n+ Two or more amino acid sequences with fasta format.\n+ Sequences with maxium length 150."
+    "markdown_text": "+ **Input**:\n+ Fasta: Amino acid sequences with fasta format.\n+ CSV: Table file with columns 'id', 'sequence'.\n+ Sequences with maxium length 150.\nMin sequences: 3\nMax sequences: 100"
   },
   "pfam": {
     "title": "Pfam Prediction",
-    "description": "Predict protein families and domains in a set of peptides entered.",
+    "description": "Predict protein families and domains in a set of peptides.",
     "route": "/pfam",
     "api": "/api/pfam/",
-    "markdown_text": "+ **Input**:\n+ One or more amino acid sequences with fasta format.\n+ Sequence with maxium length 150.\n+ **Pfam Tool**\n+ PfamScan"
+    "markdown_text": "+ **Input**:\n+ Fasta: Amino acid sequences with fasta format.\n+ CSV: Table file with columns 'id', 'sequence'.\n+ Sequence with maxium length 150.\nMin sequences: 1\nMax sequences: 500.\n+ **Pfam Tool**\n+ PfamScan"
   },
   "gene_ontology": {
     "title": "Gene Ontology",
-    "description": "Predict Gene Ontology terms (Biological process, molecular function or cellular component) in a set of entered peptides.",
+    "description": "Predict Gene Ontology terms (Biological process, molecular function or cellular component) in a set of peptides.",
     "route": "/gene-ontology",
     "api": "/api/gene_ontology/",
-    "markdown_text": "+ **Input**:\n+ One or more amino acid sequences with fasta format.\n+ Sequence with maxium length 150.\n+ **GO Tool**\n+ Metastudent"
+    "markdown_text": "+ **Input**:\n+ Fasta: Amino acid sequences with fasta format.\n+ CSV: Table file with columns 'id', 'sequence'.\n+ Sequence with maxium length 150..\nMin sequences: 1\nMax sequences: 500.\n+ **GO Tool**\n+ Metastudent"
   },
   "structural_prediction": {
     "title": "Secondary Structure Prediction",
     "description": "Secondary Structure Element (SS3 and SS8), Solvent Accessibility (ACC), Order/Disorder prediction (DISO), and TransMembrane topology (TM2 and TM8)",
     "route": "/structural-prediction",
     "api": "/api/structural_prediction/",
-    "markdown_text": "+ **Input**:\n+ One or more amino acid sequences with fasta format.\n+ Sequence with maxium length 150.\n+ **Pfam Tool**\n+ PfamScan"
+    "markdown_text": "+ **Input**:\n+ Fasta: Amino acid sequences with fasta format.\n+ CSV: Table file with columns 'id', 'sequence'.\n+ Sequence with maxium length 150.\nMin sequences: 1\nMax sequences: 500."
   },
   "frequency_evaluation": {
     "title": "Residues distributions",
-    "description": "Performs a count of amino acid frequencies in peptide sequences.",
+    "description": "Performs a count of amino acid frequencies in peptide sequences, and analyze it using Kruskal-Wallis and Tukey's Test.",
     "route": "/frequency",
     "api": "/api/frequency/",
-    "markdown_text": "+ **Input**:\n+ One or more amino acid sequences with fasta format.\n+ Sequence with maxium length 150.\n+ **Physicochemical Tool**\n+ Modlamp"
+    "markdown_text": "+ **Input**:\n+ Fasta: Amino acid sequences with fasta format. Must add a target in header separated by |.\n+ CSV: Table file with columns 'id', 'sequence', 'target'.\n+ Sequence with maxium length 150.\nMin sequences: 1\nMax sequences: 2000."
   },
   "properties_estimation": {
     "title": "Physichochemical properties distributions",
-    "description": "Performs an estimation of physicochemical properties (length, molecular weight, charge, charge density and isoelectric point) for a group of sequences.",
+    "description": "Performs an estimation of physicochemical properties (length, molecular weight, charge, charge density and isoelectric point) for a group of sequences, and analyze it using Kruskal-Wallis and Tukey's Test.",
     "route": "/physicochemical",
     "api": "/api/physicochemical/",
-    "markdown_text": "+ **Input**:\n+ One or more amino acid sequences with fasta format.\n+ Sequence with maxium length 150.\n+ **Physicochemical Tool**\n+ Modlamp"
+    "markdown_text": "+ **Input**:\n+ Fasta: Amino acid sequences with fasta format. Must add a target in header separated by |.\n+ CSV: Table file with columns 'id', 'sequence', 'target'.\n+ Sequence with maxium length 150.\nMin sequences: 1\nMax sequences: 2000.\n+ **Physicochemical Tool**\n+ Modlamp"
   },
   "encoding_sequences": {
     "title": "Encoding Sequences",
-    "description": "Numerically encodes the amino acid sequences entered, in order to use Machine Learning models.",
+    "description": "Numerically encodes amino acid sequences, in order to use Machine Learning models.",
     "route": "/encoding",
     "api": "/api/encoding/",
-    "markdown_text":  "+ **Input**: \n+ One or more amino acid sequences with fasta format.\n+ Sequence with maxium length 150."
+    "markdown_text":  "+ **Input**: \n+ Fasta: Amino acid sequences with fasta format.\n+ CSV: Table file with columns 'id', 'sequence'.\n+ Sequence with maxium length 150.\nMin sequences: 1\nMax sequences: 2000."
   },
   "clustering": {
     "title": "Clustering",
@@ -321,7 +333,7 @@
     "unsupervised_learning_api": "/api/clustering/",
     "nssn_api": "/api/distance_clustering/",
     "ssn_api": "/api/alignment_clustering/",
-    "markdown_text": "+ **Input**:\n+ Five or more amino acid sequences with fasta format.\n+ Sequences with maxium length 150.\n+ K-Value >= 2",
+    "markdown_text": "+ **Input**:\n+ Fasta: Amino acid sequences with fasta format. Must add a target in header separated by |.\n+ CSV: Table file with columns 'id', 'sequence', 'target'.\n+ Sequences with maxium length 150.\nMin sequences: 50\nMax sequences: 2000.",
     "clustering_types": [
       {
         "title": "Unsupervised Learning",
@@ -460,6 +472,7 @@
     "description": "It employs supervised learning algorithms on sets of input sequences. Allows training, testing and prediction using new data sets.",
     "route": "/supervised-learning",
     "api": "/api/supervised_learning/",
+    "markdown_text": "+ **Input**: \n+ Fasta: Amino acid sequences with fasta format. Must add a target in header separated by '|'.\n+ CSV: Table file with columns 'id', 'sequence', 'target'.\n+ Sequences with max length 150.\nMin sequences: 50\nMax sequences: 2000.",
     
     "task_types": [
       {
@@ -596,14 +609,14 @@
     "title": "Evaluate model",
     "description": "Use your own model evaluate new sequences.",
     "api": "/api/evaluate_model/",
-    "markdown_text": "+ **Input**: \n+ One or more amino acid sequences with fasta format.\n+ Sequence with maxium length 150."
+    "markdown_text": "+ **Input**: + Fasta: Amino acid sequences with fasta format.\n+ CSV: Table file with columns 'id', 'sequence'.\n+ Sequence with maxium length 150.\nMin sequences: 50\nMax sequences: 2000."
   },
   "activity_prediction": {
     "title": "Activity prediction",
     "description": "Use activity prediction model to evaluate new sequences.",
     "api": "/api/predict/activity/",
     "route": "/predict/activity/",
-    "markdown_text": "+ **Input**: \n+ One or more amino acid sequences with fasta format.\n+ Sequence with maxium length 150."
+    "markdown_text": "+ **Input**:\n + Fasta: Amino acid sequences with fasta format.\n+ CSV: Table file with columns 'id', 'sequence'.\n+ Sequence with maxium length 150.\nMin sequences: 1\nMax sequences: 2000."
   },
   "standarizations": [
     {
@@ -639,10 +652,6 @@
     {
       "title": "Physicochemical Groups",
       "value": "physicochemical_properties"
-    },
-    {
-      "title": "Digital Signal Processing",
-      "value": "digital_signal_processing"
     },
     {
       "title": "Embeddings",

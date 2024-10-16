@@ -5,7 +5,6 @@ from flask import Blueprint, request
 from peptitools.modules.tools.fasta_convertor import FastaConvertor
 from peptitools.modules.tools.sample_sequences import SampleSequences
 import peptitools.config as config
-
 tools_blueprint = Blueprint("tools_blueprint", __name__)
 
 @tools_blueprint.route("/fasta_convertor/", methods=["POST"])

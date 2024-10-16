@@ -243,22 +243,16 @@ export default function ClusteringForm({ setResult, service }: Props) {
   
       try {
         const { data } = await requestPost({ url: url, postData });
-  
-        if (data.status === "error") {
-          toast.error(data.description);
+        const { result } = data;
+        if (result.description) {
+          toast.error(result.description);
+          setResult(null);
         } else {
-          const { result } = data;
-          if (result.description) {
-            toast.error(result.description);
-            setResult(null);
-          } else {
-            setResult({ ...result, clustering_type: selectedClusteringType });
-          }
+          setResult({ ...result, clustering_type: selectedClusteringType });
         }
-  
         setOpenBackdrop(false);
-      } catch (error) {
-        toast.error("Server error");
+      } catch (error:any) {
+        toast.error(error.response.data.description);
         setOpenBackdrop(false);
         setResult(null);
       }

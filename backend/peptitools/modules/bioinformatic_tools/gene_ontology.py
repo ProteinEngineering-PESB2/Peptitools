@@ -44,7 +44,7 @@ class GeneOntology:
                         ["id_go", "probability", "term"]
                     ]
                     go_array.append(
-                        {"id_seq": single_go, "results": temp.to_dict("records")}
+                        {"id_seq": str(single_go), "results": temp.to_dict("records")}
                     )
                 results.append({"type": param_tuple[1], "prediction": go_array})
             except:

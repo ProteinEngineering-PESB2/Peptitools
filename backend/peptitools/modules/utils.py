@@ -182,7 +182,7 @@ class FastaFile:
             message = "Please verify target column. Must be in tune with task."
         if message != "":
             return _error_message(message)
-
+        print("Pasa control")
         return {"status": "success", "path": self.path}
 
     def __unique_ids(self):

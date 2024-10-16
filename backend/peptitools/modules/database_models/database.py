@@ -2,6 +2,7 @@ import os
 from sqlalchemy import create_engine, text, select, func
 from sqlalchemy.orm import Session
 import pandas as pd
+from peptitools.modules.database_models.table_models import Peptide
 class Database:
     """Database class"""
     def __init__(self):
@@ -24,6 +25,12 @@ class Database:
     def get_table_query(self, stmt):
         """Applies a select for a previous stmt"""
         return pd.read_sql(stmt, con = self.conn)
+    
+    def get_peptipedia_sample(self, limit):
+        stmt = select(Peptide.id_peptide, Peptide.sequence).where(Peptide.is_canon == True).limit(1000)
+        df = pd.read_sql(stmt, con = self.conn)
+        df = df.sample(limit)
+        return df
     def get_activities(self, stmt):
         """"""
         return None

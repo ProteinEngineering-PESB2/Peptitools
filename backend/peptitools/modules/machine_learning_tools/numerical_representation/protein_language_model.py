@@ -63,19 +63,14 @@ class Bioembeddings(object):
     
     def apply_seqvec(self):
         from bio_embeddings.embed import SeqVecEmbedder
-        return self.__apply_embedding(SeqVecEmbedder)
-    
-    def apply_seqvec(self):
-        from bio_embeddings.embed import UniRepEmbedder
-        return self.__apply_embedding(UniRepEmbedder)
-        
+        return self.__apply_embedding(SeqVecEmbedder)    
 
 
     def apply_prottrans_t5_uniref(self):
         from bio_embeddings.embed import ProtTransT5UniRef50Embedder
         return self.__apply_embedding(ProtTransT5UniRef50Embedder)
 
-    def apply_prottrans_t5_xlu(self):
+    def apply_prottrans_t5_xlu50(self):
         from bio_embeddings.embed import ProtTransT5XLU50Embedder
         return self.__apply_embedding(ProtTransT5XLU50Embedder)
 
@@ -95,9 +90,9 @@ class Bioembeddings(object):
         from bio_embeddings.embed import ProtTransXLNetUniRef100Embedder
         return self.__apply_embedding(ProtTransXLNetUniRef100Embedder)
 
-    def apply_prottrans_xlu50(self):
-        from bio_embeddings.embed import ProtTransT5XLU50Embedder
-        return self.__apply_embedding(ProtTransT5XLU50Embedder)
+    def apply_prottrans_t5bdf(self):
+        from bio_embeddings.embed import ProtTransT5BFDEmbedder
+        return self.__apply_embedding(ProtTransT5BFDEmbedder)
 
 
     def parse_output(self):

@@ -9,7 +9,7 @@ import config from "../config.json";
 import GenericForm from "../components/common/generic_form";
 
 export default function GeneOntology() {
-  const [result, setResult] = useState<IDataGeneOntology[]>([]);
+  const [result, setResult] = useState<any>();
 
   useHandleSection({ section: "gene-ontology" });
   useLoadingComponent();
@@ -17,8 +17,10 @@ export default function GeneOntology() {
   return (
     <DashboardLayout>
       <Box sx={{ padding: 4 }}>
+        <>
         <GenericForm setResult={setResult} service={config.gene_ontology}/>
-        {result.length > 0 && <GeneOntologyContent result={result} />}
+        {result && <GeneOntologyContent result={result} />}
+        </>
       </Box>
     </DashboardLayout>
   );

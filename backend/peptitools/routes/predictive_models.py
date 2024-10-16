@@ -15,6 +15,7 @@ def api_evaluate_model():
     if check["status"] == "error":
         return parse_response(check, status_code=400)
     response = pm.predict(request.form["data"], json.loads(request.form["options"]))
+    pm.cleanup()
     return parse_response(response, status_code=200)
 
 

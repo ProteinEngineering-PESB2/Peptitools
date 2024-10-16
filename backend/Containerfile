@@ -1,32 +1,62 @@
+FROM python:3.9 as pfam
 
-FROM python:3.9
+RUN apt-get update && \
+	apt-get upgrade -y && \
+	apt install hmmer gzip wget aria2 -y
+
+# pfam_scan
+RUN wget -T 10 http://ftp.ebi.ac.uk/pub/databases/Pfam/Tools/PfamScan.tar.gz && \
+	tar -xzf PfamScan.tar.gz && \
+	cp -r PfamScan /usr/local/share
+WORKDIR /usr/local/share/PfamScan
+RUN find . -type f -exec chmod 644 {} + && \
+	find . -type d -exec chmod 755 {} + && \
+	chmod +x pfam_scan.pl && \
+	ln -s /usr/local/share/PfamScan/pfam_scan.pl /usr/local/bin/
+# perl dependencies
+RUN cpan -T App::cpanminus && \
+	cpanm --notest Moose
+# data
+WORKDIR /usr/local/share/pfam_data
+RUN wget https://ftp.ebi.ac.uk/pub/databases/Pfam/current_release/Pfam-A.hmm.dat.gz && \
+	gzip -d Pfam-A.hmm.dat.gz
+RUN aria2c -x5 --show-console-readout false https://ftp.ebi.ac.uk/pub/databases/Pfam/current_release/Pfam-A.hmm.gz && \
+	gzip -d Pfam-A.hmm.gz && \
+	hmmpress Pfam-A.hmm
+
+
+FROM python:3.9-slim as runtime
 
 ARG DEBIAN_FRONTEND=noninteractive
 ENV PYTHOHUNBUFFERED=1
 
-RUN python --version
-
 RUN apt-get update && \
 	apt-get upgrade -y && \
-	apt install metastudent gzip make gcc g++ git clustalo -y && \
+	apt install hmmer metastudent clustalo gzip make gcc g++ git -y && \
 	rm -rf /var/lib/apt/lists/*
+
+# copy pfam installation and set env vars
+COPY --from=pfam /usr/local /usr/local
+ENV PFAM_DB="/usr/local/share/pfam_data/" \
+	PERL5LIB="/usr/local/share/PfamScan:${PERL5LIB}"
+
 
 WORKDIR /app/files
 RUN git clone https://github.com/realbigws/Predict_Property
 ENV PATH="/app/files/Predict_Property:${PATH}"
 
 
-COPY ./peptitools /app/peptitools
 COPY requirements.txt /app/requirements.txt
 
 RUN pip install --no-cache-dir -r /app/requirements.txt
-RUN pip install -U "bio-embeddings[all] @ git+https://github.com/sacdallago/bio_embeddings.git"
+RUN pip install -U --no-cache-dir "bio-embeddings[all] @ git+https://github.com/sacdallago/bio_embeddings.git"
 ENV PYTHONPATH=/app
 
+COPY ./peptitools /app/peptitools
 
 WORKDIR /app
 
 
-
 EXPOSE 8000
-CMD ["gunicorn", "peptitools.wsgi:app", "--bind", "0.0.0.0:8000", "--workers", "4", "--timeout", "0"]
+#CMD ["gunicorn", "peptitools.wsgi:app", "--bind", "0.0.0.0:8000", "--workers", "4", "--timeout", "0"]
+CMD ["python", "./peptitools/main.py"]

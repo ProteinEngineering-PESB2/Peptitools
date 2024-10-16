@@ -14,7 +14,7 @@ form_params = {
     },
     "msa": {
         "min_sequences": 3,
-        "max_sequences": 500
+        "max_sequences": 100
     },
     "pfam": {
         "min_sequences": 1,

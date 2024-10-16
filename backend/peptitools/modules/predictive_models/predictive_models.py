@@ -42,7 +42,8 @@ class PredictiveModels:
         for encoder in self.to_predict.encoder.unique():
             self.encoded_dfs[encoder] = self.encode_row(encoder)
         for model in self.to_predict.name:
-            self.joblib_models[model] = joblib.load(f"./files/selected_models/{model}/{model}_model.joblib")
+            self.joblib_models[model] = joblib.load(f"./files/selected_models/{model}.joblib")
+        
 
     def predict(self, data, request):
         self.encode(data, request)
@@ -53,18 +54,22 @@ class PredictiveModels:
             encoded = self.encoded_dfs[row.encoder]
             prediction = model.predict(encoded)
             prediction_proba = model.predict_proba(encoded)
+            prediction_proba = np.round(prediction_proba, 3)
             dataset_response = pd.DataFrame()
             dataset_response["Label"] = prediction
+            dataset_response.Label = dataset_response.Label.replace(0, "Negative")
+            dataset_response.Label = dataset_response.Label.replace(1, "Positive")
             dataset_response["Id"] = self.ids
             predictions = dataset_response[["Id", "Label"]].copy()
-            classes = ["Label: " +  str(a) for a in model.classes_]
+            classes = ["Label: Negative", "Label: Positive"]
             probas = pd.DataFrame(data = prediction_proba, columns=classes)
-            probas = probas.round(3)
             probas["Id"] = self.ids
             probas = probas[["Id"] + classes]
+            probas_values = np.round(probas.values.astype(float), 3)
+            probas_values = probas_values.tolist()
             predictions_dict[row["name"]] = {"predictions": {"data": predictions.values.tolist(),
                             "columns": predictions.columns.tolist()},
-                        "probabilities": {"data": probas.values.tolist(),
+                        "probabilities": {"data": probas_values,
                             "columns": probas.columns.tolist()}}
             predicted_activities.append({"value": row["name"], "title": row["name"]})
         
@@ -81,7 +86,7 @@ class PredictiveModels:
         except:
             return None
 
-    def encode_row(self, encoder):d
+    def encode_row(self, encoder):
         if encoder == "prottrans_t5_uniref":
             encoded_df = self.bioembeddings.apply_prottrans_t5_uniref()
 
@@ -92,16 +97,20 @@ class PredictiveModels:
             encoded_df = self.bioembeddings.apply_esm1b()
 
         if encoder == "prottrans_albert":
-            encoded_df = self.bioembeddings.apply_albert()
+            encoded_df = self.bioembeddings.apply_prottrans_albert()
 
         if encoder == "prottrans_bert":
-            encoded_df = self.bioembeddings.apply_bert()
+            encoded_df = self.bioembeddings.apply_prottrans_bert()
 
         if encoder == "prottrans_xlnet":
-            encoded_df = self.bioembeddings.apply_xlnet()
+            encoded_df = self.bioembeddings.apply_prottrans_xlnet()
 
         if encoder == "prottrans_t5bdf":
-            encoded_df = self.bioembeddings.apply_t5bdf()
+            encoded_df = self.bioembeddings.apply_prottrans_t5bdf()
         
         encoded_df = encoded_df[encoded_df.columns[1:]].values
         return encoded_df
+
+    def cleanup(self):
+        for model in list(self.joblib_models.keys()):
+            del self.joblib_models[model]

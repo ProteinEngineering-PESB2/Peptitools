@@ -1,4 +1,4 @@
-pandas
+pandas<2.0.0
 numpy==1.23.0
 biopython
 Flask
@@ -13,3 +13,8 @@ scipy==1.10.0
 gunicorn==20.1.0
 statsmodels
 joblib==1.2.0
+SQLalchemy
+psycopg2-binary
+xgboost==1.6.2
+jax-unirep==2.2.0
+torch==1.9.1

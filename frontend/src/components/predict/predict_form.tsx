@@ -17,6 +17,7 @@ import CheckParents from "./check_parents";
 import PredictionContent from "./prediction_content";
 import SelectComponent from "../form/select_component";
 import { Box, Grid, Paper} from "@mui/material";
+import toast from "react-hot-toast";
 
 export default function PredictForm({service}: any) {
   const [data, setData] = useState<PostData>(InitialValuePostData);
@@ -38,14 +39,21 @@ export default function PredictForm({service}: any) {
     get_activities()
   }, [])
   const onSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
-    setOpenBackdrop(true);
-    e.preventDefault();
-    setResult(undefined)
-    const postData = parserFormDataWithOptions(data, query);
-    const res = await axios.post("/api/predict/activity/", postData)
-    setResult(res.data.data)
-    setPredictedActivities(res.data.predicted_activities)
-    setOpenBackdrop(false);
+    try{
+      setOpenBackdrop(true);
+      e.preventDefault();
+      setResult(undefined)
+      const postData = parserFormDataWithOptions(data, query);
+      const res = await axios.post("/api/predict/activity/", postData)
+      setResult(res.data.data)
+      setPredictedActivities(res.data.predicted_activities)
+      setOpenBackdrop(false);
+    }
+    catch (error:any){
+      toast.error(error.response.data.description);
+      setOpenBackdrop(false);
+      setResult(null);
+    }
   }
 
   const handleChangePredictedActivity = (event: SelectChangeEvent<any>) => {
@@ -81,7 +89,7 @@ export default function PredictForm({service}: any) {
           <ButtonRun data={data} query={query}/>
         </form>
       </FormContainer>
-      {(result !== undefined) &&
+      {result &&
         (<>
       <Box marginTop={3} boxShadow={4}>
         <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
