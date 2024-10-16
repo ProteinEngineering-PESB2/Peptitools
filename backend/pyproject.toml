@@ -10,6 +10,7 @@ authors = [
 ]
 dependencies = [
     "biopython>=1.84",
+    "flask-cors>=5.0.0",
     "flask<2.2.0",
     "gunicorn>=20.1.0",
     "jax-unirep>=2.2.0",

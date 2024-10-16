@@ -22,6 +22,7 @@ source = { virtual = "." }
 dependencies = [
     { name = "biopython" },
     { name = "flask" },
+    { name = "flask-cors" },
     { name = "gunicorn" },
     { name = "jax-unirep" },
     { name = "joblib" },
@@ -48,6 +49,7 @@ dev = [
 requires-dist = [
     { name = "biopython", specifier = ">=1.84" },
     { name = "flask", specifier = "<2.2.0" },
+    { name = "flask-cors", specifier = ">=5.0.0" },
     { name = "gunicorn", specifier = ">=20.1.0" },
     { name = "jax-unirep", specifier = ">=2.2.0" },
     { name = "joblib", specifier = "==1.2.0" },
@@ -327,6 +329,18 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/5b/77/3accd62b8771954e9584beb03f080385b32ddcad30009d2a4fe4068a05d9/Flask-2.1.3.tar.gz", hash = "sha256:15972e5017df0575c3d6c090ba168b6db90259e620ac8d7ea813a396bad5b6cb", size = 630206 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/af/6a/00d144ac1626fbb44c4ff36519712e258128985a5d0ae43344778ae5cbb9/Flask-2.1.3-py3-none-any.whl", hash = "sha256:9013281a7402ad527f8fd56375164f3aa021ecfaff89bfe3825346c24f87e04c", size = 95556 },
+]
+
+[[package]]
+name = "flask-cors"
+version = "5.0.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "flask" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/4f/d0/d9e52b154e603b0faccc0b7c2ad36a764d8755ef4036acbf1582a67fb86b/flask_cors-5.0.0.tar.gz", hash = "sha256:5aadb4b950c4e93745034594d9f3ea6591f734bb3662e16e255ffbf5e89c88ef", size = 30954 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/56/07/1afa0514c876282bebc1c9aee83c6bb98fe6415cf57b88d9b06e7e29bf9c/Flask_Cors-5.0.0-py2.py3-none-any.whl", hash = "sha256:b9e307d082a9261c100d8fb0ba909eec6a228ed1b60a8315fd85f783d61910bc", size = 14463 },
 ]
 
 [[package]]

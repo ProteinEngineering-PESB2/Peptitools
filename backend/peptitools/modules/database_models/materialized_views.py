@@ -1,6 +1,9 @@
 from sqlalchemy import Column, Integer, String
+from sqlalchemy.orm import DeclarativeBase
 
-from peptitools.modules.database_models.database import Base
+
+class Base(DeclarativeBase):
+    pass
 
 
 class MVPredictedActivities(Base):

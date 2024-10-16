@@ -1,9 +1,11 @@
 """ORM Models"""
 
 from sqlalchemy import Boolean, Column, Date, Float, ForeignKey, Integer, String
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import DeclarativeBase, relationship
 
-from peptitools.modules.database_models.database import Base
+
+class Base(DeclarativeBase):
+    pass
 
 
 class Peptide(Base):

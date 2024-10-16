@@ -4,7 +4,9 @@ import pandas as pd
 from sqlalchemy import create_engine, select, text
 from sqlalchemy.orm import DeclarativeBase, Session
 
-from peptitools.modules.database_models.table_models import Peptide
+from peptitools.modules.database_models import table_models
+
+Peptide = table_models.Peptide
 
 
 class Base(DeclarativeBase):
