@@ -1,0 +1,45 @@
+[project]
+name = "backend"
+version = "1.0.0"
+description = "Peptitools backend"
+readme = "README.md"
+requires-python = ">=3.9,<3.10"
+authors = [
+    "Gabriel Cabas <gabrielcabas123@gmail.com>",
+    "Diego Alvarez <dialvarezs@gmail.com>",
+]
+dependencies = [
+    "biopython>=1.84",
+    "flask<2.2.0",
+    "gunicorn>=20.1.0",
+    "jax-unirep>=2.2.0",
+    "joblib==1.2.0",
+    "modlamp>=4.3.0",
+    "networkx>=3.2.1",
+    "numpy==1.23.0",
+    "pandas<2.0.0",
+    "psycopg2-binary>=2.9.10",
+    "python-louvain>=0.16",
+    "scikit-learn>=1.5.2",
+    "scipy==1.10",
+    "sqlalchemy>=2.0.36",
+    "statsmodels>=0.14.4",
+    "torch==1.9.1",
+    "xgboost>=2.1.1",
+]
+
+[tool.uv]
+dev-dependencies = [
+    "ruff>=0.6.9",
+]
+
+[tool.uv.sources]
+bio-embeddings = { git = "https://github.com/sacdallago/bio_embeddings", rev = "efb9801" }
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+
+[tool.ruff.lint]
+select = ["F", "W", "E", "I", "A", "B", "R", "N"]
+ignore = ["E501", "E722"]

@@ -1,7 +1,6 @@
 .py[cod]
 __pycache__/
-files/activity_models/
-files/*.csv
+files/*
 temp_files/
 install_requisites/
-files/*
+bio_embeddings/
