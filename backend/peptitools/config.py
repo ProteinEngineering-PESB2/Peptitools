@@ -2,7 +2,7 @@ host = "0.0.0.0"
 port = 8000
 
 static_folder = "./files"
-temp_folder = "./temp_files"
+temp_folder = "./tmp_files"
 results_folder = f"{static_folder}/results"
 sample_peptipedia = f"{static_folder}/sample_peptipedia.fasta"
 encoders_dataset = f"{static_folder}/input_encoders/clustering_encoders.csv"
