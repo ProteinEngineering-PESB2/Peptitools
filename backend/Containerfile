@@ -1,8 +1,8 @@
-FROM python:3.9-slim-bookworm as pfam
+FROM python:3.9-bookworm as pfam
 
 RUN apt-get update && \
 	apt-get upgrade -y && \
-	apt install hmmer gzip wget aria2 -y
+	apt install hmmer gzip wget aria2 cpan -y
 
 # pfam_scan
 RUN wget -T 10 https://ftp.ebi.ac.uk/pub/databases/Pfam/Tools/PfamScan.tar.gz && \
