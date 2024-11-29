@@ -22,7 +22,7 @@ spec:
           mountPath: /app/files:Z
         - name: bioembeddings
           mountPath: /app/bio_embeddings:Z
-        - name: peptrtools-tmp
+        - name: peptitools-tmp
           mountPath: /app/tmp_files:U
 
     - name: frontend
