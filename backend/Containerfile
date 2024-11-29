@@ -33,8 +33,8 @@ WORKDIR /app
 COPY pyproject.toml /app/pyproject.toml
 COPY uv.lock /app/uv.lock
 
-RUN --mount=from=ghcr.io/astral-sh/uv:0.5,source=/uv,target=/bin/uv \
-    uv sync -nq --no-dev
+COPY --from=ghcr.io/astral-sh/uv:0.5.5 /uv /uvx /bin/
+RUN uv sync -nq --no-dev
 
 
 FROM python:3.9-slim as runtime
