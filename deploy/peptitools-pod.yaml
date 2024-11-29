@@ -24,7 +24,7 @@ spec:
           mountPath: /app/bio_embeddings:Z
 
     - name: frontend
-      image: frontend_app:latest
+      image: peptitools_frontend:latest
       envFrom:
         - configMapRef:
             name: peptitools
@@ -39,8 +39,8 @@ spec:
     - name: peptitools-files
       hostPath:
         path: ./peptitools_files/
-        type: DirectoryOrCreate
+        type: Directory
     - name: bioembeddings
       hostPath:
         path: ./bio_embeddings/
-        type: DirectoryOrCreate
+        type: Directory
