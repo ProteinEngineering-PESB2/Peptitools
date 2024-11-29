@@ -29,6 +29,8 @@ RUN aria2c -x5 --show-console-readout false https://ftp.ebi.ac.uk/pub/databases/
 
 FROM ghcr.io/astral-sh/uv:python3.9-bookworm as build
 
+ENV UV_COMPILE_BYTECODE=1
+
 WORKDIR /app
 COPY pyproject.toml /app/pyproject.toml
 COPY uv.lock /app/uv.lock
