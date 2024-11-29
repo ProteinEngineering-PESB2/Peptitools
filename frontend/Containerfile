@@ -1,8 +1,5 @@
 FROM node:lts as build
 
-ENV VITE_BACKEND_URL=https://api.tools.peptipedia.cl
-ENV PEPTIPEDIA_URL=https://app.peptipedia.cl
-
 WORKDIR /app
 COPY ./ .
 RUN npm install

@@ -25,9 +25,6 @@ spec:
 
     - name: frontend
       image: peptitools_frontend:latest
-      envFrom:
-        - configMapRef:
-            name: peptitools
       securityContext:
         runAsUser: 2002
         runAsGroup: 2002
