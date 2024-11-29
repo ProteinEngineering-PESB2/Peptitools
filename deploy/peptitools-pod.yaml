@@ -18,6 +18,8 @@ spec:
     - name: backend
       image: peptitools_backend:latest
       envFrom:
+        - configMapRef:
+            name: peptitools
         - secretRef:
             name: peptipedia
       securityContext:
