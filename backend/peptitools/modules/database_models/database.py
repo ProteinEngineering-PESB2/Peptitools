@@ -18,11 +18,11 @@ class Database:
 
     def __init__(self):
         # Config connection
-        user = os.environ["DB_USER"]
-        db_name = os.environ["DB_NAME"]
-        host = os.environ["DB_HOST"]
-        password = os.environ["DB_PASS"]
-        port = os.environ["DB_PORT"]
+        user = os.environ["POSTGRES_USER"]
+        db_name = os.environ["POSTGRES_DB"]
+        host = os.environ["POSTGRES_HOST"]
+        password = os.environ["POSTGRES_PASSWORD"]
+        port = os.environ.get("POSTGRES_PORT", 5432)
         self.engine = create_engine(
             f"postgresql+psycopg2://{user}:{password}@{host}:{port}/{db_name}"
         )

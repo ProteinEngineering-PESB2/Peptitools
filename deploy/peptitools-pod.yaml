@@ -1,0 +1,46 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: peptitools
+  name: pod-peptitools
+spec:
+  containers:
+    - name: backend
+      image: peptitools_backend:latest
+      envFrom:
+        - secretRef:
+            name: peptipedia
+      securityContext:
+        runAsUser: 2001
+        runAsGroup: 2001
+      ports:
+        - containerPort: 8000
+          hostPort: 12001
+      volumeMounts:
+        - name: peptitools-files
+          mountPath: /app/files:Z
+        - name: bioembeddings
+          mountPath: /app/bio_embeddings:Z
+
+    - name: frontend
+      image: frontend_app:latest
+      envFrom:
+        - configMapRef:
+            name: peptitools
+      securityContext:
+        runAsUser: 2002
+        runAsGroup: 2002
+      ports:
+        - containerPort: 8080
+          hostPort: 12002
+
+  volumes:
+    - name: peptitools-files
+      hostPath:
+        path: ./peptitools_files/
+        type: DirectoryOrCreate
+    - name: bioembeddings
+      hostPath:
+        path: ./bio_embeddings/
+        type: DirectoryOrCreate
