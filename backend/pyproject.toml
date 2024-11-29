@@ -26,7 +26,7 @@ dependencies = [
     "scipy==1.10",
     "sqlalchemy>=2.0.36",
     "statsmodels>=0.14.4",
-    "torch==1.9.1+cpu",
+    "torch==1.9.1",
     "xgboost>=2.1.1",
 ]
 
@@ -37,11 +37,6 @@ dev-dependencies = [
 
 [tool.uv.sources]
 bio-embeddings = { git = "https://github.com/sacdallago/bio_embeddings.git", rev = "efb9801" }
-torch = { index = "pytorch" }
-
-[[tool.uv.index]]
-name = "pytorch"
-url = "https://download.pytorch.org/whl"
 
 [tool.ruff]
 line-length = 100
