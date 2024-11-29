@@ -4,7 +4,7 @@ host = "0.0.0.0"
 port = 8000
 
 static_folder = os.environ.get("STATIC_PATH", "./files")
-temp_folder = os.environ.get("TMP_PATH", "./temp_files")
+temp_folder = os.environ.get("TEMP_PATH", "./temp_files")
 results_folder = os.environ.get("RESULTS_PATH", f"{temp_folder}/results")
 sample_peptipedia = f"{static_folder}/sample_peptipedia.fasta"
 encoders_dataset = f"{static_folder}/input_encoders/clustering_encoders.csv"
