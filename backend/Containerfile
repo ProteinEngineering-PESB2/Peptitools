@@ -1,4 +1,4 @@
-FROM python:3.9 as pfam
+FROM python:3.9-slim-bookworm as pfam
 
 RUN apt-get update && \
 	apt-get upgrade -y && \
@@ -27,7 +27,7 @@ RUN aria2c -x5 --show-console-readout false https://ftp.ebi.ac.uk/pub/databases/
 	hmmpress Pfam-A.hmm
 
 
-FROM ghcr.io/astral-sh/uv:python3.9-bookworm as build
+FROM ghcr.io/astral-sh/uv:0.5-python3.9-bookworm as build
 
 ENV UV_COMPILE_BYTECODE=1
 
