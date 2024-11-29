@@ -1,6 +1,6 @@
 """main module"""
 
-import os
+from os import path
 
 from flask import Flask
 from flask_cors import CORS
@@ -11,7 +11,12 @@ from peptitools.modules.utils import create_config_folders
 
 create_config_folders()
 
-app = Flask(__name__, static_folder=os.path.realpath(config.static_folder))
+app = Flask(
+    __name__,
+    static_folder=path.commonpath(
+        [path.realpath(config.static_folder), path.realpath(config.results_folder)]
+    ),
+)
 # Cors
 CORS(app)
 
