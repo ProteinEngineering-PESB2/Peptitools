@@ -1,4 +1,13 @@
 apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: peptitools
+data:
+  STATIC_PATH: "./files/static"
+  TMP_PATH: "./files/tmp"
+  PUBLISH_PATH: "/app"
+---
+apiVersion: v1
 kind: Pod
 metadata:
   labels:
@@ -9,6 +18,8 @@ spec:
     - name: backend
       image: peptitools_backend:latest
       envFrom:
+        - configMapRef:
+            name: peptitools
         - secretRef:
             name: peptipedia
       securityContext:

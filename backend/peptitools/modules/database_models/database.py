@@ -1,7 +1,8 @@
 import os
+from operator import and_
 
 import pandas as pd
-from sqlalchemy import create_engine, select, text
+from sqlalchemy import create_engine, func, select, text
 from sqlalchemy.orm import DeclarativeBase, Session
 
 from peptitools.modules.database_models import table_models
@@ -39,10 +40,12 @@ class Database:
 
     def get_peptipedia_sample(self, limit):
         stmt = (
-            select(Peptide.id_peptide, Peptide.sequence).where(Peptide.is_canon is True).limit(1000)
+            select(Peptide.id_peptide, Peptide.sequence)
+            .where(Peptide.is_canon)
+            .where(func.random() > 0.1)
+            .limit(limit)
         )
-        df = pd.read_sql(stmt, con=self.conn)
-        return df.sample(limit)
+        return pd.read_sql(stmt, con=self.conn)
 
     def get_activities(self, stmt):
         """"""
