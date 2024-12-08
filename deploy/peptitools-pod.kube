@@ -1,0 +1,10 @@
+[Unit]
+Description=Peptitools pod
+
+[Install]
+WantedBy=multi-user.target default.target
+
+[Kube]
+Yaml=/home/peptipedia/peptitools/peptitools-pod.yaml
+Network=peptipedia.network
+SetWorkingDirectory=yaml

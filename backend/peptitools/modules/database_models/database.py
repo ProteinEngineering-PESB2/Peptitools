@@ -1,7 +1,8 @@
 import os
+from operator import and_
 
 import pandas as pd
-from sqlalchemy import create_engine, select, text
+from sqlalchemy import create_engine, func, select, text
 from sqlalchemy.orm import DeclarativeBase, Session
 
 from peptitools.modules.database_models import table_models
@@ -18,11 +19,11 @@ class Database:
 
     def __init__(self):
         # Config connection
-        user = os.environ["DB_USER"]
-        db_name = os.environ["DB_NAME"]
-        host = os.environ["DB_HOST"]
-        password = os.environ["DB_PASS"]
-        port = os.environ["DB_PORT"]
+        user = os.environ["POSTGRES_USER"]
+        db_name = os.environ["POSTGRES_DB"]
+        host = os.environ["POSTGRES_HOST"]
+        password = os.environ["POSTGRES_PASSWORD"]
+        port = os.environ.get("POSTGRES_PORT", 5432)
         self.engine = create_engine(
             f"postgresql+psycopg2://{user}:{password}@{host}:{port}/{db_name}"
         )
@@ -39,10 +40,12 @@ class Database:
 
     def get_peptipedia_sample(self, limit):
         stmt = (
-            select(Peptide.id_peptide, Peptide.sequence).where(Peptide.is_canon is True).limit(1000)
+            select(Peptide.id_peptide, Peptide.sequence)
+            .where(Peptide.is_canon)
+            .where(func.random() > 0.1)
+            .limit(limit)
         )
-        df = pd.read_sql(stmt, con=self.conn)
-        return df.sample(limit)
+        return pd.read_sql(stmt, con=self.conn)
 
     def get_activities(self, stmt):
         """"""

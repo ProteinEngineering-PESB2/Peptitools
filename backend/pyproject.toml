@@ -18,7 +18,7 @@ dependencies = [
     "joblib==1.2.0",
     "modlamp>=4.3.0",
     "networkx>=3.2.1",
-    "numpy==1.23.0",
+    "numpy==1.24.1",
     "pandas<2.0.0",
     "psycopg2-binary>=2.9.10",
     "python-louvain>=0.16",

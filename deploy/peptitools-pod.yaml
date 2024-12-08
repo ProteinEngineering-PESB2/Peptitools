@@ -1,0 +1,58 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: peptitools
+data:
+  STATIC_PATH: "./files/static"
+  TMP_PATH: "./files/tmp"
+  PUBLISH_PATH: "/app"
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: peptitools
+  name: pod-peptitools
+spec:
+  containers:
+    - name: backend
+      image: peptitools_backend:latest
+      envFrom:
+        - configMapRef:
+            name: peptitools
+        - secretRef:
+            name: peptipedia
+      securityContext:
+        runAsUser: 2001
+        runAsGroup: 2001
+      ports:
+        - containerPort: 8000
+          hostPort: 12001
+      volumeMounts:
+        - name: peptitools-files
+          mountPath: /app/files:Z
+        - name: bioembeddings
+          mountPath: /app/bio_embeddings:Z
+        - name: peptitools-tmp
+          mountPath: /app/tmp_files:U
+
+    - name: frontend
+      image: peptitools_frontend:latest
+      securityContext:
+        runAsUser: 2002
+        runAsGroup: 2002
+      ports:
+        - containerPort: 8080
+          hostPort: 12002
+
+  volumes:
+    - name: peptitools-files
+      hostPath:
+        path: ./peptitools_files/
+        type: Directory
+    - name: bioembeddings
+      hostPath:
+        path: ./bio_embeddings/
+        type: Directory
+    - name: peptitools-tmp
+      emptyDir: { }
