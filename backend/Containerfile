@@ -2,7 +2,7 @@ FROM python:3.9-bookworm as pfam
 
 RUN apt-get update && \
 	apt-get upgrade -y && \
-	apt install hmmer gzip wget aria2 -y
+	apt install hmmer gzip wget aria2 perl cpanminus -y
 
 # pfam_scan
 RUN wget -T 10 https://ftp.ebi.ac.uk/pub/databases/Pfam/Tools/PfamScan.tar.gz && \
@@ -15,8 +15,7 @@ RUN find . -type f -exec chmod 644 {} + && \
 	ln -s /usr/local/share/PfamScan/pfam_scan.pl /usr/local/bin/
 
 # perl dependencies
-RUN cpan -T App::cpanminus && \
-	cpanm --notest Moose
+RUN cpanm --notest Moose
 
 # data
 WORKDIR /usr/local/share/pfam_data

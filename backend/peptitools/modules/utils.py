@@ -272,12 +272,9 @@ class FastaFile:
 
 
 def create_config_folders():
-    static_path = os.path.abspath(config.static_folder)
-    os.makedirs(static_path, exist_ok=True)
-    temp_path = os.path.abspath(config.temp_folder)
-    os.makedirs(temp_path, exist_ok=True)
-    results_path = os.path.abspath(config.results_folder)
-    os.makedirs(results_path, exist_ok=True)
+    for folder in [config.static_folder, config.temp_folder, config.results_folder]:
+        if not os.path.exists(folder):
+            os.makedirs(folder)
 
 
 def _error_message(message):
